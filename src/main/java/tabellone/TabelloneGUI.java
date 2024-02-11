@@ -1,10 +1,15 @@
 package tabellone;
 
 import javax.swing.*;
+
+import personaggi.PersonaggiCreati;
+import personaggi.Personaggio;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -15,15 +20,32 @@ public class TabelloneGUI extends JFrame {
     private static final long serialVersionUID = -6218820567019985015L;
     private final Map<Position, JButton> cells = new HashMap<>();
     private Tabellone tabellone;
-    private final String personaggioDaIndovinare;
+    private String personaggioDaIndovinare;
 
     /**
      * Costruttore della classe TabelloneGUI.
      * @param size La dimensione del tabellone (numero di righe/colonne).
      */
-    public TabelloneGUI(int size) {
+    public TabelloneGUI(int difficolta) {
+        int size = 0;
+        switch (difficolta) {
+            case 1:
+                size = 3; // Livello facile
+                break;
+            case 2:
+                size = 4; // Livello intermedio
+                break;
+            case 3:
+                size = 5; // Livello difficile
+                break;
+            default:
+                // Gestione di un livello di difficoltà non valido
+                JOptionPane.showMessageDialog(this, "Livello di difficoltà non valido", "Errore", JOptionPane.ERROR_MESSAGE);
+                return;
+        }
+
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.setSize(70 * size, 70 * size);
+        this.setSize(100 * size, 100 * size);
         // Creazione di un'istanza di TabelloneImpl
         this.tabellone = new TabelloneImpl(size); 
 
@@ -53,10 +75,10 @@ public class TabelloneGUI extends JFrame {
                 }
 
                 // Ottieni il personaggio corrispondente alla posizione
-                String personaggioCliccato = tabellone.getTabellone().get(pos);
+                Personaggio personaggioCliccato = tabellone.getTabellone().get(pos);
 
                 // Controlla se il personaggio cliccato corrisponde al personaggio da indovinare
-                if (personaggioCliccato.equals(personaggioDaIndovinare)) {
+                if (personaggioCliccato.getNome().equals(personaggioDaIndovinare)) {
                     JOptionPane.showMessageDialog(TabelloneGUI.this, "Vittoria");
                     // Chiudi la finestra
                     dispose(); 
@@ -65,13 +87,24 @@ public class TabelloneGUI extends JFrame {
         };
 
         // Inizializzazione dei pulsanti e associazione dell'ActionListener
+        List<Personaggio> personaggi = PersonaggiCreati.creaPersonaggi();
+        int index = 0;
+
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
                 Position pos = new Position(j, i);
-                // Imposta il testo del pulsante al personaggio in quella posizione
-                JButton jb = new JButton(tabellone.getTabellone().get(pos)); 
+                Personaggio personaggio = personaggi.get(index++);
+                JButton jb = new JButton();
+                
+                // Ottieni l'immagine del personaggio
+                ImageIcon icon = personaggio.getImmagine();
+                // Ridimensiona l'immagine per adattarla alla dimensione del pulsante
+                Image scaledImage = icon.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+                ImageIcon scaledIcon = new ImageIcon(scaledImage);
+                // Imposta l'immagine ridimensionata come icona del pulsante
+                jb.setIcon(scaledIcon);
+                
                 cells.put(pos, jb);
-                // Aggiunge l'ActionListener personalizzato
                 jb.addActionListener(al); 
                 panel.add(jb);
             }

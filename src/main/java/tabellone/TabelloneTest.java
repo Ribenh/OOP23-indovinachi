@@ -11,6 +11,6 @@ public class TabelloneTest {
      */
     public static void main(String[] args) throws java.io.IOException {
         // Crea un'istanza di TabelloneGUI con un tabellone di dimensione passata
-        new TabelloneGUI(8); 
+        new TabelloneGUI(2); 
     }
 }
