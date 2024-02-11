@@ -3,6 +3,8 @@ package tabellone;
 import java.util.List;
 import java.util.Map;
 
+import personaggi.Personaggio;
+
 /**
  * Interfaccia che definisce le operazioni di un tabellone di gioco.
  */
@@ -24,7 +26,7 @@ public interface Tabellone {
      * Restituisce lo stato attuale del tabellone.
      * @return La mappa che associa ogni posizione al personaggio corrispondente nel tabellone.
      */
-    Map<Position, String> getTabellone();
+    Map<Position, Personaggio> getTabellone();
 
     /**
      * Restituisce il personaggio da indovinare.

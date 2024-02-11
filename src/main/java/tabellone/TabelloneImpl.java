@@ -3,14 +3,20 @@ package tabellone;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Random;
+import java.util.Set;
+import java.util.HashSet;
+
+import personaggi.PersonaggiCreati;
+import personaggi.Personaggio;
 
 /**
  * Implementazione dell'interfaccia Tabellone che gestisce il tabellone di gioco.
  */
 public class TabelloneImpl implements Tabellone {
     // Mappa che associa ogni posizione nel tabellone al personaggio corrispondente
-    private final Map<Position, String> tabellone;
+    private final Map<Position, Personaggio> tabellone;
     private String personaggioDaIndovinare; 
 
     /**
@@ -26,16 +32,20 @@ public class TabelloneImpl implements Tabellone {
      * Inizializza il tabellone con le posizioni e i personaggi iniziali.
      * @param size La dimensione del tabellone (numero di righe/colonne).
      */
-    @Override
     public void inizializzaTabellone(int size) {
+        List<Personaggio> personaggi = PersonaggiCreati.creaPersonaggi();
         Random random = new Random();
-        personaggioDaIndovinare = String.valueOf(random.nextInt(size) + 1);
+        personaggioDaIndovinare = personaggi.get(random.nextInt(personaggi.size())).getNome();
 
+        int index = 0;
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
                 Position position = new Position(i, j);
-                // Calcola il numero del personaggio in base alla posizione nel tabellone
-                tabellone.put(position, String.valueOf(i * size + j + 1));
+                tabellone.put(position, personaggi.get(index++));
+                // Aggiornamento dell'indice solo se ci sono ancora personaggi nella lista
+                if (index >= personaggi.size()) {
+                    index = 0; // Ritorna al primo personaggio se si raggiunge la fine della lista
+                }
             }
         }
     }
@@ -46,10 +56,13 @@ public class TabelloneImpl implements Tabellone {
      */
     @Override
     public void aggiornaTabellone(List<String> personaggiRimanenti) {
-        for (Map.Entry<Position, String> entry : tabellone.entrySet()) {
-            if (personaggiRimanenti.contains(entry.getValue())) {
-                // Rimuove il personaggio impostando il valore a una stringa vuota
-                entry.setValue("");
+        // Crea una copia dell'entrySet per evitare ConcurrentModificationException
+        Set<Entry<Position, Personaggio>> entrySetCopy = new HashSet<>(tabellone.entrySet());
+    
+        for (Entry<Position, Personaggio> entry : entrySetCopy) {
+            if (personaggiRimanenti.contains(entry.getValue().getNome())) {
+                // Rimuovi l'entry dalla mappa
+                tabellone.remove(entry.getKey());
             }
         }
     }
@@ -59,7 +72,7 @@ public class TabelloneImpl implements Tabellone {
      * @return La mappa che associa ogni posizione al personaggio corrispondente.
      */
     @Override
-    public Map<Position, String> getTabellone() {
+    public Map<Position, Personaggio> getTabellone() {
         return tabellone;
     }
 
