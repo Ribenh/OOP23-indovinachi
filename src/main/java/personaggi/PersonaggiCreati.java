@@ -46,7 +46,6 @@ public class PersonaggiCreati {
         personaggi.add(new PersonaggioImpl("Rupert", rupertIcon, false, "Verdi", false, true, false, true, true));
         personaggi.add(new PersonaggioImpl("Maggie", maggieIcon, true, "Castani", "Mossi", "Lunghi", "Marroni", false, false, false, false, false));
         personaggi.add(new PersonaggioImpl("Susan", susanIcon, true, "Castani", "Ricci", "Lunghi", "Marroni", false, false, true, false, false));
-        personaggi.add(new PersonaggioImpl("Natalie", natalieIcon, true, "Biondi", "Lisci", "Lunghi", "Verdi", false, false, false, false, false));
         personaggi.add(new PersonaggioImpl("Kim", kimIcon, true, "Castani", "Lisci", "Lunghi", "Marroni", false, true, false, false, false));
         personaggi.add(new PersonaggioImpl("Stephen", stephenIcon, true, "Neri", "Lisci", "Corti", "Marroni", false, false, false, false, true));
         personaggi.add(new PersonaggioImpl("Joshua", joshuaIcon, true, "Castani", "Lisci", "Corti", "Marroni", false, false, false, false, true));
