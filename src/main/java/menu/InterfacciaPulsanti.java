@@ -1,6 +1,7 @@
 package menu;
 
-import javax.swing.*;
+import javax.swing.JFrame;
+import javax.swing.JToolBar;
 import java.util.List;
 
 /*
@@ -8,5 +9,5 @@ import java.util.List;
  * per creare i pulsanti
  */
 public interface InterfacciaPulsanti {
-    public void Pulsante(JFrame frame, JToolBar toolBar, String nomePulsante, List<String> L);
+    void pulsante(JFrame frame, JToolBar toolBar, String nomePulsante, List<String> l);
 }
