@@ -1,6 +1,10 @@
 package schermatafinale;
 
+/**
+ * Classe di test per l'interfaccia grafica della schermata finale.
+ */
 public class SchermataFinaleTest {
+
     /**
      * Metodo principale per avviare il programma di test.
      * @param args
