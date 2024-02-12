@@ -14,7 +14,7 @@ public interface Tabellone {
      * Inizializza il tabellone con le dimensioni specificate.
      * @param size La dimensione del tabellone (numero di righe/colonne).
      */
-    void inizializzaTabellone(int size);
+    void inizializzaTabellone(int sizeX, int sizeY);
     
     /**
      * Aggiorna lo stato del tabellone rimuovendo i personaggi specificati.
