@@ -1,9 +1,12 @@
-package schermataFinale;
+package schermatafinale;
 
-import java.awt.*;
 import javax.swing.*;
+import java.awt.*;
 
-public class schermataFinaleGUI {
+/**
+ * Classe che rappresenta l'interfaccia grafica della schermata finale.
+ */
+public class SchermataFinaleGUI {
 
     private JFrame frame;
     private JPanel domandePanel;
@@ -12,8 +15,13 @@ public class schermataFinaleGUI {
     private JTable classificaTable;
     private JScrollPane domandeScrollPane;
     private JScrollPane classificaScrollpane;
-    
-    public schermataFinaleGUI() {
+    private static final int WIDTH = 800;
+    private static final int HEIGHT = 400;
+
+    /**
+     * Costruttore della classe SchermataFinaleGUI.
+     */
+    public SchermataFinaleGUI() {
         frame = new JFrame("Schermata Finale");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -26,9 +34,8 @@ public class schermataFinaleGUI {
 
         // placeholder: le domande dovranno essere prese dal menù
         domandeTextArea.append("-ha i capelli castani?\n\n-ha gli occhi marroni?\n\n-e' un maschio?\n\n");
-        
-        domandeTextArea.setEditable(false);
 
+        domandeTextArea.setEditable(false);
         domandeScrollPane = new JScrollPane(domandeTextArea);
         domandePanel.add(domandeScrollPane, BorderLayout.CENTER);
 
@@ -48,7 +55,6 @@ public class schermataFinaleGUI {
 
         // ordina la tabella in base al punteggio
         classificaTable.setAutoCreateRowSorter(true);
-        
         classificaScrollpane = new JScrollPane(classificaTable);
         classificaPanel.add(classificaScrollpane, BorderLayout.CENTER);
 
@@ -57,13 +63,9 @@ public class schermataFinaleGUI {
 
         frame.getContentPane().add(mainPanel);
 
-        frame.setSize(new Dimension(800, 400));
+        frame.setSize(new Dimension(WIDTH, HEIGHT));
         frame.setResizable(false);
 
         frame.setVisible(true);
-    }
-
-    public static void main(String[] args) {
-        new schermataFinaleGUI();
     }
 }
