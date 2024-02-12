@@ -27,16 +27,20 @@ public class TabelloneGUI extends JFrame {
      * @param size La dimensione del tabellone (numero di righe/colonne).
      */
     public TabelloneGUI(int difficolta) {
-        int size = 0;
+        int sizeX = 0;
+        int sizeY = 0;
         switch (difficolta) {
             case 1:
-                size = 3; // Livello facile
+                sizeX = 3; // Livello difficile - imposto la larghezza a 3
+                sizeY = 3; // Livello difficile - imposto l'altezza a 3
                 break;
             case 2:
-                size = 4; // Livello intermedio
+                sizeX = 4; // Livello difficile - imposto la larghezza a 4
+                sizeY = 4; // Livello difficile - imposto l'altezza a 4
                 break;
             case 3:
-                size = 5; // Livello difficile
+                sizeX = 4; // Livello difficile - imposto la larghezza a 6
+                sizeY = 6; // Livello difficile - imposto l'altezza a 4
                 break;
             default:
                 // Gestione di un livello di difficoltà non valido
@@ -45,15 +49,15 @@ public class TabelloneGUI extends JFrame {
         }
 
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.setSize(100 * size, 100 * size);
+        this.setSize(160 * sizeX, 130 * sizeY);
         // Creazione di un'istanza di TabelloneImpl
-        this.tabellone = new TabelloneImpl(size); 
+        this.tabellone = new TabelloneImpl(sizeX, sizeY); 
 
-        JPanel panel = new JPanel(new GridLayout(size, size));
+        JPanel panel = new JPanel(new GridLayout(sizeX, sizeY));
         this.getContentPane().add(panel);
 
         // Inizializzazione del tabellone con i personaggi iniziali
-        tabellone.inizializzaTabellone(size);
+        tabellone.inizializzaTabellone(sizeX, sizeY);
         //Ottiene il personaggio da indovinare
         personaggioDaIndovinare = tabellone.getPersonaggioDaIndovinare();
 
@@ -90,8 +94,8 @@ public class TabelloneGUI extends JFrame {
         List<Personaggio> personaggi = PersonaggiCreati.creaPersonaggi();
         int index = 0;
 
-        for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; j++) {
+        for (int i = 0; i < sizeX; i++) {
+            for (int j = 0; j < sizeY; j++) {
                 Position pos = new Position(j, i);
                 Personaggio personaggio = personaggi.get(index++);
                 JButton jb = new JButton();
