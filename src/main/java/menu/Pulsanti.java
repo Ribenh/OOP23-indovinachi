@@ -18,8 +18,10 @@ import java.util.List;
 
 public class Pulsanti implements InterfacciaPulsanti{
     @Override
-    public void pulsante(final JFrame frame, final JToolBar toolBar, final String nomePulsante, final List<String> l){
+    public void pulsante(final JFrame frame, final JPanel panel, final String nomePulsante, final List<String> l){
+        final JButton b = new JButton(nomePulsante);
         int i;
+
         final JPopupMenu pm = new JPopupMenu();
         for(i = 0; i < l.size(); i++){
             final String dettaglioPulsante = l.get(i);
@@ -32,13 +34,12 @@ public class Pulsanti implements InterfacciaPulsanti{
             }));
         }
         
-        final JButton b = new JButton(nomePulsante);
         b.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(final MouseEvent e) {
                 pm.show(e.getComponent(), e.getX(), e.getY());
             }
         });
-        toolBar.add(b);
+        panel.add(b);
     }
 }
