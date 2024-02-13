@@ -1,11 +1,12 @@
 package menu;
 
-public class domandaPulsante implements InterfacciaDomandaPulsante {
+import java.util.Locale;
 
-    public static String domanda;
+public final class DomandaPulsante implements InterfacciaDomandaPulsante {
 
-    public void creaDomanda(String nomeCaratteristica, String dettaglioCaratteristica) {
-        domanda = nomeCaratteristica.toLowerCase() + " " + dettaglioCaratteristica.toLowerCase();
+    @Override
+    public String creaDomanda(final String nomeCaratteristica, final String dettaglioCaratteristica) {
+        return  nomeCaratteristica.toLowerCase(Locale.ENGLISH) + " " + dettaglioCaratteristica.toLowerCase(Locale.ENGLISH);
     }
     
 }

@@ -1,3 +1,7 @@
+/*
+ * Implementazione di
+ * InterfacciaPulsanti
+ */
 package menu;
 
 
@@ -13,21 +17,25 @@ import java.util.List;
  */
 
 public class Pulsanti implements InterfacciaPulsanti{
-
-    public void Pulsante(JFrame frame, JToolBar toolBar, String nomePulsante, List<String> L){
+    @Override
+    public void pulsante(final JFrame frame, final JToolBar toolBar, final String nomePulsante, final List<String> l){
         int i;
         final JPopupMenu pm = new JPopupMenu();
-        for(i = 0; i < L.size(); i++){
-            pm.add(new JMenuItem(new AbstractAction(L.get(i)) {
-            public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(frame, "Dettaglio Selezionato");
-            }
+        for(i = 0; i < l.size(); i++){
+            final String dettaglioPulsante = l.get(i);
+            pm.add(new JMenuItem(new AbstractAction(dettaglioPulsante) {
+                @Override
+                public void actionPerformed(final ActionEvent e) {
+                    final DomandaPulsante d = new DomandaPulsante();
+                    JOptionPane.showMessageDialog(frame, d.creaDomanda(nomePulsante, dettaglioPulsante));
+                }
             }));
         }
         
         final JButton b = new JButton(nomePulsante);
         b.addMouseListener(new MouseAdapter() {
-            public void mousePressed(MouseEvent e) {
+            @Override
+            public void mousePressed(final MouseEvent e) {
                 pm.show(e.getComponent(), e.getX(), e.getY());
             }
         });
