@@ -1,56 +1,55 @@
 package serchbar;
 
-import javax.swing.*;
-import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
-import java.awt.event.*;
-import java.awt.*;
-public class BarraRicerca {
+import personaggi.PersonaggiCreati;
+import personaggi.Personaggio;
 
-    JFrame frame = new JFrame("Tastiera - Indovina Chi?");
-    JPanel north = new JPanel();
-    JPanel south = new JPanel();
-    JButton b = new JButton("INVIO");
-    JComboBox<String> combobox;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.JFrame;
+
+public class BarraRicerca implements InterfacciaBarraRicerca {
     
 
-    public BarraRicerca() {
-        combobox = new JComboBox<>(new String []{"","Maschio", "Femmina", "Capelli Neri", 
-        "Capelli Castani", "Capelli Bianchi", "Capelli Arancioni", "Capelli Verdi", "Capelli Marroni",
-        "Capelli Lisci", "Capelli Mossi", "Capelli Ricci", "Capelli Corti", "Capelli Lunghi", "Occhi Marroni", 
-        "Occhi Verdi", "Occhi Azzurri", "Pelato", "Barbuto", "Baffuto", "Ha Occhiali", "Ha Accessori"});
-        AutoCompleteDecorator.decorate(combobox);
-
-        final ActionListener al = new ActionListener(){
-            @Override
-            public void actionPerformed(final ActionEvent e){
-                final String s = (String) combobox.getSelectedItem();
-                switch(s){
-                    case "Maschio":
-
-                    default:
-                    JOptionPane.showMessageDialog(frame, "Input non valido\nRIPROVARE");
-                    break;
-                }
-            }
-        };
-
-        b.addActionListener(al);
-
-        frame.setSize(400,200);
-        frame.setLocationRelativeTo(null);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLayout(new BorderLayout());
-        north.setLayout(new FlowLayout());
-        south.setLayout(new FlowLayout());
-        frame.add(north, BorderLayout.NORTH);
-        frame.add(south, BorderLayout.SOUTH);
-        north.add(combobox);
-        north.add(b);
-        
-        frame.setVisible(true);
+    @Override
+    public Personaggio trovaPersonaggio(String nomePersonaggio) {
+        List<Personaggio> personaggi = PersonaggiCreati.creaPersonaggi();
+        int i = 0;
+        while ((personaggi.get(i).getNome().equals(nomePersonaggio) == false) && (i < personaggi.size())) {
+            i++;
+        }
+        return personaggi.get(i);
     }
 
-    public static void main(String[] args) throws java.io.IOException{
-        new BarraRicerca();
+    @Override
+    public void messaggioRicerca(JFrame f, Boolean b) {
+        if(b == true){
+            JOptionPane.showMessageDialog(f, "HAI INDOVINATO");
+            f.dispose();
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(f, "HAI SBAGLIATO");
+            f.dispose();
+        }
+    }
+
+    @Override
+    public Boolean cercaColoreCapelli(Personaggio p, String caratteristica) {
+        return (p.getColoreCapelli().equals(caratteristica));
+    }
+
+    @Override
+    public Boolean cercaTipoCapelli(Personaggio p, String caratteristica) {
+        return (p.getTipologiaCapelli().equals(caratteristica));
+    }
+
+    @Override
+    public Boolean cercaLunghezzaCapelli(Personaggio p, String caratteristica) {
+        return (p.getLunghezzaCapelli().equals(caratteristica));
+    }
+
+    @Override
+    public Boolean cercaColoreOcchi(Personaggio p, String caratteristica) {
+        return (p.getColoreOcchi().equals(caratteristica));
     }
 }
