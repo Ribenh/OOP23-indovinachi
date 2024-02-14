@@ -1,30 +1,29 @@
-package serchBar;
+package serchbar;
 
 import javax.swing.*;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import java.awt.event.*;
 import java.awt.*;
-public class Demo {
+public class BarraRicerca {
 
     JFrame frame = new JFrame("Tastiera - Indovina Chi?");
     JPanel north = new JPanel();
     JPanel south = new JPanel();
     JButton b = new JButton("INVIO");
-    AutoCompleteDecorator decorator;
     JComboBox<String> combobox;
     
 
-    public Demo() {
+    public BarraRicerca() {
         combobox = new JComboBox<>(new String []{"","Maschio", "Femmina", "Capelli Neri", 
         "Capelli Castani", "Capelli Bianchi", "Capelli Arancioni", "Capelli Verdi", "Capelli Marroni",
         "Capelli Lisci", "Capelli Mossi", "Capelli Ricci", "Capelli Corti", "Capelli Lunghi", "Occhi Marroni", 
         "Occhi Verdi", "Occhi Azzurri", "Pelato", "Barbuto", "Baffuto", "Ha Occhiali", "Ha Accessori"});
         AutoCompleteDecorator.decorate(combobox);
 
-        ActionListener al = new ActionListener(){
+        final ActionListener al = new ActionListener(){
             @Override
-            public void actionPerformed(ActionEvent e){
-                String s = (String) combobox.getSelectedItem();
+            public void actionPerformed(final ActionEvent e){
+                final String s = (String) combobox.getSelectedItem();
                 switch(s){
                     case "Maschio":
 
@@ -51,7 +50,7 @@ public class Demo {
         frame.setVisible(true);
     }
 
-    public static void main(String[] args) {
-        new Demo();
+    public static void main(String[] args) throws java.io.IOException{
+        new BarraRicerca();
     }
 }

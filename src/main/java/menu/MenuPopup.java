@@ -11,7 +11,11 @@ import java.awt.*;
 
 public class MenuPopup {
 
-    public void menu() {
+    /**
+     * Metodo che crea il menu
+     * a scelta multipla.
+     */
+    public MenuPopup() {
 
         SwingUtilities.invokeLater(new Runnable() {
             @Override
@@ -27,7 +31,6 @@ public class MenuPopup {
                 * Crea i pulsanti che comporranno
                 * il menu popup
                 */
-        
                 final Pulsanti p = new Pulsanti();
                 p.pulsante(frame, panel, "GENERE", CaratteristicheUtil.GENERE);
                 p.pulsante(frame, panel, "HA I CAPELLI?", CaratteristicheUtil.YESORNO);
@@ -39,8 +42,7 @@ public class MenuPopup {
                 p.pulsante(frame, panel, "HA I BAFFI?", CaratteristicheUtil.YESORNO);
                 p.pulsante(frame, panel, "HA ACCESSORI?", CaratteristicheUtil.YESORNO);
                 p.pulsante(frame, panel, "HA OCCHIALI?", CaratteristicheUtil.YESORNO);
-                
-                
+
                 panel.setLayout(new FlowLayout(FlowLayout.LEADING));
                 frame.getContentPane().add(panel);
                 frame.pack();
@@ -49,7 +51,5 @@ public class MenuPopup {
                 frame.setVisible(true);
             }
         });
-    
-
     }
 }

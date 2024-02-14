@@ -16,14 +16,14 @@ import java.util.List;
  * per la creazione dei pulsanti
  */
 
-public class Pulsanti implements InterfacciaPulsanti{
+public final class Pulsanti implements InterfacciaPulsanti {
     @Override
-    public void pulsante(final JFrame frame, final JPanel panel, final String nomePulsante, final List<String> l){
+    public void pulsante(final JFrame frame, final JPanel panel, final String nomePulsante, final List<String> l) {
         final JButton b = new JButton(nomePulsante);
         int i;
 
         final JPopupMenu pm = new JPopupMenu();
-        for(i = 0; i < l.size(); i++){
+        for (i = 0; i < l.size(); i++) {
             final String dettaglioPulsante = l.get(i);
             pm.add(new JMenuItem(new AbstractAction(dettaglioPulsante) {
                 @Override
