@@ -9,7 +9,6 @@ package menu;
 */
 import java.util.List;
 
-
 public final class CaratteristicheUtil {
     public static final List<String> GENERE = List.of("Maschio", "Femmina");
     public static final List<String> COLORECAPELLI = List.of("Neri", "Castani", "Bianchi", "Arancioni", "Verdi", "Marroni");

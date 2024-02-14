@@ -2,6 +2,7 @@ package menu;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.GridLayout;
 
 
 /*
@@ -24,7 +25,6 @@ public class MenuPopup {
                 * Crea la finestra che ospiterà il menu
                 */
                 final JFrame frame = new JFrame();
-                frame.setPreferredSize(new Dimension(650, 120));
                 final JPanel panel = new JPanel();
 
                 /*
@@ -43,7 +43,8 @@ public class MenuPopup {
                 p.pulsante(frame, panel, "HA ACCESSORI?", CaratteristicheUtil.YESORNO);
                 p.pulsante(frame, panel, "HA OCCHIALI?", CaratteristicheUtil.YESORNO);
 
-                panel.setLayout(new FlowLayout(FlowLayout.LEADING));
+                panel.setLayout(new GridLayout(5, 2));
+                frame.setPreferredSize(new Dimension(650, 620));
                 frame.getContentPane().add(panel);
                 frame.pack();
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

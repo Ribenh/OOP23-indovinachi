@@ -1,5 +1,12 @@
 package menu;
 
 public interface InterfacciaDomandaPulsante {
-    String creaDomanda(String nomeCaratteristica, String dettaglioCaratteristica);
+
+    String getTipoCaratteristica();
+    void setTipoCaratteristica(String tipoCaratteristica);
+
+    String getDettaglioCaratteristica();
+    void setDettaglioCaratteristica(String dettaglioCaratteristica);
+
+    void creaDomanda(String tipoCaratteristica, String dettaglioCaratteristica);
 }

@@ -29,7 +29,10 @@ public final class Pulsanti implements InterfacciaPulsanti {
                 @Override
                 public void actionPerformed(final ActionEvent e) {
                     final DomandaPulsante d = new DomandaPulsante();
-                    JOptionPane.showMessageDialog(frame, d.creaDomanda(nomePulsante, dettaglioPulsante));
+                    JOptionPane.showMessageDialog(frame, "Tratto Selezionato");
+                    d.creaDomanda(nomePulsante, dettaglioPulsante);
+                    System.out.println(d.getTipoCaratteristica());
+                    System.out.println(d.getDettaglioCaratteristica());
                 }
             }));
         }
