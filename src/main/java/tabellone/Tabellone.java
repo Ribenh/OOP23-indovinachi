@@ -9,19 +9,19 @@ import personaggi.Personaggio;
  * Interfaccia che definisce le operazioni di un tabellone di gioco.
  */
 public interface Tabellone {
-    
     /**
      * Inizializza il tabellone con le dimensioni specificate.
-     * @param size La dimensione del tabellone (numero di righe/colonne).
+     * @param sizeX La larghezza del tabellone (numero di colonne).
+     * @param sizeY L'altezza del tabellone (numero di righe).
      */
     void inizializzaTabellone(int sizeX, int sizeY);
-    
+
     /**
      * Aggiorna lo stato del tabellone rimuovendo i personaggi specificati.
-     * @param personaggiRimanenti La lista dei personaggi da rimuovere dal tabellone.
+     * @param personaggiRimanenti La lista dei nomi dei personaggi da rimuovere dal tabellone.
      */
     void aggiornaTabellone(List<String> personaggiRimanenti);
-    
+
     /**
      * Restituisce lo stato attuale del tabellone.
      * @return La mappa che associa ogni posizione al personaggio corrispondente nel tabellone.
@@ -29,8 +29,8 @@ public interface Tabellone {
     Map<Position, Personaggio> getTabellone();
 
     /**
-     * Restituisce il personaggio da indovinare.
-     * @return La stringa associata al personaggio da indovinare.
+     * Restituisce il nome del personaggio da indovinare.
+     * @return Il nome del personaggio da indovinare.
      */
     String getPersonaggioDaIndovinare();
 }
