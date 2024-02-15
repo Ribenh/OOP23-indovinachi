@@ -22,7 +22,7 @@ public class VittoriaGUI extends JFrame {
      * 
      * - Gioca ancora fa iniziare una nuova partita
      * - Dettagli apre una schermata con classifica e statistiche
-     * - Esci permette di chiudere il gioco
+     * - Esci permette di chiudere il gioco.
      */
     public VittoriaGUI() {
         setTitle("Schermata Finale");
@@ -45,7 +45,7 @@ public class VittoriaGUI extends JFrame {
         btnGiocaAncora.setBorder(BorderFactory.createEmptyBorder(SMALLBORDER, BIGBORDER, SMALLBORDER, BIGBORDER));
         btnGiocaAncora.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(final ActionEvent e) {
                 // Aggiungi qui il codice per la logica di "Gioca ancora"
             }
         });
@@ -55,7 +55,7 @@ public class VittoriaGUI extends JFrame {
         btnDettagli.setBorder(BorderFactory.createEmptyBorder(SMALLBORDER, BIGBORDER, SMALLBORDER, BIGBORDER));
         btnDettagli.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(final ActionEvent e) {
                 dispose();
                 new SchermataFinaleGUI();
             }
@@ -66,8 +66,12 @@ public class VittoriaGUI extends JFrame {
         btnEsci.setBorder(BorderFactory.createEmptyBorder(SMALLBORDER, BIGBORDER, SMALLBORDER, BIGBORDER));
         btnEsci.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                int choice = JOptionPane.showConfirmDialog(null, "Sei sicuro di voler uscire?", "Conferma", JOptionPane.YES_NO_OPTION);
+            public void actionPerformed(final ActionEvent e) {
+                int choice = JOptionPane.showConfirmDialog(
+                    null, "Sei sicuro di voler uscire?",
+                    "Conferma",
+                    JOptionPane.YES_NO_OPTION);
+                    
                 if (choice == JOptionPane.YES_OPTION) {
                     System.exit(0);
                 }
