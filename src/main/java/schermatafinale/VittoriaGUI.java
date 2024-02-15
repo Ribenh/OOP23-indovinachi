@@ -1,8 +1,5 @@
 package schermatafinale;
 
-import personaggi.PersonaggiCreati;
-import personaggi.Personaggio;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -35,13 +32,15 @@ public class VittoriaGUI extends JFrame {
 
         JPanel panel = new JPanel();
         panel.setLayout(new BorderLayout());
-        JLabel label;
-
-        if (personaggioCliccato.getNome().equals(personaggioDaIndovinare)) {
+        JLabel label = new JLabel("Hai vinto!");
+        
+        /*
+         * if (personaggioCliccato.getNome().equals(personaggioDaIndovinare)) {
             label = new JLabel("HAI VINTO!");
         } else {
             label = new JLabel("HAI PERSO!");
         }
+         */
         label.setHorizontalAlignment(SwingConstants.CENTER);
         label.setFont(new Font("Arial", Font.BOLD, FONTSIZE));
         panel.add(label, BorderLayout.CENTER);
