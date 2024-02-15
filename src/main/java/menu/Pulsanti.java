@@ -5,17 +5,21 @@
 package menu;
 
 
-import javax.swing.*;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JButton;
+import javax.swing.JPopupMenu;
+import javax.swing.JMenuItem;
+import javax.swing.AbstractAction;
+import javax.swing.JOptionPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
 
-/*
- * Classe che implementa l'interfaccia
- * per la creazione dei pulsanti
+/**
+ * Classe che implementa l'interfaccia InterfacciaPulsanti per la creazione dei pulsanti.
  */
-
 public final class Pulsanti implements InterfacciaPulsanti {
     @Override
     public void pulsante(final JFrame frame, final JPanel panel, final String nomePulsante, final List<String> l) {
@@ -29,11 +33,13 @@ public final class Pulsanti implements InterfacciaPulsanti {
                 @Override
                 public void actionPerformed(final ActionEvent e) {
                     final DomandaPulsante d = new DomandaPulsante();
-                    JOptionPane.showMessageDialog(frame, d.creaDomanda(nomePulsante, dettaglioPulsante));
+                    JOptionPane.showMessageDialog(frame, "Tratto Selezionato");
+                    d.creaDomanda(nomePulsante, dettaglioPulsante);
+                    frame.dispose();
                 }
             }));
         }
-        
+
         b.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(final MouseEvent e) {

@@ -1,56 +1,90 @@
 package serchbar;
 
-import javax.swing.*;
-import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
-import java.awt.event.*;
-import java.awt.*;
-public class BarraRicerca {
+import personaggi.PersonaggiCreati;
+import personaggi.Personaggio;
 
-    JFrame frame = new JFrame("Tastiera - Indovina Chi?");
-    JPanel north = new JPanel();
-    JPanel south = new JPanel();
-    JButton b = new JButton("INVIO");
-    JComboBox<String> combobox;
-    
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.JFrame;
 
-    public BarraRicerca() {
-        combobox = new JComboBox<>(new String []{"","Maschio", "Femmina", "Capelli Neri", 
-        "Capelli Castani", "Capelli Bianchi", "Capelli Arancioni", "Capelli Verdi", "Capelli Marroni",
-        "Capelli Lisci", "Capelli Mossi", "Capelli Ricci", "Capelli Corti", "Capelli Lunghi", "Occhi Marroni", 
-        "Occhi Verdi", "Occhi Azzurri", "Pelato", "Barbuto", "Baffuto", "Ha Occhiali", "Ha Accessori"});
-        AutoCompleteDecorator.decorate(combobox);
+/**
+ * Classe che implementa InterfacciaBarraRicerca.
+ */
+public class BarraRicerca implements InterfacciaBarraRicerca {
 
-        final ActionListener al = new ActionListener(){
-            @Override
-            public void actionPerformed(final ActionEvent e){
-                final String s = (String) combobox.getSelectedItem();
-                switch(s){
-                    case "Maschio":
-
-                    default:
-                    JOptionPane.showMessageDialog(frame, "Input non valido\nRIPROVARE");
-                    break;
-                }
-            }
-        };
-
-        b.addActionListener(al);
-
-        frame.setSize(400,200);
-        frame.setLocationRelativeTo(null);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLayout(new BorderLayout());
-        north.setLayout(new FlowLayout());
-        south.setLayout(new FlowLayout());
-        frame.add(north, BorderLayout.NORTH);
-        frame.add(south, BorderLayout.SOUTH);
-        north.add(combobox);
-        north.add(b);
-        
-        frame.setVisible(true);
+    /**
+     * Prende come parametro il nome del personaggio 
+     * da indovinare è restituisce il suo tipo Personaggio.
+     * @param nomePersonaggio Stringa che contiene il nome del personaggio
+     * @return Ritorna un tipo Personaggio
+     */
+    @Override
+    public Personaggio trovaPersonaggio(final String nomePersonaggio) {
+        final List<Personaggio> personaggi = PersonaggiCreati.creaPersonaggi();
+        int i = 0;
+        while (!personaggi.get(i).getNome().equals(nomePersonaggio) && i < personaggi.size()) {
+            i++;
+        }
+        return personaggi.get(i);
     }
 
-    public static void main(String[] args) throws java.io.IOException{
-        new BarraRicerca();
+    /**
+     * Fa apparire a schermo un messaggio con l'esito della ricerca.
+     * @param f indica la finestra in cui inserire il messaggio
+     * @param b booleano che indica l'esito positivo o negativo della ricerca
+     */
+    @Override
+    public void messaggioRicerca(final JFrame f, final Boolean b) {
+        if (b) {
+            JOptionPane.showMessageDialog(f, "HAI INDOVINATO");
+            f.dispose();
+        } else {
+            JOptionPane.showMessageDialog(f, "HAI SBAGLIATO");
+            f.dispose();
+        }
+    }
+
+    /**
+     * Confronta il colore di capelli selezionato con quello del personaggio da indovinare.
+     * @param p parametro di tipo Personaggio che indica il personaggio da indovinare
+     * @param caratteristica stringa che indica il colore di capelli selezionato
+     * @return restituisce un booleano che indica l'esito positivo o negativo della ricerca
+     */
+    @Override
+    public Boolean cercaColoreCapelli(final Personaggio p, final String caratteristica) {
+        return p.getColoreCapelli().equals(caratteristica);
+    }
+
+    /**
+     * Confronta il tipo di capelli selezionato con quello del personaggio da indovinare.
+     * @param p parametro di tipo Personaggio che indica il personaggio da indovinare
+     * @param caratteristica stringa che indica il tipo di capelli selezionato
+     * @return restituisce un booleano che indica l'esito positivo o negativo della ricerca
+     */
+    @Override
+    public Boolean cercaTipoCapelli(final Personaggio p, final String caratteristica) {
+        return p.getTipologiaCapelli().equals(caratteristica);
+    }
+
+    /**
+     * Confronta la lunghezza di capelli selezionata con quella del personaggio da indovinare.
+     * @param p parametro di tipo Personaggio che indica il personaggio da indovinare
+     * @param caratteristica stringa che indica la lunghezza di capelli selezionata
+     * @return restituisce un booleano che indica l'esito positivo o negativo della ricerca
+     */
+    @Override
+    public Boolean cercaLunghezzaCapelli(final Personaggio p, final String caratteristica) {
+        return p.getLunghezzaCapelli().equals(caratteristica);
+    }
+
+    /**
+     * Confronta il colore degli occhi selezionato con quello del personaggio da indovinare.
+     * @param p parametro di tipo Personaggio che indica il personaggio da indovinare
+     * @param caratteristica stringa che indica il colore degli occhi selezionato
+     * @return restituisce un booleano che indica l'esito positivo o negativo della ricerca
+     */
+    @Override
+    public Boolean cercaColoreOcchi(final Personaggio p, final String caratteristica) {
+        return p.getColoreOcchi().equals(caratteristica);
     }
 }
