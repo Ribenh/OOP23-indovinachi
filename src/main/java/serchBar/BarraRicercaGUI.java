@@ -1,43 +1,59 @@
 package serchbar;
 
 import personaggi.Personaggio;
-
-import javax.swing.*;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
-import java.awt.event.*;
-import java.awt.*;
 
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+
+/**
+ * Classe che rappresenta l'interfaccia grafica della barra di ricerca.
+ */
 public class BarraRicercaGUI {
 
-    JFrame frame = new JFrame("Tastiera - Indovina Chi?");
-    JPanel panel = new JPanel();
-    JButton b = new JButton("INVIO");
-    JComboBox<String> combobox;
+    private static final int LARGHEZZA_FRAME = 400;
+    private static final int ALTEZZA_FRAME = 200;
 
-    private Personaggio personaggioDaIndovinare;
-    private BarraRicerca barraRicerca = new BarraRicerca();
+    private final JFrame frame = new JFrame("Tastiera - Indovina Chi?");
+    private final JPanel panel = new JPanel();
+    private final JButton b = new JButton("INVIO");
+    private final JComboBox<String> combobox;
 
-    public BarraRicercaGUI(String nomePersonaggio) {
-        
+    private final Personaggio personaggioDaIndovinare;
+    private final BarraRicerca barraRicerca = new BarraRicerca();
+
+    /**
+     * Prende in input il nome del personaggio da indovinare e crea una barra di ricerca.
+     * @param nomePersonaggio nome del personaggio da indovinare
+     */
+    public BarraRicercaGUI(final String nomePersonaggio) {
+
         personaggioDaIndovinare = barraRicerca.trovaPersonaggio(nomePersonaggio);
-        
-        combobox = new JComboBox<>(new String []{"","Maschio", "Femmina", "Capelli Neri", 
+
+        combobox = new JComboBox<>(new String []{"", "Maschio", "Femmina", "Capelli Neri", 
         "Capelli Castani", "Capelli Bianchi", "Capelli Arancioni", "Capelli Verdi", "Capelli Marroni",
         "Capelli Lisci", "Capelli Mossi", "Capelli Ricci", "Capelli Corti", "Capelli Lunghi", "Occhi Marroni", 
         "Occhi Verdi", "Occhi Azzurri", "Pelato", "Barbuto", "Baffuto", "Ha Occhiali", "Ha Accessori"});
         AutoCompleteDecorator.decorate(combobox);
 
-        final ActionListener al = new ActionListener(){
+        final ActionListener al = new ActionListener() {
             @Override
-            public void actionPerformed(final ActionEvent e){
+            public void actionPerformed(final ActionEvent e) {
                 final String caratteristica = (String) combobox.getSelectedItem();
-                switch(caratteristica){
+                switch (caratteristica) {
                     case "Maschio":
                     barraRicerca.messaggioRicerca(frame, personaggioDaIndovinare.isUomo());
                     break;
 
                     case "Femmina":
-                    barraRicerca.messaggioRicerca(frame, personaggioDaIndovinare.isUomo() == false);
+                    barraRicerca.messaggioRicerca(frame, !personaggioDaIndovinare.isUomo());
                     break;
 
                     case "Capelli Neri":
@@ -51,11 +67,11 @@ public class BarraRicercaGUI {
                     case "Capelli Bianchi":
                     barraRicerca.messaggioRicerca(frame, barraRicerca.cercaColoreCapelli(personaggioDaIndovinare, "Bianchi"));
                     break;
-                    
+
                     case "Capelli Arancioni":
                     barraRicerca.messaggioRicerca(frame, barraRicerca.cercaColoreCapelli(personaggioDaIndovinare, "Arancioni"));
                     break;
-                    
+
                     case "Capelli Verdi":
                     barraRicerca.messaggioRicerca(frame, barraRicerca.cercaColoreCapelli(personaggioDaIndovinare, "Verdi"));
                     break;
@@ -97,7 +113,7 @@ public class BarraRicercaGUI {
                     break;
 
                     case "Pelato":
-                    barraRicerca.messaggioRicerca(frame, personaggioDaIndovinare.hasCapelli() == false);
+                    barraRicerca.messaggioRicerca(frame, !personaggioDaIndovinare.hasCapelli());
                     break;
 
                     case "Barbuto":
@@ -125,15 +141,14 @@ public class BarraRicercaGUI {
 
         b.addActionListener(al);
 
-        frame.setSize(400,200);
-        frame.setLocationRelativeTo(null);
+        frame.setSize(LARGHEZZA_FRAME, ALTEZZA_FRAME);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new BorderLayout());
         panel.setLayout(new FlowLayout());
         frame.add(panel, BorderLayout.CENTER);
         panel.add(combobox);
         panel.add(b);
-        
+
         frame.setVisible(true);
     }
 }
