@@ -1,5 +1,8 @@
 package schermatafinale;
 
+import personaggi.PersonaggiCreati;
+import personaggi.Personaggio;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -32,8 +35,13 @@ public class VittoriaGUI extends JFrame {
 
         JPanel panel = new JPanel();
         panel.setLayout(new BorderLayout());
+        JLabel label;
 
-        JLabel label = new JLabel("HAI VINTO!");
+        if (personaggioCliccato.getNome().equals(personaggioDaIndovinare)) {
+            label = new JLabel("HAI VINTO!");
+        } else {
+            label = new JLabel("HAI PERSO!");
+        }
         label.setHorizontalAlignment(SwingConstants.CENTER);
         label.setFont(new Font("Arial", Font.BOLD, FONTSIZE));
         panel.add(label, BorderLayout.CENTER);
@@ -71,7 +79,7 @@ public class VittoriaGUI extends JFrame {
                     null, "Sei sicuro di voler uscire?",
                     "Conferma",
                     JOptionPane.YES_NO_OPTION);
-                    
+
                 if (choice == JOptionPane.YES_OPTION) {
                     System.exit(0);
                 }
