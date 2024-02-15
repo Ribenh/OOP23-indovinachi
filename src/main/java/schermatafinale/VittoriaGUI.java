@@ -1,6 +1,8 @@
 package schermatafinale;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,8 +14,7 @@ public class VittoriaGUI extends JFrame {
 
     private static final int WIDTH = 400;
     private static final int HEIGHT = 300;
-    private static final int SMALLBORDER = 10;
-    private static final int BIGBORDER = 20;
+    private static final int BORDER = 10;
     private static final int FONTSIZE = 24;
 
     /**
@@ -49,7 +50,7 @@ public class VittoriaGUI extends JFrame {
         buttonPanel.setLayout(new FlowLayout());
 
         JButton btnGiocaAncora = new JButton("Gioca ancora");
-        btnGiocaAncora.setBorder(BorderFactory.createEmptyBorder(SMALLBORDER, BIGBORDER, SMALLBORDER, BIGBORDER));
+        btnGiocaAncora.setBorder(new EmptyBorder(BORDER, BORDER, BORDER, BORDER));
         btnGiocaAncora.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
@@ -59,7 +60,7 @@ public class VittoriaGUI extends JFrame {
         buttonPanel.add(btnGiocaAncora);
 
         JButton btnDettagli = new JButton("Dettagli");
-        btnDettagli.setBorder(BorderFactory.createEmptyBorder(SMALLBORDER, BIGBORDER, SMALLBORDER, BIGBORDER));
+        btnDettagli.setBorder(new EmptyBorder(BORDER, BORDER, BORDER, BORDER));
         btnDettagli.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
@@ -70,7 +71,7 @@ public class VittoriaGUI extends JFrame {
         buttonPanel.add(btnDettagli);
 
         JButton btnEsci = new JButton("Esci");
-        btnEsci.setBorder(BorderFactory.createEmptyBorder(SMALLBORDER, BIGBORDER, SMALLBORDER, BIGBORDER));
+        btnEsci.setBorder(new EmptyBorder(BORDER, BORDER, BORDER, BORDER));
         btnEsci.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
