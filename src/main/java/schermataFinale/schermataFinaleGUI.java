@@ -1,4 +1,4 @@
-package schermatafinale;
+package schermataFinale;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;

@@ -1,4 +1,4 @@
-package schermatafinale;
+package schermataFinale;
 
 /**
  * Classe di test per l'interfaccia grafica della schermata finale.
