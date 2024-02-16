@@ -4,6 +4,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
+/**
+ * Interfaccia grafica della schermata di selezione della modalità.
+ */
 public class SchermataInizialeGUI extends JFrame {
 
     private static final int SCALEDWIDTH = -1;
@@ -13,17 +16,20 @@ public class SchermataInizialeGUI extends JFrame {
     private static final int BUTTONWIDTH = 200;
     private static final int BUTTONHEIGHT = 50;
 
+    /**
+     * Costruttore della classe SchermataInizialeGUI.
+     */
     public SchermataInizialeGUI() {
         super("Indovina Chi");
 
         // Impostazioni della finestra
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(WIDTH, HEIGHT); // Aumenta le dimensioni della finestra
+        setSize(WIDTH, HEIGHT);
         setLocationRelativeTo(null);
 
         // Pannello principale
         JPanel panel = new JPanel();
-        panel.setLayout(new BorderLayout()); // Layout BorderLayout per gestire la posizione dell'immagine
+        panel.setLayout(new BorderLayout());
 
         // Carica l'immagine e la ridimensiona
         ImageIcon imageIcon = new ImageIcon("src/main/java/schermatainiziale/IndovinaChi.png");
@@ -46,18 +52,20 @@ public class SchermataInizialeGUI extends JFrame {
         classicMode.setPreferredSize(buttonSize);
         manualMode.setPreferredSize(buttonSize);
 
-        // Aggiungi ascoltatori di azioni ai pulsanti
+        // Aggiunta ascoltatori di azioni ai pulsanti
         classicMode.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Codice per la modalità classica
-                JOptionPane.showMessageDialog(SchermataInizialeGUI.this, "Modalita' classica selezionata");
+                dispose();
+                new SelezioneDifficoltaGUI();
             }
         });
 
         manualMode.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Codice per la modalità manuale
-                JOptionPane.showMessageDialog(SchermataInizialeGUI.this, "Modalita' manuale selezionata");
+                dispose();
+                new SelezioneDifficoltaGUI();
             }
         });
 
