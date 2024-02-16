@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
  */
 public class VittoriaGUI extends JFrame {
 
+    private static final long serialVersionUID = -6218820467019983016L;
     private static final int WIDTH = 400;
     private static final int HEIGHT = 300;
     private static final int BORDER = 10;
