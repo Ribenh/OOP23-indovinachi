@@ -11,7 +11,6 @@ import java.awt.event.ActionListener;
  */
 public class SchermataFinaleGUI {
 
-    private static final long serialVersionUID = -6218820467019983015L;
     private static final int WIDTH = 800;
     private static final int HEIGHT = 400;
     private static final int BORDER = 5;
