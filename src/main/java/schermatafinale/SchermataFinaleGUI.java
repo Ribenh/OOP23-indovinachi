@@ -1,4 +1,4 @@
-package schermataFinale;
+package schermatafinale;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -26,7 +26,7 @@ public class SchermataFinaleGUI {
 
         // pannello domande
         final JPanel domandePanel = new JPanel(new BorderLayout());
-        domandePanel.setBorder(new EmptyBorder(BORDER, BORDER, BORDER, BORDER)); // Aggiunta di un bordo vuoto
+        domandePanel.setBorder(new EmptyBorder(BORDER, BORDER, BORDER, BORDER));
         final JLabel riepilogoLabel = new JLabel("Riepilogo Domande", SwingConstants.CENTER);
         domandePanel.add(riepilogoLabel, BorderLayout.NORTH);
         final JTextArea domandeTextArea = new JTextArea();
@@ -40,7 +40,7 @@ public class SchermataFinaleGUI {
 
         // pannello classifica
         final JPanel classificaPanel = new JPanel(new BorderLayout());
-        classificaPanel.setBorder(new EmptyBorder(BORDER, BORDER, BORDER, BORDER)); // Aggiunta di un bordo vuoto
+        classificaPanel.setBorder(new EmptyBorder(BORDER, BORDER, BORDER, BORDER));
         final JLabel classificaLabel = new JLabel("Classifica", SwingConstants.CENTER);
         classificaPanel.add(classificaLabel, BorderLayout.NORTH);
 
@@ -76,7 +76,7 @@ public class SchermataFinaleGUI {
         // Aggiunta dei componenti al pannello principale
         mainPanel.add(domandePanel, BorderLayout.CENTER);
         mainPanel.add(classificaPanel, BorderLayout.EAST);
-        mainPanel.add(buttonPanel, BorderLayout.SOUTH); // Aggiunta del pannello dei pulsanti
+        mainPanel.add(buttonPanel, BorderLayout.SOUTH);
 
          // Aggiunta dell'ActionListener per il pulsante "Esci"
          esci.addActionListener(new ActionListener() {
