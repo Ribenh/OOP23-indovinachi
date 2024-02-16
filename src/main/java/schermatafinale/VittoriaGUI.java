@@ -34,7 +34,7 @@ public class VittoriaGUI extends JFrame {
         JPanel panel = new JPanel();
         panel.setLayout(new BorderLayout());
         JLabel label = new JLabel("Hai vinto!");
-        
+
         /*
          * if (personaggioCliccato.getNome().equals(personaggioDaIndovinare)) {
             label = new JLabel("HAI VINTO!");

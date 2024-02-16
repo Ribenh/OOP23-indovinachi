@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
  */
 public class SchermataFinaleGUI {
 
+    private static final long serialVersionUID = -6218820467019983015L;
     private static final int WIDTH = 800;
     private static final int HEIGHT = 400;
     private static final int BORDER = 5;
@@ -46,8 +47,8 @@ public class SchermataFinaleGUI {
 
         // crea la tabella con i nomi e i punteggi dei giocatori.
         // placeholder da cambiare (nella versione finale prende le domande ed il nome del giocatore dal menu)
-        String[] columnNames = {"Nome giocatore", "Punteggio"};
-        Object[][] data = {
+        final String[] columnNames = {"Nome giocatore", "Punteggio"};
+        final Object[][] data = {
             {"Giocatore 1", 10},
             {"Giocatore 2", 8},
             {"Giocatore 3", 6},
@@ -82,9 +83,14 @@ public class SchermataFinaleGUI {
          esci.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
-                final int result = JOptionPane.showConfirmDialog(frame, "Sei sicuro di voler chiudere l'applicazione?", "Conferma chiusura", JOptionPane.YES_NO_OPTION);
+                final int result = JOptionPane.showConfirmDialog(
+                    frame,
+                    "Sei sicuro di voler chiudere l'applicazione?",
+                    "Conferma chiusura",
+                    JOptionPane.YES_NO_OPTION);
+                    
                 if (result == JOptionPane.YES_OPTION) {
-                    System.exit(0); // Chiude l'applicazione se l'utente conferma
+                    System.exit(0);
                 }
             }
         });
