@@ -13,7 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
- * Interfaccia grafica della schermata di selezione della modalità.
+ * Interfaccia grafica della schermata di selezione della modalita'.
  */
 public class SchermataInizialeGUI extends JFrame {
 
