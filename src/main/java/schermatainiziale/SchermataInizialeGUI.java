@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 /**
- * Interfaccia grafica della schermata di selezione della modalità.
+ * Interfaccia grafica della schermata di selezione della modalita'.
  */
 public class SchermataInizialeGUI extends JFrame {
 
