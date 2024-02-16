@@ -31,9 +31,9 @@ public class VittoriaGUI extends JFrame {
         setSize(WIDTH, HEIGHT);
         setLocationRelativeTo(null);
 
-        JPanel panel = new JPanel();
+        final JPanel panel = new JPanel();
         panel.setLayout(new BorderLayout());
-        JLabel label = new JLabel("Hai vinto!");
+        final JLabel label = new JLabel("Hai vinto!");
 
         /*
          * if (personaggioCliccato.getNome().equals(personaggioDaIndovinare)) {
@@ -46,10 +46,10 @@ public class VittoriaGUI extends JFrame {
         label.setFont(new Font("Arial", Font.BOLD, FONTSIZE));
         panel.add(label, BorderLayout.CENTER);
 
-        JPanel buttonPanel = new JPanel();
+        final JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new FlowLayout());
 
-        JButton btnGiocaAncora = new JButton("Gioca ancora");
+        final JButton btnGiocaAncora = new JButton("Gioca ancora");
         btnGiocaAncora.setBorder(new EmptyBorder(BORDER, BORDER, BORDER, BORDER));
         btnGiocaAncora.addActionListener(new ActionListener() {
             @Override
@@ -59,7 +59,7 @@ public class VittoriaGUI extends JFrame {
         });
         buttonPanel.add(btnGiocaAncora);
 
-        JButton btnDettagli = new JButton("Dettagli");
+        final JButton btnDettagli = new JButton("Dettagli");
         btnDettagli.setBorder(new EmptyBorder(BORDER, BORDER, BORDER, BORDER));
         btnDettagli.addActionListener(new ActionListener() {
             @Override
@@ -70,7 +70,7 @@ public class VittoriaGUI extends JFrame {
         });
         buttonPanel.add(btnDettagli);
 
-        JButton btnEsci = new JButton("Esci");
+        final JButton btnEsci = new JButton("Esci");
         btnEsci.setBorder(new EmptyBorder(BORDER, BORDER, BORDER, BORDER));
         btnEsci.addActionListener(new ActionListener() {
             @Override
