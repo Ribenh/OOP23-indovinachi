@@ -1,8 +1,20 @@
 package schermatafinale;
 
-import javax.swing.*;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextArea;
+import javax.swing.SwingConstants;
+import javax.swing.JOptionPane;
+
+import java.awt.BorderLayout;
+import java.awt.Dimension;
 import javax.swing.border.EmptyBorder;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -87,9 +99,8 @@ public class SchermataFinaleGUI {
                     "Sei sicuro di voler chiudere l'applicazione?",
                     "Conferma chiusura",
                     JOptionPane.YES_NO_OPTION);
-                    
-                if (result == JOptionPane.YES_OPTION) {
-                    System.exit(0);
+                    if (result == JOptionPane.YES_OPTION) {
+                        System.exit(0);
                 }
             }
         });
