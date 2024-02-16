@@ -9,6 +9,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JPopupMenu;
+
+import serchbar.ListaDomande;
+
 import javax.swing.JMenuItem;
 import javax.swing.AbstractAction;
 import javax.swing.JOptionPane;
@@ -32,9 +35,9 @@ public final class Pulsanti implements InterfacciaPulsanti {
             pm.add(new JMenuItem(new AbstractAction(dettaglioPulsante) {
                 @Override
                 public void actionPerformed(final ActionEvent e) {
-                    final DomandaPulsante d = new DomandaPulsante();
                     JOptionPane.showMessageDialog(frame, "Tratto Selezionato");
-                    d.creaDomanda(nomePulsante, dettaglioPulsante);
+                    DomandaPulsante.creaDomanda(nomePulsante, dettaglioPulsante);
+                    System.out.print(ListaDomande.getDomande().get(0));
                     frame.dispose();
                 }
             }));
