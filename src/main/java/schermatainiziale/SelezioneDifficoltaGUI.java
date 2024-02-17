@@ -30,11 +30,12 @@ public class SelezioneDifficoltaGUI extends JFrame {
     private static final int DIMENSIONE_FACILE = 1;
     private static final int DIMENSIONE_MEDIA = 2;
     private static final int DIMENSIONE_DIFFICILE = 3;
+    private static final int AUTOMATIC_MODE = 1;
 
     /**
      * Costruttore della classe SelezioneDifficoltaGUI che si aprirà dopo aver scelto la modalità.
      */
-    public SelezioneDifficoltaGUI() {
+    public SelezioneDifficoltaGUI(int modeSelect) {
         super("Indovina Chi");
 
         // Impostazioni della finestra
@@ -85,21 +86,36 @@ public class SelezioneDifficoltaGUI extends JFrame {
         facile.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
-                new TabelloneGUI(DIMENSIONE_FACILE);
+                dispose();
+                if (modeSelect == AUTOMATIC_MODE) {
+                    new TabelloneAutomaticoGUI(DIMENSIONE_FACILE);
+                } else {
+                    new TabelloneManualeGUI(DIMENSIONE_FACILE);
+                }
             }
         });
 
         medio.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
-                new TabelloneGUI(DIMENSIONE_MEDIA);
+                dispose();
+                if (modeSelect == AUTOMATIC_MODE) {
+                    new TabelloneAutomaticoGUI(DIMENSIONE_MEDIA);
+                } else {
+                    new TabelloneManualeGUI(DIMENSIONE_MEDIA);
+                }
             }
         });
 
         difficile.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
-                new TabelloneGUI(DIMENSIONE_DIFFICILE);
+                dispose();
+                if (modeSelect == AUTOMATIC_MODE) {
+                    new TabelloneAutomaticoGUI(DIMENSIONE_DIFFICILE);
+                } else {
+                    new TabelloneManualeGUI(DIMENSIONE_DIFFICILE);
+                }
             }
         });
 

@@ -17,6 +17,8 @@ import javax.swing.JPanel;
  */
 public class SchermataInizialeGUI extends JFrame {
 
+    private static final int AUTOMATICMODE = 1;
+    private static final int MANUALMODE = 2;
     private static final long serialVersionUID = -6218820467019983015L;
     private static final int SCALEDWIDTH = -1;
     private static final int SCALEDHEIGHT = 800;
