@@ -5,16 +5,16 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
-import javax.swing.JOptionPane;
+import javax.swing.border.EmptyBorder;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import javax.swing.border.EmptyBorder;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -22,7 +22,7 @@ import java.awt.event.ActionListener;
  * Classe che rappresenta l'interfaccia grafica della schermata finale.
  */
 public class SchermataFinaleGUI {
-
+    
     private static final int WIDTH = 800;
     private static final int HEIGHT = 400;
     private static final int BORDER = 5;
