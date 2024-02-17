@@ -38,8 +38,8 @@ public class BarraRicercaGUI {
         personaggioDaIndovinare = barraRicerca.trovaPersonaggio(nomePersonaggio);
 
         combobox = new JComboBox<>(new String []{"", "Maschio", "Femmina", "Capelli Neri", 
-        "Capelli Castani", "Capelli Bianchi", "Capelli Arancioni", "Capelli Verdi", "Capelli Marroni",
-        "Capelli Lisci", "Capelli Mossi", "Capelli Ricci", "Capelli Corti", "Capelli Lunghi", "Occhi Marroni", 
+        "Capelli Castani", "Capelli Bianchi", "Capelli Arancioni", "Capelli Biondi","Capelli Lisci", 
+        "Capelli Mossi", "Capelli Ricci", "Capelli Corti", "Capelli Lunghi", "Occhi Marroni", 
         "Occhi Verdi", "Occhi Azzurri", "Pelato", "Barbuto", "Baffuto", "Ha Occhiali", "Ha Accessori"});
         AutoCompleteDecorator.decorate(combobox);
 

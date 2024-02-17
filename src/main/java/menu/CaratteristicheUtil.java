@@ -12,7 +12,7 @@ public final class CaratteristicheUtil {
     /**
      *Crea e inizializza una Lista di Stringhe costante COLORECAPELLI.
      */
-    public static final List<String> COLORECAPELLI = List.of("Neri", "Castani", "Bianchi", "Arancioni", "Verdi", "Marroni");
+    public static final List<String> COLORECAPELLI = List.of("Neri", "Castani", "Bianchi", "Arancioni", "Biondi");
     /**
      *Crea e inizializza una Lista di Stringhe costante TIPICAPELLI.
      */

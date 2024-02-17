@@ -10,7 +10,7 @@ public final class TestBarraRicercaGUI {
      * @throws IOException ignora errore I/O
      */
     public static void main(final String[] args) throws java.io.IOException {
-        new BarraRicercaGUI("Jennifer");
+        new BarraRicercaGUI("Rupert");
     }
 
     private TestBarraRicercaGUI() { 

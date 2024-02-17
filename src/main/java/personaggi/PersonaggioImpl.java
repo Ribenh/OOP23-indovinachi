@@ -18,6 +18,7 @@ public class PersonaggioImpl implements Personaggio {
     private Boolean accessorio;
     private Boolean baffi;
     private Boolean uomo;
+    private static final String NOT = "not";
 
     public PersonaggioImpl() {
     }
@@ -34,6 +35,9 @@ public class PersonaggioImpl implements Personaggio {
         this.baffi = baffi;
         this.occhiali = occhiali;
         this.accessorio = accessorio;
+        this.occhiali = occhiali;
+        this.accessorio = accessorio;
+        this.baffi = baffi;
         this.uomo = uomo;
     }
 
@@ -41,10 +45,14 @@ public class PersonaggioImpl implements Personaggio {
         this.nome = nome;
         this.immagine = immagine;
         this.hasCapelli = hasCapelli;
+        this.coloreCapelli = NOT;
+        this.tipologiaCapelli = NOT;
+        this.lunghezzaCapelli = NOT;
         this.coloreOcchi = coloreOcchi;
         this.barba = barba;
         this.occhiali = occhiali;
         this.accessorio = accessorio;
+        this.baffi = baffi;
         this.uomo = uomo;
     }
 
