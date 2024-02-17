@@ -34,7 +34,12 @@ public class NomeController implements Serializable {
 
         if (nome != null && !nome.trim().isEmpty()) {
             if (nameScores.containsKey(nome)) {
-                int choice = JOptionPane.showConfirmDialog(frame, "Il nome è già stato inserito. Vuoi aggiornare il tuo punteggio in classifica?", "Nome già presente", JOptionPane.YES_NO_OPTION);
+
+                int choice = JOptionPane.showConfirmDialog(frame,
+                "Il nome e' gia' stato inserito. Vuoi aggiornare il tuo punteggio in classifica?",
+                "Nome gia' presente",
+                JOptionPane.YES_NO_OPTION);
+
                 if (choice == JOptionPane.YES_OPTION) {
                     setPunteggio(nome, 0);
                 }
