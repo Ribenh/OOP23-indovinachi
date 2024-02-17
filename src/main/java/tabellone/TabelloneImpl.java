@@ -86,16 +86,10 @@ public class TabelloneImpl implements Tabellone {
      * Restituisce il nome del personaggio da indovinare.
      * @return Il nome del personaggio da indovinare.
      */
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
     @Override
     public String getPersonaggioDaIndovinare() {
         return personaggioDaIndovinare;
     }
-<<<<<<< Updated upstream
-=======
 
     /**
      * Verifica se il personaggio cliccato corrisponde al personaggio da indovinare.
@@ -107,5 +101,4 @@ public class TabelloneImpl implements Tabellone {
         Personaggio personaggioCliccato = tabellone.get(position);
         return personaggioCliccato != null && personaggioCliccato.getNome().equals(personaggioDaIndovinare);
     }
->>>>>>> Stashed changes
 }

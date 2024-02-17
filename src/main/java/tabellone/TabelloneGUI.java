@@ -92,18 +92,13 @@ public class TabelloneGUI extends JFrame {
 
         // Creazione del tabellone e del pannello
         this.tabellone = new TabelloneImpl(sizeX, sizeY);
-<<<<<<< Updated upstream
-        JPanel panel = new JPanel(new GridLayout(sizeX, sizeY));
-        this.getContentPane().add(panel);
-=======
-
+        
         JPanel mainPanel = new JPanel(new BorderLayout());
         this.getContentPane().add(mainPanel);
 
         JPanel imagePanel = new JPanel(new GridLayout(sizeX, sizeY));
         JScrollPane scrollPane = new JScrollPane(imagePanel);
         mainPanel.add(scrollPane, BorderLayout.CENTER);
->>>>>>> Stashed changes
 
         // Inizializzazione del tabellone con i personaggi iniziali
         tabellone.inizializzaTabellone(sizeX, sizeY);
@@ -132,14 +127,8 @@ public class TabelloneGUI extends JFrame {
 
                 // Controlla se il personaggio cliccato corrisponde al personaggio da indovinare
                 if (personaggioCliccato.getNome().equals(personaggioDaIndovinare)) {
-<<<<<<< Updated upstream
-                    JOptionPane.showMessageDialog(TabelloneGUI.this, "Vittoria");
-                    // Chiudi la finestra
-                    dispose();
-=======
                     new VittoriaGUI(); // Apre la SchermataFinale
                     dispose(); // Chiude la finestra corrente
->>>>>>> Stashed changes
                 }
             }
         };
@@ -164,13 +153,6 @@ public class TabelloneGUI extends JFrame {
 
                 cells.put(pos, jb);
                 jb.addActionListener(al);
-<<<<<<< Updated upstream
-                panel.add(jb);
-            }
-        }
-
-        this.setVisible(true);
-=======
                 imagePanel.add(jb);
             }
         }
@@ -184,6 +166,5 @@ public class TabelloneGUI extends JFrame {
         });
         mainPanel.add(askQuestionButton, BorderLayout.SOUTH);
         setVisible(true);
->>>>>>> Stashed changes
     }
 }
