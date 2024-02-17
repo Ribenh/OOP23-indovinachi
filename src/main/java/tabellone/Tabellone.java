@@ -33,4 +33,14 @@ public interface Tabellone {
      * @return Il nome del personaggio da indovinare.
      */
     String getPersonaggioDaIndovinare();
+<<<<<<< Updated upstream
+=======
+
+    /**
+     * Verifica se il personaggio cliccato corrisponde al personaggio da indovinare.
+     * @param position La posizione del personaggio cliccato.
+     * @return true se il personaggio cliccato è quello da indovinare, altrimenti false.
+     */
+    Boolean isPersonaggioCorretto(Position position);
+>>>>>>> Stashed changes
 }
