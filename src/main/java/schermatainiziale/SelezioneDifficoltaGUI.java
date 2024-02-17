@@ -87,11 +87,12 @@ public class SelezioneDifficoltaGUI extends JFrame {
             @Override
             public void actionPerformed(final ActionEvent e) {
                 dispose();
-                if (modeSelect == AUTOMATIC_MODE) {
+                new TabelloneGUI(1);
+                /*if (modeSelect == AUTOMATIC_MODE) {
                     new TabelloneAutomaticoGUI(DIMENSIONE_FACILE);
                 } else {
                     new TabelloneManualeGUI(DIMENSIONE_FACILE);
-                }
+                }*/
             }
         });
 
@@ -99,11 +100,12 @@ public class SelezioneDifficoltaGUI extends JFrame {
             @Override
             public void actionPerformed(final ActionEvent e) {
                 dispose();
-                if (modeSelect == AUTOMATIC_MODE) {
+                new TabelloneGUI(2);
+                /*if (modeSelect == AUTOMATIC_MODE) {
                     new TabelloneAutomaticoGUI(DIMENSIONE_MEDIA);
                 } else {
                     new TabelloneManualeGUI(DIMENSIONE_MEDIA);
-                }
+                }*/
             }
         });
 
@@ -111,11 +113,12 @@ public class SelezioneDifficoltaGUI extends JFrame {
             @Override
             public void actionPerformed(final ActionEvent e) {
                 dispose();
-                if (modeSelect == AUTOMATIC_MODE) {
+                new TabelloneGUI(3);
+                /*if (modeSelect == AUTOMATIC_MODE) {
                     new TabelloneAutomaticoGUI(DIMENSIONE_DIFFICILE);
                 } else {
                     new TabelloneManualeGUI(DIMENSIONE_DIFFICILE);
-                }
+                }*/
             }
         });
 

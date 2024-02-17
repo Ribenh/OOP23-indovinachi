@@ -17,8 +17,6 @@ import javax.swing.JPanel;
  */
 public class SchermataInizialeGUI extends JFrame {
 
-    private static final int AUTOMATICMODE = 1;
-    private static final int MANUALMODE = 2;
     private static final long serialVersionUID = -6218820467019983015L;
     private static final int SCALEDWIDTH = -1;
     private static final int SCALEDHEIGHT = 800;
@@ -26,6 +24,11 @@ public class SchermataInizialeGUI extends JFrame {
     private static final int HEIGHT = 400;
     private static final int BUTTONWIDTH = 200;
     private static final int BUTTONHEIGHT = 50;
+    private static final int AUTOMATIC_MODE = 1;
+    private static final int MANUAL_MODE = 2;
+
+    private int modeSelect = 0;
+    private NomeController nomeController;
 
     /**
      * Costruttore della classe SchermataInizialeGUI.
@@ -37,6 +40,8 @@ public class SchermataInizialeGUI extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(WIDTH, HEIGHT);
         setLocationRelativeTo(null);
+
+        nomeController = new NomeController(this);
 
         // Pannello principale
         final JPanel panel = new JPanel();
@@ -67,18 +72,20 @@ public class SchermataInizialeGUI extends JFrame {
         classicMode.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
-                // Codice per la modalità classica
+                nomeController.aggiungiNome();
+                modeSelect = AUTOMATIC_MODE;
                 dispose();
-                new SelezioneDifficoltaGUI();
+                new SelezioneDifficoltaGUI(modeSelect);
             }
         });
 
         manualMode.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
-                // Codice per la modalità manuale
+                nomeController.aggiungiNome();
+                modeSelect = MANUAL_MODE;
                 dispose();
-                new SelezioneDifficoltaGUI();
+                new SelezioneDifficoltaGUI(modeSelect);
             }
         });
 
