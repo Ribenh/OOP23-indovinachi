@@ -1,5 +1,6 @@
 package tabellone;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -34,21 +35,24 @@ public class TabelloneImpl implements Tabellone {
      */
     public void inizializzaTabellone(int sizeX, int sizeY) {
         List<Personaggio> personaggi = PersonaggiCreati.creaPersonaggi();
+        int index=0; 
         Random random = new Random();
-        personaggioDaIndovinare = personaggi.get(random.nextInt(personaggi.size())).getNome();
 
-        int index = 0;
         for (int i = 0; i < sizeX; i++) {
-            for (int j = 0; j < sizeY; j++) {
-                Position position = new Position(i, j);
-                tabellone.put(position, personaggi.get(index++));
-                // Aggiornamento dell'indice solo se ci sono ancora personaggi nella lista
-                if (index >= personaggi.size()) {
-                    index = 0; // Ritorna al primo personaggio se si raggiunge la fine della lista
-                }
+        for (int j = 0; j < sizeY; j++) {
+            Position position = new Position(i, j);
+            tabellone.put(position, personaggi.get(index++));
+            // Aggiornamento dell'indice solo se ci sono ancora personaggi nella lista
+            if (index >= personaggi.size()) {
+                index = 0; // Ritorna al primo personaggio se si raggiunge la fine della lista
             }
         }
     }
+
+    // Scegli casualmente il personaggio da indovinare tra quelli presenti sulla tabella
+    Position randomPosition = new ArrayList<>(tabellone.keySet()).get(random.nextInt(tabellone.size()));
+    personaggioDaIndovinare = tabellone.get(randomPosition).getNome();
+}
 
     /**
      * Aggiorna lo stato del tabellone rimuovendo i personaggi specificati.

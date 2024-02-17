@@ -3,7 +3,7 @@ package tabellone;
 import personaggi.PersonaggiCreati;
 import personaggi.Personaggio;
 import schermatafinale.VittoriaGUI;
-import searchBar.BarraRicercaGUI;
+import serchbar.BarraRicercaGUI;
 
 import javax.swing.JFrame;
 import javax.swing.JButton;
@@ -23,7 +23,7 @@ import java.util.Map;
 /**
  * Classe che rappresenta l'interfaccia grafica del tabellone di gioco.
  */
-public class TabelloneGUI extends JFrame {
+public class TabelloneManualeGUI extends JFrame {
 
     private final Map<Position, JButton> cells = new HashMap<>();
     private Tabellone tabellone;
@@ -45,7 +45,7 @@ public class TabelloneGUI extends JFrame {
      *                   - 2 per il livello intermedio, con una dimensione di tabellone 4x4.
      *                   - 3 per il livello difficile, con una dimensione di tabellone 6x4.
      */
-    public TabelloneGUI(final int difficolta) {
+    public TabelloneManualeGUI(final int difficolta) {
         int sizeX = 0;
         int sizeY = 0;
         switch (difficolta) {
@@ -137,6 +137,7 @@ public class TabelloneGUI extends JFrame {
                 imagePanel.add(jb);
             }
         }
+        
         // Pulsante "Fai una domanda"
         JButton askQuestionButton = new JButton("Fai una domanda");
         askQuestionButton.addActionListener(new ActionListener() {
