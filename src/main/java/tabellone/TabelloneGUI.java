@@ -2,52 +2,33 @@ package tabellone;
 
 import personaggi.PersonaggiCreati;
 import personaggi.Personaggio;
-<<<<<<< Updated upstream
-=======
 import schermatafinale.VittoriaGUI;
 import searchBar.BarraRicercaGUI;
->>>>>>> Stashed changes
 
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
-<<<<<<< Updated upstream
-=======
 import javax.swing.JScrollPane;
 import java.awt.BorderLayout;
->>>>>>> Stashed changes
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-<<<<<<< Updated upstream
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
-=======
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
->>>>>>> Stashed changes
 
 /**
  * Classe che rappresenta l'interfaccia grafica del tabellone di gioco.
  */
 public class TabelloneGUI extends JFrame {
 
-<<<<<<< Updated upstream
-    private static final long serialVersionUID = -6218820567019985015L;
-    private final Map<Position, JButton> cells = new HashMap<>();
-    private Tabellone tabellone;
-    private String personaggioDaIndovinare;
-=======
     private final Map<Position, JButton> cells = new HashMap<>();
     private Tabellone tabellone;
     private String personaggioDaIndovinare;
 
->>>>>>> Stashed changes
     private static final int BUTTON_WIDTH = 160; // Larghezza del pulsante
     private static final int BUTTON_HEIGHT = 130; // Altezza del pulsante
     private static final int BUTTON_SIZE = 100; // Dimensione del pulsante

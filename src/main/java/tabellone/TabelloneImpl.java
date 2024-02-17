@@ -1,6 +1,5 @@
 package tabellone;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,7 +7,6 @@ import java.util.Map.Entry;
 import java.util.Random;
 import java.util.Set;
 import java.util.HashSet;
-import java.util.Collections;
 
 import personaggi.PersonaggiCreati;
 import personaggi.Personaggio;
@@ -23,23 +21,23 @@ public class TabelloneImpl implements Tabellone {
 
     /**
      * Costruttore della classe TabelloneImpl.
-     * @param sizeX La larghezza del tabellone (numero di colonne).
-     * @param sizeY L'altezza del tabellone (numero di righe).
+     * @param size La dimensione del tabellone (numero di righe/colonne).
      */
-     public TabelloneImpl(final int sizeX, final int sizeY) {
+     public TabelloneImpl(int sizeX, int sizeY) {
         this.tabellone = new HashMap<>();
         inizializzaTabellone(sizeX, sizeY);
     }
 
     /**
      * Inizializza il tabellone con le posizioni e i personaggi iniziali.
-     * @param sizeX La larghezza del tabellone (numero di colonne).
-     * @param sizeY L'altezza del tabellone (numero di righe).
+     * @param size La dimensione del tabellone (numero di righe/colonne).
      */
-    public void inizializzaTabellone(final int sizeX, final int sizeY) {
+    public void inizializzaTabellone(int sizeX, int sizeY) {
         List<Personaggio> personaggi = PersonaggiCreati.creaPersonaggi();
-        int index = 0;
+        Random random = new Random();
+        personaggioDaIndovinare = personaggi.get(random.nextInt(personaggi.size())).getNome();
 
+        int index = 0;
         for (int i = 0; i < sizeX; i++) {
             for (int j = 0; j < sizeY; j++) {
                 Position position = new Position(i, j);
@@ -50,55 +48,36 @@ public class TabelloneImpl implements Tabellone {
                 }
             }
         }
-        // Scegli casualmente il personaggio da indovinare tra quelli presenti sulla tabella
-        Random random = new Random();
-        Position randomPosition = new ArrayList<>(tabellone.keySet()).get(random.nextInt(tabellone.size()));
-        personaggioDaIndovinare = tabellone.get(randomPosition).getNome();
     }
 
     /**
-    * Aggiorna lo stato del tabellone rimuovendo i personaggi specificati.
-    * @param personaggiRimanenti La lista dei nomi dei personaggi da rimuovere dal tabellone.
-    */
+     * Aggiorna lo stato del tabellone rimuovendo i personaggi specificati.
+     * @param personaggiRimanenti La lista dei personaggi da rimuovere dal tabellone.
+     */
     @Override
-    public void aggiornaTabellone(final List<String> personaggiRimanenti) {
-        // Creazione di una copia dell'entry set per evitare la modifica durante l'iterazione
+    public void aggiornaTabellone(List<String> personaggiRimanenti) {
+        // Crea una copia dell'entrySet per evitare ConcurrentModificationException
         Set<Entry<Position, Personaggio>> entrySetCopy = new HashSet<>(tabellone.entrySet());
-        // Iterazione sulla copia dell'entry set
+    
         for (Entry<Position, Personaggio> entry : entrySetCopy) {
             if (personaggiRimanenti.contains(entry.getValue().getNome())) {
-                // Rimuovi l'entry dalla mappa originale
+                // Rimuovi l'entry dalla mappa
                 tabellone.remove(entry.getKey());
             }
         }
     }
 
     /**
-    * Restituisce una vista non modificabile della mappa che rappresenta lo stato attuale del tabellone.
-    * @return Una mappa non modificabile che associa ogni posizione al personaggio corrispondente nel tabellone.
-    */
+     * Restituisce la mappa che rappresenta lo stato attuale del tabellone.
+     * @return La mappa che associa ogni posizione al personaggio corrispondente.
+     */
     @Override
     public Map<Position, Personaggio> getTabellone() {
-        return Collections.unmodifiableMap(tabellone);
+        return tabellone;
     }
 
-    /**
-     * Restituisce il nome del personaggio da indovinare.
-     * @return Il nome del personaggio da indovinare.
-     */
     @Override
     public String getPersonaggioDaIndovinare() {
         return personaggioDaIndovinare;
-    }
-
-    /**
-     * Verifica se il personaggio cliccato corrisponde al personaggio da indovinare.
-     * @param position La posizione del personaggio cliccato.
-     * @return true se il personaggio cliccato è quello da indovinare, altrimenti false.
-     */
-    @Override
-    public Boolean isPersonaggioCorretto(final Position position) {
-        Personaggio personaggioCliccato = tabellone.get(position);
-        return personaggioCliccato != null && personaggioCliccato.getNome().equals(personaggioDaIndovinare);
     }
 }
