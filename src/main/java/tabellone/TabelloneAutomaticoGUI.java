@@ -124,8 +124,8 @@ public class TabelloneAutomaticoGUI extends JFrame {
             System.out.println("Dettaglio scelto: " + dettaglioScelto);
 
                 // Calcola se il personaggio ha la caratteristica
-                Boolean personaggioHaCaratteristica = personaggio.haCaratteristica(caratteristicaScelta, dettaglioScelto);
-                System.out.println("Il personaggio ha la caratteristica? " + personaggioHaCaratteristica);
+                //Boolean personaggioHaCaratteristica = personaggio.haCaratteristica(caratteristicaScelta, dettaglioScelto);
+                //System.out.println("Il personaggio ha la caratteristica? " + personaggioHaCaratteristica);
 
                 /*if (personaggioHaCaratteristica) {
                     // Se il personaggio ha la caratteristica e la risposta è "NO", gira la casella
@@ -141,10 +141,10 @@ public class TabelloneAutomaticoGUI extends JFrame {
                     }
                 }*/
                 // Controlla se il personaggio ha la caratteristica e la risposta è "NO", o se non ha la caratteristica e la risposta è "SI"
-                if ((personaggioHaCaratteristica && dettaglioScelto.equals("NO")) || (!personaggioHaCaratteristica && dettaglioScelto.equals("SI"))) {
+                /*if ((personaggioHaCaratteristica && dettaglioScelto.equals("NO")) || (!personaggioHaCaratteristica && dettaglioScelto.equals("SI"))) {
                     pulsante.setEnabled(false);
                     System.out.println("Pulsante disabilitato perché il personaggio non ha la caratteristica.");
-                }
+                }*/
             }
 
             //Controlla se il numero di domande massimo è stato superato

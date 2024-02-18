@@ -33,13 +33,40 @@ public class TabelloneManualeGUI extends JFrame {
     private static final int BUTTON_WIDTH = 160; // Larghezza del pulsante
     private static final int BUTTON_HEIGHT = 130; // Altezza del pulsante
     private static final int BUTTON_SIZE = 100; // Dimensione del pulsante
-    private static final int MAX_TENTATIVI = 8; // Limite massimo di tentativi
 
     // Definizione delle costanti per le dimensioni del tabellone
     private static final int DIMENSIONE_FACILE = 3;
     private static final int DIMENSIONE_INTERMEDIO = 4;
     private static final int DIMENSIONE_DIFFICILE_X = 4;
     private static final int DIMENSIONE_DIFFICILE_Y = 6;
+
+    // Definizione delle costanti per il numero dei tentativi concessi
+    private static final int MAX_TENTATIVI_FACILE = 8;
+    private static final int MAX_TENTATIVI_INTERMEDIO = 10;
+    private static final int MAX_TENTATIVI_DIFFICILE = 12;
+
+    /**
+    * Calcola il numero massimo di tentativi consentiti in base al livello di difficoltà.
+    * @param difficolta Il livello di difficoltà del gioco.
+    *                   - 1 per il livello facile.
+    *                   - 2 per il livello intermedio.
+    *                   - 3 per il livello difficile.
+    * @return Il numero massimo di tentativi consentiti.
+    *         Se la difficoltà non è valida, viene stampato un messaggio di errore e viene restituito -1.
+    */
+    private static int calcolaMaxTentativi(int difficolta) {
+        switch (difficolta) {
+            case 1:
+                return MAX_TENTATIVI_FACILE; // Livello facile
+            case 2:
+                return MAX_TENTATIVI_INTERMEDIO; // Livello intermedio
+            case 3:
+                return MAX_TENTATIVI_DIFFICILE; // Livello difficile
+            default:
+                System.err.println("Difficoltà non valida: " + difficolta);
+                return -1;
+        }
+    }
 
     /**
      * Costruttore della classe TabelloneGUI.
@@ -97,7 +124,6 @@ public class TabelloneManualeGUI extends JFrame {
                 JButton jb = (JButton) e.getSource();
                 // Disabilita il pulsante cliccato
                 jb.setEnabled(false);
-
                 // Ottieni la posizione del pulsante cliccato
                 Position pos = null;
                 for (Map.Entry<Position, JButton> entry : cells.entrySet()) {
@@ -106,22 +132,11 @@ public class TabelloneManualeGUI extends JFrame {
                         break;
                     }
                 }
-
                 // Ottieni il personaggio corrispondente alla posizione
                 Personaggio personaggioCliccato = tabellone.getTabellone().get(pos);
-
                 // Controlla se il personaggio cliccato corrisponde al personaggio da indovinare
                 if (personaggioCliccato.getNome().equals(personaggioDaIndovinare)) {
                     new VittoriaGUI(1); // Apre la SchermataFinale
-                    dispose(); // Chiude la finestra corrente
-                }
-
-                // Incrementa il contatore dei tentativi
-                tentativi++;
-
-                // Controlla se il numero massimo di tentativi è stato superato
-                if (tentativi >= MAX_TENTATIVI) {
-                    new VittoriaGUI(0); // Apre la SchermataFinale con indicazione di sconfitta
                     dispose(); // Chiude la finestra corrente
                 }
             }
@@ -151,12 +166,22 @@ public class TabelloneManualeGUI extends JFrame {
             }
         }
         
-        // Pulsante "Fai una domanda"
+        // Calcola MAX_TENTATIVI in base al livello di difficoltà
+        int MAX_TENTATIVI = calcolaMaxTentativi(difficolta);
+        // ActionListener per il pulsante "Fai una domanda"
         JButton askQuestionButton = new JButton("Fai una domanda");
         askQuestionButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new BarraRicercaGUI(personaggioDaIndovinare);
+                // Incrementa il contatore dei tentativi quando viene fatta una domanda
+                tentativi++;
+                // Verifica se il numero massimo di tentativi è stato superato
+                if (tentativi >= MAX_TENTATIVI) {
+                    new VittoriaGUI(0); // Apre la SchermataFinale con indicazione di sconfitta
+                    dispose(); // Chiude la finestra corrente
+                } else {
+                    new BarraRicercaGUI(personaggioDaIndovinare); // Apre la barra di ricerca
+                }
             }
         });
         mainPanel.add(askQuestionButton, BorderLayout.SOUTH);
