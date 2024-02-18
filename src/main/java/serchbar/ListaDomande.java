@@ -25,6 +25,13 @@ public final class ListaDomande {
     }
 
     /**
+     * Pulisce la lista.
+     */
+    public static void clearListaDomande() {
+        domande.clear();
+    }
+
+    /**
      * Crea una copia immutabile della lista delle
      * domande e la restituisce.
      * @return Lista di domande
