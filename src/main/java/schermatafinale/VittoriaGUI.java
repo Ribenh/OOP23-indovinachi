@@ -27,6 +27,7 @@ public class VittoriaGUI extends JFrame {
     private static final int BORDER = 10;
     private static final int FONTSIZE = 24; 
     private static final int VITTORIA = 1;
+    private static final int SCONFITTA = 2;
     
     List<String> domande = ListaDomande.getDomande();
 
@@ -42,14 +43,14 @@ public class VittoriaGUI extends JFrame {
         final JLabel label = new JLabel();
         if (stato == VITTORIA) {
             label.setText("Hai Vinto!");
-        } else {
+        } else if (stato == SCONFITTA) {
             label.setText("Hai Perso!");
             // Rimuove l'ultimo nome aggiunto
             Map<String, Integer> nameScores = NomeScoresUtility.loadNameScores();
             NomeScoresUtility.removeLastName(nameScores);
             NomeScoresUtility.saveNameScores(nameScores);
         }
-
+        
         label.setHorizontalAlignment(SwingConstants.CENTER);
         label.setFont(new Font("Arial", Font.BOLD, FONTSIZE));
         panel.add(label, BorderLayout.CENTER);
