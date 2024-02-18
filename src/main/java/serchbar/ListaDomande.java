@@ -10,10 +10,18 @@ public final class ListaDomande {
 
     /**
      * Aggiunge una domanda alla lista di stringhe.
-     * @param s domsnda
+     * @param s domanda
      */
     public static void addDomandA(final String s) {
         domande.add(s);
+    }
+
+    /**
+     * Rimuove una domanda dalla lista.
+     * @param s domanda
+     */
+    public static void removeDomandA(final String s) {
+        domande.remove(s);
     }
 
     /**
