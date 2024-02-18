@@ -28,10 +28,13 @@ public class TabelloneManualeGUI extends JFrame {
     private final Map<Position, JButton> cells = new HashMap<>();
     private Tabellone tabellone;
     private String personaggioDaIndovinare;
+    private int tentativi = 0; // Contatore dei tentativi
 
     private static final int BUTTON_WIDTH = 160; // Larghezza del pulsante
     private static final int BUTTON_HEIGHT = 130; // Altezza del pulsante
     private static final int BUTTON_SIZE = 100; // Dimensione del pulsante
+    private static final int MAX_TENTATIVI = 8; // Limite massimo di tentativi
+
     // Definizione delle costanti per le dimensioni del tabellone
     private static final int DIMENSIONE_FACILE = 3;
     private static final int DIMENSIONE_INTERMEDIO = 4;
@@ -40,6 +43,7 @@ public class TabelloneManualeGUI extends JFrame {
 
     /**
      * Costruttore della classe TabelloneGUI.
+     *
      * @param difficolta La difficoltà del gioco, rappresentata da un valore intero.
      *                   - 1 per il livello facile, con una dimensione di tabellone 3x3.
      *                   - 2 per il livello intermedio, con una dimensione di tabellone 4x4.
@@ -73,7 +77,7 @@ public class TabelloneManualeGUI extends JFrame {
 
         // Creazione del tabellone e del pannello
         this.tabellone = new TabelloneImpl(sizeX, sizeY);
-        
+
         JPanel mainPanel = new JPanel(new BorderLayout());
         this.getContentPane().add(mainPanel);
 
@@ -108,7 +112,16 @@ public class TabelloneManualeGUI extends JFrame {
 
                 // Controlla se il personaggio cliccato corrisponde al personaggio da indovinare
                 if (personaggioCliccato.getNome().equals(personaggioDaIndovinare)) {
-                    new VittoriaGUI(); // Apre la SchermataFinale
+                    new VittoriaGUI(1); // Apre la SchermataFinale
+                    dispose(); // Chiude la finestra corrente
+                }
+
+                // Incrementa il contatore dei tentativi
+                tentativi++;
+
+                // Controlla se il numero massimo di tentativi è stato superato
+                if (tentativi >= MAX_TENTATIVI) {
+                    new VittoriaGUI(0); // Apre la SchermataFinale con indicazione di sconfitta
                     dispose(); // Chiude la finestra corrente
                 }
             }

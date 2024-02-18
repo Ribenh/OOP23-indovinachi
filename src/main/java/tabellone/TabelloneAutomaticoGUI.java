@@ -3,6 +3,7 @@ package tabellone;
 import personaggi.PersonaggiCreati;
 import personaggi.Personaggio;
 import schermatafinale.VittoriaGUI;
+import menu.DomandaPulsante;
 import menu.MenuPopup;
 
 import javax.swing.JFrame;
@@ -67,7 +68,7 @@ public class TabelloneAutomaticoGUI extends JFrame {
                 return;
         }
 
-         // Impostazioni della finestra
+        // Impostazioni della finestra
          this.setDefaultCloseOperation(EXIT_ON_CLOSE);
          this.setSize(BUTTON_WIDTH * sizeX, BUTTON_HEIGHT * sizeY);
  
@@ -85,7 +86,7 @@ public class TabelloneAutomaticoGUI extends JFrame {
          tabellone.inizializzaTabellone(sizeX, sizeY);
          // Ottiene il personaggio da indovinare
          personaggioDaIndovinare = tabellone.getPersonaggioDaIndovinare();
-        // ActionListener personalizzato per i pulsanti
+       
         ActionListener al = new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
@@ -102,19 +103,60 @@ public class TabelloneAutomaticoGUI extends JFrame {
                     }
                 }
 
-                // Ottieni il personaggio corrispondente alla posizione
-                Personaggio personaggioCliccato = tabellone.getTabellone().get(pos);
+            // Ottieni il personaggio corrispondente alla posizione
+            Personaggio personaggioCliccato = tabellone.getTabellone().get(pos);
 
-                //Controlla se il numero di domande massimo è stato superato
-                if(tentativi >= 10) {
-                    //new SconfittaGUI();
-                }
+            // Ottieni la caratteristica scelta nel menu pop-up
+            String caratteristicaScelta = DomandaPulsante.getTipoCaratteristica();
+            String dettaglioScelto = DomandaPulsante.getDettaglioCaratteristica();
 
-                // Controlla se il personaggio cliccato corrisponde al personaggio da indovinare
-                if (personaggioCliccato.getNome().equals(personaggioDaIndovinare)) {
-                    new VittoriaGUI(); // Apre la SchermataFinale
-                    dispose(); // Chiude la finestra corrente
+            
+            // Girare le caselle in base alla risposta del giocatore
+            for (Map.Entry<Position, JButton> entry : cells.entrySet()) {
+                Position posizione = entry.getKey();
+                Personaggio personaggio = tabellone.getTabellone().get(posizione);
+                JButton pulsante = entry.getValue();
+
+            // Stampa dei valori di interesse
+            System.out.println("Posizione: " + posizione);
+            System.out.println("Nome personaggio: " + personaggio.getNome());
+            System.out.println("Caratteristica scelta: " + caratteristicaScelta);
+            System.out.println("Dettaglio scelto: " + dettaglioScelto);
+
+                // Calcola se il personaggio ha la caratteristica
+                Boolean personaggioHaCaratteristica = personaggio.haCaratteristica(caratteristicaScelta, dettaglioScelto);
+                System.out.println("Il personaggio ha la caratteristica? " + personaggioHaCaratteristica);
+
+                /*if (personaggioHaCaratteristica) {
+                    // Se il personaggio ha la caratteristica e la risposta è "NO", gira la casella
+                    if (dettaglioScelto.equals("NO")) {
+                        pulsante.setEnabled(false);
+                        System.out.println("Pulsante disabilitato perché il personaggio non ha la caratteristica.");
+                    }
+                    } else {
+                    // Se il personaggio non ha la caratteristica e la risposta è "SI", gira la casella
+                    if (dettaglioScelto.equals("SI")) {
+                        pulsante.setEnabled(false);
+                        System.out.println("Pulsante disabilitato perché il personaggio non ha la caratteristica.");
+                    }
+                }*/
+                // Controlla se il personaggio ha la caratteristica e la risposta è "NO", o se non ha la caratteristica e la risposta è "SI"
+                if ((personaggioHaCaratteristica && dettaglioScelto.equals("NO")) || (!personaggioHaCaratteristica && dettaglioScelto.equals("SI"))) {
+                    pulsante.setEnabled(false);
+                    System.out.println("Pulsante disabilitato perché il personaggio non ha la caratteristica.");
                 }
+            }
+
+            //Controlla se il numero di domande massimo è stato superato
+            if(tentativi >= 10) {
+                new VittoriaGUI(0);
+            }
+
+            // Controlla se il personaggio cliccato corrisponde al personaggio da indovinare
+            if (personaggioCliccato.getNome().equals(personaggioDaIndovinare)) {
+                new VittoriaGUI(1); // Apre la SchermataFinale
+                dispose(); // Chiude la finestra corrente
+            }
             }
         };
 
