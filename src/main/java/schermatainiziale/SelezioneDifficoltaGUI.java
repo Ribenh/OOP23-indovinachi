@@ -31,6 +31,7 @@ public class SelezioneDifficoltaGUI extends JFrame {
     private static final int DIMENSIONE_MEDIA = 2;
     private static final int DIMENSIONE_DIFFICILE = 3;
     private static final int AUTOMATIC_MODE = 1;
+    private static final int MANUAL_MODE = 2;
 
     /**
      * Costruttore della classe SelezioneDifficoltaGUI che si aprirà dopo aver scelto la modalità.
@@ -87,12 +88,11 @@ public class SelezioneDifficoltaGUI extends JFrame {
             @Override
             public void actionPerformed(final ActionEvent e) {
                 dispose();
-                new TabelloneGUI(1);
-                /*if (modeSelect == AUTOMATIC_MODE) {
+                if (modeSelect == AUTOMATIC_MODE) {
                     new TabelloneAutomaticoGUI(DIMENSIONE_FACILE);
-                } else {
+                } else if (modeSelect == MANUAL_MODE) {
                     new TabelloneManualeGUI(DIMENSIONE_FACILE);
-                }*/
+                }
             }
         });
 
@@ -100,12 +100,11 @@ public class SelezioneDifficoltaGUI extends JFrame {
             @Override
             public void actionPerformed(final ActionEvent e) {
                 dispose();
-                new TabelloneGUI(2);
-                /*if (modeSelect == AUTOMATIC_MODE) {
+                if (modeSelect == AUTOMATIC_MODE) {
                     new TabelloneAutomaticoGUI(DIMENSIONE_MEDIA);
-                } else {
+                } else if (modeSelect == MANUAL_MODE) {
                     new TabelloneManualeGUI(DIMENSIONE_MEDIA);
-                }*/
+                }
             }
         });
 
@@ -113,12 +112,11 @@ public class SelezioneDifficoltaGUI extends JFrame {
             @Override
             public void actionPerformed(final ActionEvent e) {
                 dispose();
-                new TabelloneGUI(3);
-                /*if (modeSelect == AUTOMATIC_MODE) {
+                if (modeSelect == AUTOMATIC_MODE) {
                     new TabelloneAutomaticoGUI(DIMENSIONE_DIFFICILE);
-                } else {
+                } else if (modeSelect == MANUAL_MODE) {
                     new TabelloneManualeGUI(DIMENSIONE_DIFFICILE);
-                }*/
+                }
             }
         });
 
