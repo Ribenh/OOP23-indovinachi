@@ -17,6 +17,15 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Classe che rappresenta l'interfaccia grafica della schermata finale.
@@ -26,11 +35,20 @@ public class SchermataFinaleGUI {
     private static final int WIDTH = 800;
     private static final int HEIGHT = 400;
     private static final int BORDER = 5;
+    private Map<String, Integer> nameScores = new HashMap<>();
 
     /**
      * Costruttore della classe SchermataFinaleGUI.
      */
+    @SuppressWarnings("unchecked")
     public SchermataFinaleGUI() {
+
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("src/main/java/schermatainiziale/name_scores.ser"))) {
+            nameScores = (HashMap<String, Integer>) ois.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+                e.printStackTrace();
+        }
+
         final JFrame frame = new JFrame("Schermata Finale");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -56,18 +74,32 @@ public class SchermataFinaleGUI {
         final JLabel classificaLabel = new JLabel("Classifica", SwingConstants.CENTER);
         classificaPanel.add(classificaLabel, BorderLayout.NORTH);
 
-        // crea la tabella con i nomi e i punteggi dei giocatori.
-        // placeholder da cambiare (nella versione finale prende le domande ed il nome del giocatore dal menu)
-        final String[] columnNames = {"Nome giocatore", "Punteggio"};
-        final Object[][] data = {
-            {"Giocatore 1", 10},
-            {"Giocatore 2", 8},
-            {"Giocatore 3", 6},
-        };
-        final JTable classificaTable = new JTable(data, columnNames);
+        // Crea una lista temporanea per filtrare i giocatori con punteggio diverso da 0
+        List<Map.Entry<String, Integer>> filteredEntries = new ArrayList<>();
 
-        // ordina la tabella in base al punteggio
-        classificaTable.setAutoCreateRowSorter(true);
+        // Filtra la mappa originale e inserisci gli elementi filtrati nella lista temporanea
+        for (Map.Entry<String, Integer> entry : nameScores.entrySet()) {
+            if (entry.getValue() != 0) {
+                filteredEntries.add(entry);
+            }
+        }
+
+        // Converti la lista filtrata in un array bidimensionale per la JTable
+        final Object[][] data = new Object[filteredEntries.size()][2];
+        for (int i = 0; i < filteredEntries.size(); i++) {
+            Map.Entry<String, Integer> entry = filteredEntries.get(i);
+            data[i][0] = entry.getKey(); // Nome giocatore
+            data[i][1] = entry.getValue(); // Punteggio
+        }
+
+        // Ordina i dati in base al punteggio (dal più basso al più alto)
+        Arrays.sort(data, Comparator.comparingInt(o -> (int) o[1]));
+
+        // Definisci i nomi delle colonne
+        String[] columnNames = {"Nome giocatore", "Numero domande"};
+
+        // Crea la JTable con i dati ordinati e i nomi delle colonne
+        JTable classificaTable = new JTable(data, columnNames);
         final JScrollPane classificaScrollpane = new JScrollPane(classificaTable);
         classificaPanel.add(classificaScrollpane, BorderLayout.CENTER);
 

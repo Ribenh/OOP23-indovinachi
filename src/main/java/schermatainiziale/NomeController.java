@@ -16,8 +16,8 @@ public class NomeController implements Serializable {
 
     private final JFrame frame;
     private final Map<String, Integer> nameScores;
-    private static final String DATA_FILE = "name_scores.ser";
-
+    private static final String DATA_FILE = "src/main/java/schermatainiziale/name_scores.ser";
+    
     /**
      * Costruttore della classe NomeController.
      */
@@ -80,11 +80,21 @@ public class NomeController implements Serializable {
      * Carica la mappa dei nomi e dei punteggi da disco.
      */
     @SuppressWarnings("unchecked")
-    private Map<String, Integer> loadNameScores() {
+    public Map<String, Integer> loadNameScores() {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(DATA_FILE))) {
             return (Map<String, Integer>) ois.readObject();
         } catch (IOException | ClassNotFoundException e) {
             return new HashMap<>();
+        }
+    }
+
+    /**
+    * Rimuove un nome dalla mappa dei nomi e dei punteggi.
+    */
+    public void rimuoviNome(String nome) {
+        if (nameScores.containsKey(nome)) {
+            nameScores.remove(nome);
+            saveNameScores();
         }
     }
 }
