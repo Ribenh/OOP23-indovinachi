@@ -13,7 +13,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import tabellone.TabelloneGUI;
+import tabellone.TabelloneAutomaticoGUI;
+import tabellone.TabelloneManualeGUI;
 
 /**
  * Interfaccia grafica della selezione della difficoltà.
