@@ -9,7 +9,7 @@ public final class VittoriaTest {
      * @param args
      */
     public static void main(final String[] args) {
-        new VittoriaGUI();
+        new VittoriaGUI(1);
     }
 
     /**
