@@ -46,4 +46,21 @@ public class NomeScoresUtility {
             }
         }
     }
+    
+    /**
+     * Modifica il punteggio dell'ultimo nome aggiunto nel file .ser.
+     * @param domande
+     */
+    public static void updateLastInsertedNameScore(List<String> domande) {
+        Map<String, Integer> nameScores = loadNameScores();
+        String lastInsertedName = null;
+        for (String name : nameScores.keySet()) {
+            lastInsertedName = name;
+        }
+        if (lastInsertedName != null) {
+            nameScores.put(lastInsertedName, domande.size());
+        }
+        saveNameScores(nameScores);
+    }
+    
 }

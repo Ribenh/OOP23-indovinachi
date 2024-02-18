@@ -108,7 +108,7 @@ public class TabelloneGUI extends JFrame {
 
                 // Controlla se il personaggio cliccato corrisponde al personaggio da indovinare
                 if (personaggioCliccato.getNome().equals(personaggioDaIndovinare)) {
-                    new VittoriaGUI(); // Apre la SchermataFinale
+                    new VittoriaGUI(1); // Apre la SchermataFinale
                     dispose(); // Chiude la finestra corrente
                 }
             }

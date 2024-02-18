@@ -1,5 +1,7 @@
 package schermatafinale;
 
+import serchbar.ListaDomande;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -11,6 +13,7 @@ import java.awt.Font;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 import java.util.Map;
 import java.awt.FlowLayout;
 
@@ -24,6 +27,8 @@ public class VittoriaGUI extends JFrame {
     private static final int BORDER = 10;
     private static final int FONTSIZE = 24; 
     private static final int VITTORIA = 1;
+    
+    List<String> domande = ListaDomande.getDomande();
 
     public VittoriaGUI(int stato) {
 
@@ -69,7 +74,7 @@ public class VittoriaGUI extends JFrame {
             @Override
             public void actionPerformed(final ActionEvent e) {
                 dispose();
-                new SchermataFinaleGUI();
+                new SchermataFinaleGUI(domande);
             }
         });
         buttonPanel.add(btnDettagli);

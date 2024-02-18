@@ -25,21 +25,13 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Classe che rappresenta l'interfaccia grafica della schermata finale.
- */
 public class SchermataFinaleGUI {
-    
+
     private static final int WIDTH = 800;
     private static final int HEIGHT = 400;
     private static final int BORDER = 5;
 
-    /**
-     * Costruttore della classe SchermataFinaleGUI.
-     */
-    public SchermataFinaleGUI() {
-
-        Map<String, Integer> nameScores = NomeScoresUtility.loadNameScores();
+    public SchermataFinaleGUI(List<String> domande) {
 
         final JFrame frame = new JFrame("Schermata Finale");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -53,8 +45,10 @@ public class SchermataFinaleGUI {
         domandePanel.add(riepilogoLabel, BorderLayout.NORTH);
         final JTextArea domandeTextArea = new JTextArea();
 
-        // placeholder: le domande dovranno essere prese dal menù
-        domandeTextArea.append("-ha i capelli castani?\n\n-ha gli occhi marroni?\n\n-e' un maschio?\n\n");
+        // Inserimento delle domande nella TextArea
+        for (String domanda : domande) {
+            domandeTextArea.append(domanda + "\n\n");
+        }
 
         domandeTextArea.setEditable(false);
         final JScrollPane domandeScrollPane = new JScrollPane(domandeTextArea);
@@ -66,10 +60,14 @@ public class SchermataFinaleGUI {
         final JLabel classificaLabel = new JLabel("Classifica", SwingConstants.CENTER);
         classificaPanel.add(classificaLabel, BorderLayout.NORTH);
 
+        // Carica i punteggi dei nomi
+        Map<String, Integer> nameScores = NomeScoresUtility.loadNameScores();
+        
+        // Aggiorna il punteggio solo per l'ultimo nome inserito
+        NomeScoresUtility.updateLastInsertedNameScore(domande);
+
         // Crea una lista temporanea per filtrare i giocatori con punteggio diverso da 0
         List<Map.Entry<String, Integer>> filteredEntries = new ArrayList<>();
-
-        // Filtra la mappa originale e inserisci gli elementi filtrati nella lista temporanea
         for (Map.Entry<String, Integer> entry : nameScores.entrySet()) {
             if (entry.getValue() != 0) {
                 filteredEntries.add(entry);
@@ -114,17 +112,19 @@ public class SchermataFinaleGUI {
         mainPanel.add(classificaPanel, BorderLayout.EAST);
         mainPanel.add(buttonPanel, BorderLayout.SOUTH);
 
-         // Aggiunta dell'ActionListener per il pulsante "Esci"
-         esci.addActionListener(new ActionListener() {
+        // Aggiunta dell'ActionListener per il pulsante "Esci"
+        esci.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
                 final int result = JOptionPane.showConfirmDialog(
-                    frame,
-                    "Sei sicuro di voler chiudere l'applicazione?",
-                    "Conferma chiusura",
-                    JOptionPane.YES_NO_OPTION);
-                    
+                        frame,
+                        "Sei sicuro di voler chiudere l'applicazione?",
+                        "Conferma chiusura",
+                        JOptionPane.YES_NO_OPTION);
+
                 if (result == JOptionPane.YES_OPTION) {
+                    // Pulisci la TextArea prima di chiudere l'applicazione
+                    domandeTextArea.setText("");
                     System.exit(0);
                 }
             }
