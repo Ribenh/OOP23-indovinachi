@@ -13,17 +13,15 @@ import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import schermatainiziale.SchermataInizialeGUI;
+
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -35,19 +33,13 @@ public class SchermataFinaleGUI {
     private static final int WIDTH = 800;
     private static final int HEIGHT = 400;
     private static final int BORDER = 5;
-    private Map<String, Integer> nameScores = new HashMap<>();
 
     /**
      * Costruttore della classe SchermataFinaleGUI.
      */
-    @SuppressWarnings("unchecked")
     public SchermataFinaleGUI() {
 
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("src/main/java/schermatainiziale/name_scores.ser"))) {
-            nameScores = (HashMap<String, Integer>) ois.readObject();
-        } catch (IOException | ClassNotFoundException e) {
-                e.printStackTrace();
-        }
+        Map<String, Integer> nameScores = NomeScoresUtility.loadNameScores();
 
         final JFrame frame = new JFrame("Schermata Finale");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -135,6 +127,15 @@ public class SchermataFinaleGUI {
                 if (result == JOptionPane.YES_OPTION) {
                     System.exit(0);
                 }
+            }
+        });
+
+        // Aggiunta dell'ActionListener per il pulsante "Gioca ancora"
+        giocaAncora.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+                new SchermataInizialeGUI();
             }
         });
 

@@ -7,18 +7,15 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
-
 import java.awt.Font;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Map;
 import java.awt.FlowLayout;
 
 import schermatainiziale.SchermataInizialeGUI;
 
-/**
- * Classe che rappresenta l'interfaccia grafica della schermata finale.
- */
 public class VittoriaGUI extends JFrame {
 
     private static final long serialVersionUID = -6218820467019983016L;
@@ -28,14 +25,6 @@ public class VittoriaGUI extends JFrame {
     private static final int FONTSIZE = 24; 
     private static final int VITTORIA = 1;
 
-    /**
-     * Costruttore della classe VittoriaGUI, genera una schermata finale che fa vedere se si ha vinto o perso la partita
-     * e tre tasti:
-     * 
-     * - Gioca ancora fa iniziare una nuova partita
-     * - Dettagli apre una schermata con classifica e statistiche
-     * - Esci permette di chiudere il gioco.
-     */
     public VittoriaGUI(int stato) {
 
         setTitle("Schermata Finale");
@@ -50,6 +39,10 @@ public class VittoriaGUI extends JFrame {
             label.setText("Hai Vinto!");
         } else {
             label.setText("Hai Perso!");
+            // Rimuove l'ultimo nome aggiunto
+            Map<String, Integer> nameScores = NomeScoresUtility.loadNameScores();
+            NomeScoresUtility.removeLastName(nameScores);
+            NomeScoresUtility.saveNameScores(nameScores);
         }
 
         label.setHorizontalAlignment(SwingConstants.CENTER);
