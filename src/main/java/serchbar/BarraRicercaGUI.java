@@ -47,6 +47,7 @@ public class BarraRicercaGUI {
             @Override
             public void actionPerformed(final ActionEvent e) {
                 final String caratteristica = (String) combobox.getSelectedItem();
+                ListaDomande.addDomandA(caratteristica);
                 switch (caratteristica) {
                     case "Maschio":
                     barraRicerca.messaggioRicerca(frame, personaggioDaIndovinare.isUomo());
@@ -129,6 +130,7 @@ public class BarraRicercaGUI {
                     break;
 
                     default:
+                    ListaDomande.removeDomandA(caratteristica);
                     JOptionPane.showMessageDialog(frame, "Input non valido\nRIPROVARE");
                     break;
                 }
