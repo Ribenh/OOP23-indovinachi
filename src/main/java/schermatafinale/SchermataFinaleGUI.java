@@ -64,7 +64,14 @@ public class SchermataFinaleGUI {
         Map<String, Integer> nameScores = NomeScoresUtility.loadNameScores();
         
         // Aggiorna il punteggio solo per l'ultimo nome inserito
-        NomeScoresUtility.updateLastInsertedNameScore(domande);
+        String lastInsertedName = null;
+        for (String name : nameScores.keySet()) {
+            lastInsertedName = name;
+        }
+        if (lastInsertedName != null) {
+            nameScores.put(lastInsertedName, domande.size());
+        }
+        NomeScoresUtility.saveNameScores(nameScores);
 
         // Crea una lista temporanea per filtrare i giocatori con punteggio diverso da 0
         List<Map.Entry<String, Integer>> filteredEntries = new ArrayList<>();

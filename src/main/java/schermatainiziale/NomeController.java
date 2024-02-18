@@ -87,14 +87,4 @@ public class NomeController implements Serializable {
             return new HashMap<>();
         }
     }
-
-    /**
-    * Rimuove un nome dalla mappa dei nomi e dei punteggi.
-    */
-    public void rimuoviNome(String nome) {
-        if (nameScores.containsKey(nome)) {
-            nameScores.remove(nome);
-            saveNameScores();
-        }
-    }
 }
