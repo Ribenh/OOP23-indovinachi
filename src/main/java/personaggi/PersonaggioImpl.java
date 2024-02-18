@@ -51,6 +51,7 @@ public class PersonaggioImpl implements Personaggio {
         this.lunghezzaCapelli = lunghezzaCapelli;
         this.coloreOcchi = coloreOcchi;
         this.barba = barba;
+        this.baffi = baffi;
         this.occhiali = occhiali;
         this.accessorio = accessorio;
         this.uomo = uomo;
@@ -75,6 +76,7 @@ public class PersonaggioImpl implements Personaggio {
         this.hasCapelli = hasCapelli;
         this.coloreOcchi = coloreOcchi;
         this.barba = barba;
+        this.baffi = baffi;
         this.occhiali = occhiali;
         this.accessorio = accessorio;
         this.uomo = uomo;

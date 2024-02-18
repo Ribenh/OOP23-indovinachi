@@ -13,12 +13,12 @@ import java.util.Collections;
 public final class PersonaggiCreati {
     // Lista dei personaggi disponibili
     private static final List<Personaggio> PERSONAGGI = new ArrayList<>();
-    private static final String CORTI="Corti";
-    private static final String LISCI="Lisci";
-    private static final String MARRONI="Marroni";
-    private static final String CASTANI="Castani";
-    private static final String LUNGHI="Lunghi";
-    private static final String VERDI="Verdi";
+    private static final String CORTI = "Corti";
+    private static final String LISCI = "Lisci";
+    private static final String MARRONI = "Marroni";
+    private static final String CASTANI = "Castani";
+    private static final String LUNGHI = "Lunghi";
+    private static final String VERDI = "Verdi";
     static {
         // Salvataggio immagini
         final ImageIcon basilIcon = new ImageIcon("immagini/basil.jpg");
@@ -88,10 +88,10 @@ public final class PersonaggiCreati {
         true, false, false, true));
         PERSONAGGI.add(new PersonaggioImpl("Edna", ednaIcon, true, "Bianchi", LISCI, LUNGHI, "Azzurri", false, 
         true, false, false, false));
-        PERSONAGGI.add(new PersonaggioImpl("Mo", moIcon, false, MARRONI, true, false, true, true, true));
+        PERSONAGGI.add(new PersonaggioImpl("Mo", moIcon, false, CASTANI, true, false, true, true, true));
         PERSONAGGI.add(new PersonaggioImpl("Kelly", kellyIcon, true, "Biondi", LISCI, LUNGHI, VERDI, false, 
         false, false, false, false));
-        PERSONAGGI.add(new PersonaggioImpl("Pete", peteIcon, true, MARRONI, "Ricci", CORTI, MARRONI, true, 
+        PERSONAGGI.add(new PersonaggioImpl("Pete", peteIcon, true, CASTANI, "Ricci", CORTI, MARRONI, true, 
         false, false, true, true));
     }
 
@@ -101,7 +101,7 @@ public final class PersonaggiCreati {
      */
     public static List<Personaggio> creaPersonaggi() {
         // Copia la lista dei personaggi disponibili
-        List<Personaggio> personaggiRandom = new ArrayList<>(PERSONAGGI);
+        final List<Personaggio> personaggiRandom = new ArrayList<>(PERSONAGGI);
         // Mescola la lista in modo casuale
         Collections.shuffle(personaggiRandom);
         return personaggiRandom;
