@@ -20,12 +20,6 @@ public class PersonaggioImpl implements Personaggio {
     private Boolean uomo;
 
     /**
-     * Costruttore vuoto di default.
-     */
-    public PersonaggioImpl() {
-    }
-
-    /**
     * Costruttore per creare un personaggio con tutte le caratteristiche definite.
     * @param nome Il nome del personaggio.
     * @param immagine L'immagine del personaggio.
