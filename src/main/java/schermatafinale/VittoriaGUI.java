@@ -14,7 +14,6 @@ import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
-import java.util.Map;
 import java.awt.FlowLayout;
 
 import schermatainiziale.SchermataInizialeGUI;
@@ -46,9 +45,7 @@ public class VittoriaGUI extends JFrame {
         } else if (stato == SCONFITTA) {
             label.setText("Hai Perso!");
             // Rimuove l'ultimo nome aggiunto
-            Map<String, Integer> nameScores = NomeScoresUtility.loadNameScores();
-            NomeScoresUtility.removeLastName(nameScores);
-            NomeScoresUtility.saveNameScores(nameScores);
+            
         }
         
         label.setHorizontalAlignment(SwingConstants.CENTER);
