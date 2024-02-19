@@ -70,6 +70,7 @@ public class SchermataInizialeGUI extends JFrame {
                     } else {
                         int choice = JOptionPane.showConfirmDialog(null, "Il giocatore esiste gia'. Vuoi sovrascrivere il punteggio?", "Sovrascrivi punteggio", JOptionPane.YES_NO_OPTION);
                         if (choice == JOptionPane.YES_OPTION) {
+                            giocatori.remove(nomeGiocatore);
                             giocatori.put(nomeGiocatore, 0);
                         }
                     }
