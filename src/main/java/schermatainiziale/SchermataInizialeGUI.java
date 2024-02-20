@@ -63,15 +63,23 @@ public class SchermataInizialeGUI extends JFrame {
         classicMode.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
-                String nomeGiocatore = JOptionPane.showInputDialog(null, "Inserisci il tuo nome:", "Inserisci nome", JOptionPane.QUESTION_MESSAGE);
+                String nomeGiocatore = JOptionPane.showInputDialog(null,
+                "Inserisci il tuo nome:",
+                "Inserisci nome",
+                JOptionPane.QUESTION_MESSAGE);
                 if (nomeGiocatore != null && !nomeGiocatore.isEmpty()) {
                     if (!giocatori.containsKey(nomeGiocatore)) {
                         giocatori.put(nomeGiocatore, 0);
                     } else {
-                        int choice = JOptionPane.showConfirmDialog(null, "Il giocatore esiste gia'. Vuoi sovrascrivere il punteggio?", "Sovrascrivi punteggio", JOptionPane.YES_NO_OPTION);
+                        int choice = JOptionPane.showConfirmDialog(null,
+                        "Il giocatore esiste gia'. Vuoi sovrascrivere il punteggio?",
+                        "Sovrascrivi punteggio",
+                        JOptionPane.YES_NO_OPTION);
                         if (choice == JOptionPane.YES_OPTION) {
                             giocatori.remove(nomeGiocatore);
                             giocatori.put(nomeGiocatore, 0);
+                        } else {
+                            new SchermataInizialeGUI();
                         }
                     }
                 }
@@ -84,14 +92,22 @@ public class SchermataInizialeGUI extends JFrame {
         manualMode.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
-                String nomeGiocatore = JOptionPane.showInputDialog(null, "Inserisci il tuo nome:", "Inserisci nome", JOptionPane.QUESTION_MESSAGE);
+                String nomeGiocatore = JOptionPane.showInputDialog(null,
+                "Inserisci il tuo nome:",
+                "Inserisci nome",
+                JOptionPane.QUESTION_MESSAGE);
                 if (nomeGiocatore != null && !nomeGiocatore.isEmpty()) {
                     if (!giocatori.containsKey(nomeGiocatore)) {
                         giocatori.put(nomeGiocatore, 0);
                     } else {
-                        int choice = JOptionPane.showConfirmDialog(null, "Il giocatore esiste gia'. Vuoi sovrascrivere il punteggio?", "Sovrascrivi punteggio", JOptionPane.YES_NO_OPTION);
+                        int choice = JOptionPane.showConfirmDialog(null,
+                        "Il giocatore esiste gia'. Vuoi sovrascrivere il punteggio?",
+                        "Sovrascrivi punteggio",
+                        JOptionPane.YES_NO_OPTION);
                         if (choice == JOptionPane.YES_OPTION) {
                             giocatori.put(nomeGiocatore, 0);
+                        } else {
+                            new SchermataInizialeGUI();
                         }
                     }
                 }

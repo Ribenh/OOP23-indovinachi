@@ -16,6 +16,7 @@ import java.awt.event.ActionListener;
 import java.util.List;
 import java.awt.FlowLayout;
 
+import schermatainiziale.PersistentHashMap;
 import schermatainiziale.SchermataInizialeGUI;
 
 public class VittoriaGUI extends JFrame {
@@ -28,7 +29,8 @@ public class VittoriaGUI extends JFrame {
     private static final int VITTORIA = 1;
     private static final int SCONFITTA = 2;
     
-    List<String> domande = ListaDomande.getDomande();
+    private List<String> domande = ListaDomande.getDomande();
+    private PersistentHashMap<String, Integer> giocatori;
 
     public VittoriaGUI(int stato) {
 
@@ -44,8 +46,8 @@ public class VittoriaGUI extends JFrame {
             label.setText("Hai Vinto!");
         } else if (stato == SCONFITTA) {
             label.setText("Hai Perso!");
-            // Rimuove l'ultimo nome aggiunto
-            
+            giocatori.loadHashMap();
+            giocatori.remove(giocatori.getLastEntry().getKey());
         }
         
         label.setHorizontalAlignment(SwingConstants.CENTER);
