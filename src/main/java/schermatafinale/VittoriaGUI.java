@@ -29,10 +29,10 @@ public class VittoriaGUI extends JFrame {
     private static final int VITTORIA = 1;
     private static final int SCONFITTA = 2;
     
-    private List<String> domande = ListaDomande.getDomande();
+    private final List<String> domande = ListaDomande.getDomande();
     private PersistentHashMap<String, Integer> giocatori;
 
-    public VittoriaGUI(int stato) {
+    public VittoriaGUI(final int stato) {
 
         setTitle("Schermata Finale");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -84,7 +84,7 @@ public class VittoriaGUI extends JFrame {
         btnEsci.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
-                int choice = JOptionPane.showConfirmDialog(
+                final int choice = JOptionPane.showConfirmDialog(
                     null, "Sei sicuro di voler uscire?",
                     "Conferma",
                     JOptionPane.YES_NO_OPTION);

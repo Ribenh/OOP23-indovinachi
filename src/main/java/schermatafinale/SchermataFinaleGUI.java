@@ -32,9 +32,8 @@ public class SchermataFinaleGUI {
     private static final int HEIGHT = 400;
     private static final int BORDER = 5;
 
-    private PersistentHashMap<String, Integer> giocatori;
-
-    public SchermataFinaleGUI(List<String> domande) {
+    public SchermataFinaleGUI(final List<String> domande) {
+        final PersistentHashMap<String, Integer> giocatori;
 
         final JFrame frame = new JFrame("Schermata Finale");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -49,7 +48,7 @@ public class SchermataFinaleGUI {
         final JTextArea domandeTextArea = new JTextArea();
 
         // Inserimento delle domande nella TextArea
-        for (String domanda : domande) {
+        for (final String domanda : domande) {
             domandeTextArea.append(domanda + "\n\n");
         }
 
@@ -70,8 +69,8 @@ public class SchermataFinaleGUI {
         giocatori.setScoreForLastEntry(domande.size());
 
         // Filtra e ordina i giocatori per punteggio crescente
-        List<Map.Entry<String, Integer>> filteredAndSortedPlayers = new ArrayList<>();
-        for (Map.Entry<String, Integer> entry : giocatori.entrySet()) {
+        final List<Map.Entry<String, Integer>> filteredAndSortedPlayers = new ArrayList<>();
+        for (final Map.Entry<String, Integer> entry : giocatori.entrySet()) {
             if (entry.getValue() != 0) {
                 filteredAndSortedPlayers.add(entry);
             }
@@ -81,16 +80,16 @@ public class SchermataFinaleGUI {
         // Creazione dei dati per la JTable
         Object[][] data = new Object[filteredAndSortedPlayers.size()][2];
         for (int i = 0; i < filteredAndSortedPlayers.size(); i++) {
-            Map.Entry<String, Integer> entry = filteredAndSortedPlayers.get(i);
+            final Map.Entry<String, Integer> entry = filteredAndSortedPlayers.get(i);
             data[i][0] = entry.getKey(); // Giocatore
             data[i][1] = entry.getValue(); // Numero domande
         }
 
         // Nomi delle colonne
-        String[] columnNames = {"Giocatore", "Numero domande"};
+        final String[] columnNames = {"Giocatore", "Numero domande"};
 
         // Creazione della JTable con i dati e i nomi delle colonne
-        JTable classificaTable = new JTable(data, columnNames);
+        final JTable classificaTable = new JTable(data, columnNames);
         final JScrollPane classificaScrollPane = new JScrollPane(classificaTable);
         classificaPanel.add(classificaScrollPane, BorderLayout.CENTER);
 
@@ -134,7 +133,7 @@ public class SchermataFinaleGUI {
         // Aggiunta dell'ActionListener per il pulsante "Gioca ancora"
         giocaAncora.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(final ActionEvent e) {
                 ListaDomande.clearListaDomande();
                 frame.dispose();
                 new SchermataInizialeGUI();

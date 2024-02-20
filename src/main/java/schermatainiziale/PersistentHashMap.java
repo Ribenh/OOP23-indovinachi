@@ -12,42 +12,43 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 public class PersistentHashMap<K extends Serializable, V extends Serializable> {
-    private LinkedHashMap<K, V> hashMap;
-    private String filename;
+    private final Map<K, V> hashMap;
+    private final String filename;
 
-    public PersistentHashMap(String filename) {
+    public PersistentHashMap(final String filename) {
         this.filename = filename;
         this.hashMap = loadHashMap();
     }
 
     @SuppressWarnings("unchecked")
-    public LinkedHashMap<K, V> loadHashMap() {
+    public final Map<K, V> loadHashMap() {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filename))) {
-            Object obj = ois.readObject();
-            if (obj instanceof LinkedHashMap) {
-                return (LinkedHashMap<K, V>) obj;
+            final Object obj = ois.readObject();
+            if (obj instanceof Map) {
+                return (Map<K, V>) obj;
             } else {
-                // Se il file contiene un tipo diverso, restituisci una nuova LinkedHashMap
+                // If the file contains a different type, return a new LinkedHashMap
                 return new LinkedHashMap<>();
             }
         } catch (FileNotFoundException e) {
-            // If file doesn't exist, return a new LinkedHashMap
+            // If the file doesn't exist, return a new LinkedHashMap
             return new LinkedHashMap<>();
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
             return new LinkedHashMap<>();
         }
-    }    
-        public void put(K key, V value) {
+    }
+
+    public void put(final K key, final V value) {
         hashMap.put(key, value);
         saveHashMap();
     }
 
-    public V get(K key) {
+    public V get(final K key) {
         return hashMap.get(key);
     }
 
-    public void remove(K key) {
+    public void remove(final K key) {
         hashMap.remove(key);
         saveHashMap();
     }
@@ -73,23 +74,23 @@ public class PersistentHashMap<K extends Serializable, V extends Serializable> {
         return hashMap.isEmpty();
     }
 
-    public boolean containsKey(K key) {
+    public boolean containsKey(final K key) {
         return hashMap.containsKey(key);
     }
-    
-    public Map.Entry<K, V> getLastEntry() {
+
+    public Entry<K, V> getLastEntry() {
         if (hashMap.isEmpty()) {
             return null;
         }
-        Map.Entry<K, V> lastEntry = null;
-        for (Map.Entry<K, V> entry : hashMap.entrySet()) {
+        Entry<K, V> lastEntry = null;
+        for (final Entry<K, V> entry : hashMap.entrySet()) {
             lastEntry = entry;
         }
         return lastEntry;
     }
 
-    public void setScoreForLastEntry(V score) {
-        Map.Entry<K, V> lastEntry = getLastEntry();
+    public void setScoreForLastEntry(final V score) {
+        final Entry<K, V> lastEntry = getLastEntry();
         if (lastEntry != null) {
             lastEntry.setValue(score);
             saveHashMap();
@@ -100,7 +101,7 @@ public class PersistentHashMap<K extends Serializable, V extends Serializable> {
         @SuppressWarnings("unchecked")
         Entry<K, V>[] entries = new Entry[hashMap.size()];
         int i = 0;
-        for (Map.Entry<K, V> entry : hashMap.entrySet()) {
+        for (Entry<K, V> entry : hashMap.entrySet()) {
             entries[i++] = entry;
         }
         return entries;
