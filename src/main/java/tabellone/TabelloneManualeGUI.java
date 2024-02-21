@@ -17,16 +17,21 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
 import java.util.Map;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.Serializable;
 
 /**
  * Classe che rappresenta l'interfaccia grafica del tabellone di gioco.
  */
-public class TabelloneManualeGUI extends JFrame {
+public class TabelloneManualeGUI extends JFrame implements Serializable {
 
-    private final Map<Position, JButton> cells = new HashMap<>();
-    private Tabellone tabellone;
+    private transient Map<Position, JButton> cells = new HashMap<>();
+    private transient Tabellone tabellone;
     private String personaggioDaIndovinare;
     private int tentativi = 0; // Contatore dei tentativi
+
+    private static final long serialVersionUID = 1L; // Aggiungi un numero di versione per la serializzazione
 
     private static final int BUTTON_WIDTH = 160; // Larghezza del pulsante
     private static final int BUTTON_HEIGHT = 130; // Altezza del pulsante
@@ -43,15 +48,20 @@ public class TabelloneManualeGUI extends JFrame {
     private static final int MAX_TENTATIVI_INTERMEDIO = 10;
     private static final int MAX_TENTATIVI_DIFFICILE = 12;
 
+    private void readObject(final ObjectInputStream in) throws IOException, ClassNotFoundException {
+        in.defaultReadObject();
+        cells = new HashMap<>(); // Inizializza il campo cells dopo la deserializzazione
+    }
+
     /**
-    * Calcola il numero massimo di tentativi consentiti in base al livello di difficoltà.
-    * @param difficolta Il livello di difficoltà del gioco.
-    *                   - 1 per il livello facile.
-    *                   - 2 per il livello intermedio.
-    *                   - 3 per il livello difficile.
-    * @return Il numero massimo di tentativi consentiti.
-    *         Se la difficoltà non è valida, viene stampato un messaggio di errore e viene restituito -1.
-    */
+     * Calcola il numero massimo di tentativi consentiti in base al livello di difficoltà.
+     * @param difficolta Il livello di difficoltà del gioco. 
+     * - 1 per il livello facile. 
+     * - 2 per il livello intermedio. 
+     * - 3 per il livello difficile.
+     * @return Il numero massimo di tentativi consentiti. 
+     * Se la difficoltà non è valida, viene stampato un messaggio di errore e viene restituito -1.
+     */
     private static int calcolaMaxTentativi(final int difficolta) {
         switch (difficolta) {
             case 1:
@@ -69,10 +79,7 @@ public class TabelloneManualeGUI extends JFrame {
     /**
      * Costruttore della classe TabelloneGUI.
      *
-     * @param difficolta La difficoltà del gioco, rappresentata da un valore intero.
-     *                   - 1 per il livello facile, con una dimensione di tabellone 3x3.
-     *                   - 2 per il livello intermedio, con una dimensione di tabellone 4x4.
-     *                   - 3 per il livello difficile, con una dimensione di tabellone 6x4.
+     * @param difficolta La difficoltà del gioco, rappresentata da un valore intero. - 1 per il livello facile, con una dimensione di tabellone 3x3. - 2 per il livello intermedio, con una dimensione di tabellone 4x4. - 3 per il livello difficile, con una dimensione di tabellone 6x4.
      */
     public TabelloneManualeGUI(final int difficolta) {
         int sizeX = 0;
@@ -105,7 +112,7 @@ public class TabelloneManualeGUI extends JFrame {
         this.tabellone = new TabelloneImpl(sizeX, sizeY);
 
         JPanel mainPanel = new JPanel(new BorderLayout());
-        this.getContentPane().add(mainPanel);
+        initializeContentPane(mainPanel);
 
         JPanel imagePanel = new JPanel(new GridLayout(sizeX, sizeY));
         JScrollPane scrollPane = new JScrollPane(imagePanel);
@@ -181,5 +188,10 @@ public class TabelloneManualeGUI extends JFrame {
         });
         mainPanel.add(askQuestionButton, BorderLayout.SOUTH);
         setVisible(true);
+    }
+
+    // Metodo separato per inizializzare il content pane
+    private void initializeContentPane(JPanel mainPanel) {
+        this.setContentPane(mainPanel);
     }
 }

@@ -6,8 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Random;
-import java.util.Set;
-import java.util.HashSet;
+import java.util.Iterator;
 
 import personaggi.PersonaggiCreati;
 import personaggi.Personaggio;
@@ -17,7 +16,7 @@ import personaggi.Personaggio;
  */
 public class TabelloneImpl implements Tabellone {
     // Mappa che associa ogni posizione nel tabellone al personaggio corrispondente
-    private final Map<Position, Personaggio> tabellone; 
+    private transient Map<Position, Personaggio> tabellone; 
     private String personaggioDaIndovinare; 
 
     /**
@@ -63,23 +62,22 @@ public class TabelloneImpl implements Tabellone {
      */
     @Override
     public void aggiornaTabellone(final List<String> personaggiRimanenti) {
-        // Crea una copia dell'entrySet per evitare ConcurrentModificationException
-        Set<Entry<Position, Personaggio>> entrySetCopy = new HashSet<>(tabellone.entrySet());
-        for (Entry<Position, Personaggio> entry : entrySetCopy) {
+        Iterator<Entry<Position, Personaggio>> iterator = tabellone.entrySet().iterator();
+        while (iterator.hasNext()) {
+            Entry<Position, Personaggio> entry = iterator.next();
             if (personaggiRimanenti.contains(entry.getValue().getNome())) {
-                // Rimuovi l'entry dalla mappa
-                tabellone.remove(entry.getKey());
+                iterator.remove(); // Safe removal using iterator's remove method
             }
         }
     }
 
     /**
-     * Restituisce la mappa che rappresenta lo stato attuale del tabellone.
-     * @return La mappa che associa ogni posizione al personaggio corrispondente.
+     * Restituisce una copia della mappa che rappresenta lo stato attuale del tabellone. 
+     * @return Una copia della mappa che associa ogni posizione al personaggio corrispondente.
      */
     @Override
     public Map<Position, Personaggio> getTabellone() {
-        return tabellone;
+        return new HashMap<>(tabellone);
     }
 
     /**
