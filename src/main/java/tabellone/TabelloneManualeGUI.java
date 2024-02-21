@@ -19,12 +19,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.io.Serializable;
 
 /**
  * Classe che rappresenta l'interfaccia grafica del tabellone di gioco.
  */
-public class TabelloneManualeGUI extends JFrame implements Serializable {
+public class TabelloneManualeGUI extends JFrame {
 
     private transient Map<Position, JButton> cells = new HashMap<>();
     private transient Tabellone tabellone;
@@ -79,7 +78,10 @@ public class TabelloneManualeGUI extends JFrame implements Serializable {
     /**
      * Costruttore della classe TabelloneGUI.
      *
-     * @param difficolta La difficoltà del gioco, rappresentata da un valore intero. - 1 per il livello facile, con una dimensione di tabellone 3x3. - 2 per il livello intermedio, con una dimensione di tabellone 4x4. - 3 per il livello difficile, con una dimensione di tabellone 6x4.
+     * @param difficolta La difficoltà del gioco, rappresentata da un valore intero. 
+     * - 1 per il livello facile, con una dimensione di tabellone 3x3. 
+     * - 2 per il livello intermedio, con una dimensione di tabellone 4x4. 
+     * - 3 per il livello difficile, con una dimensione di tabellone 6x4.
      */
     public TabelloneManualeGUI(final int difficolta) {
         int sizeX = 0;
@@ -191,7 +193,7 @@ public class TabelloneManualeGUI extends JFrame implements Serializable {
     }
 
     // Metodo separato per inizializzare il content pane
-    private void initializeContentPane(JPanel mainPanel) {
+    private void initializeContentPane(final JPanel mainPanel) {
         this.setContentPane(mainPanel);
     }
 }
