@@ -34,8 +34,7 @@ public class PersistentHashMap<K extends Serializable, V extends Serializable> {
         this.filename = filename;
         this.hashMap = loadHashMap();
     }
-
-    @SuppressWarnings("unchecked")
+    
     /**
      * Carica la mappa da un file sul disco.
      * <p>
@@ -44,7 +43,9 @@ public class PersistentHashMap<K extends Serializable, V extends Serializable> {
      * </p>
      * 
      * @return La mappa caricata dal file, o una nuova LinkedHashMap se il file non esiste o non può essere letto correttamente.
+     *
      */
+    @SuppressWarnings("unchecked")
     public final Map<K, V> loadHashMap() {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filename))) {
             final Object obj = ois.readObject();

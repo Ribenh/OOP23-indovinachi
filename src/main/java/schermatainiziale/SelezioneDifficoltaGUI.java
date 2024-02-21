@@ -37,7 +37,7 @@ public class SelezioneDifficoltaGUI extends JFrame {
     private static final int DIMENSIONE_DIFFICILE = 3;
     private static final int AUTOMATIC_MODE = 1;
     private static final int MANUAL_MODE = 2;
-    
+
     /**
      * Costruttore della classe SelezioneDifficoltaGUI.
      * Crea l'interfaccia grafica per la selezione della difficoltà del gioco.

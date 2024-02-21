@@ -73,7 +73,6 @@ public class SchermataFinaleGUI {
         // Carica i punteggi dei nomi
         giocatori = new PersistentHashMap<>("src/main/java/schermatainiziale/giocatori.ser");
         giocatori.loadHashMap();
-        giocatori.getLastEntry();
         giocatori.setScoreForLastEntry(domande.size());
 
         // Filtra e ordina i giocatori per punteggio crescente
@@ -133,7 +132,7 @@ public class SchermataFinaleGUI {
                 if (result == JOptionPane.YES_OPTION) {
                     // Pulisci la TextArea prima di chiudere l'applicazione
                     domandeTextArea.setText("");
-                    System.exit(0);
+                    frame.dispose();
                 }
             }
         });

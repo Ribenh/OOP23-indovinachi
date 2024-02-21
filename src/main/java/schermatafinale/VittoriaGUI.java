@@ -33,7 +33,7 @@ public class VittoriaGUI extends JFrame {
     private static final int SCONFITTA = 2;
 
     private final List<String> domande = ListaDomande.getDomande();
-    private PersistentHashMap<String, Integer> giocatori;
+    private transient PersistentHashMap<String, Integer> giocatori;
 
     /**
      * Costruttore per inizializzare la finestra di vittoria o sconfitta.
@@ -97,7 +97,7 @@ public class VittoriaGUI extends JFrame {
                     JOptionPane.YES_NO_OPTION);
 
                 if (choice == JOptionPane.YES_OPTION) {
-                    System.exit(0);
+                    dispose();
                 }
             }
         });

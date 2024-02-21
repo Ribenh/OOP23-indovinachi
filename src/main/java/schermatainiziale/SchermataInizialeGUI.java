@@ -33,7 +33,7 @@ public class SchermataInizialeGUI extends JFrame {
     private int modeSelect;
 
     // Utilizza la classe di utilità PersistentHashMap per salvare/scaricare lo stato della modalità
-    private final PersistentHashMap<String, Integer> giocatori;
+    private final transient PersistentHashMap<String, Integer> giocatori;
 
     /**
      * Costruttore della classe SchermataInizialeGUI.
