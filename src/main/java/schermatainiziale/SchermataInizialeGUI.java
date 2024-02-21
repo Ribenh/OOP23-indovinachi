@@ -12,6 +12,11 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+/**
+ * SchermataInizialeGUI rappresenta la finestra di avvio del gioco "Indovina Chi".
+ * Questa classe gestisce la visualizzazione dell'immagine di benvenuto e la selezione
+ * della modalità di gioco (classica o manuale).
+ */
 public class SchermataInizialeGUI extends JFrame {
 
     private static final long serialVersionUID = -6218820467019983015L;
@@ -25,11 +30,15 @@ public class SchermataInizialeGUI extends JFrame {
     private static final int MANUAL_MODE = 2;
     private static final String PLAYER_FILENAME = "src/main/java/schermatainiziale/giocatori.ser";
 
-    private int modeSelect = 0;
+    private int modeSelect;
 
     // Utilizza la classe di utilità PersistentHashMap per salvare/scaricare lo stato della modalità
-    private PersistentHashMap<String, Integer> giocatori;
+    private final PersistentHashMap<String, Integer> giocatori;
 
+    /**
+     * Costruttore della classe SchermataInizialeGUI.
+     * Inizializza la finestra di avvio del gioco.
+     */
     public SchermataInizialeGUI() {
         super("Indovina Chi");
 
@@ -63,7 +72,7 @@ public class SchermataInizialeGUI extends JFrame {
         classicMode.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
-                String nomeGiocatore = JOptionPane.showInputDialog(null,
+                final String nomeGiocatore = JOptionPane.showInputDialog(null,
                 "Inserisci il tuo nome:",
                 "Inserisci nome",
                 JOptionPane.QUESTION_MESSAGE);
@@ -71,7 +80,7 @@ public class SchermataInizialeGUI extends JFrame {
                     if (!giocatori.containsKey(nomeGiocatore)) {
                         giocatori.put(nomeGiocatore, 0);
                     } else {
-                        int choice = JOptionPane.showConfirmDialog(null,
+                        final int choice = JOptionPane.showConfirmDialog(null,
                         "Il giocatore esiste gia'. Vuoi sovrascrivere il punteggio?",
                         "Sovrascrivi punteggio",
                         JOptionPane.YES_NO_OPTION);
@@ -92,7 +101,7 @@ public class SchermataInizialeGUI extends JFrame {
         manualMode.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
-                String nomeGiocatore = JOptionPane.showInputDialog(null,
+                final String nomeGiocatore = JOptionPane.showInputDialog(null,
                 "Inserisci il tuo nome:",
                 "Inserisci nome",
                 JOptionPane.QUESTION_MESSAGE);
@@ -100,7 +109,7 @@ public class SchermataInizialeGUI extends JFrame {
                     if (!giocatori.containsKey(nomeGiocatore)) {
                         giocatori.put(nomeGiocatore, 0);
                     } else {
-                        int choice = JOptionPane.showConfirmDialog(null,
+                        final int choice = JOptionPane.showConfirmDialog(null,
                         "Il giocatore esiste gia'. Vuoi sovrascrivere il punteggio?",
                         "Sovrascrivi punteggio",
                         JOptionPane.YES_NO_OPTION);

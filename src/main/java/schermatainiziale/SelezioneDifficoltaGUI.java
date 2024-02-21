@@ -18,8 +18,12 @@ import tabellone.TabelloneManualeGUI;
 
 /**
  * Interfaccia grafica della selezione della difficoltà.
+ * Questa classe gestisce la visualizzazione dei pulsanti per selezionare la difficoltà del gioco.
+ * A seconda della difficoltà selezionata e della modalità di gioco (automatica o manuale),
+ * avvia il tabellone del gioco corrispondente.
  */
 public class SelezioneDifficoltaGUI extends JFrame {
+    private static final long serialVersionUID = 123456789L;
 
     private static final int SCALEDWIDTH = -1;
     private static final int SCALEDHEIGHT = 800;
@@ -33,11 +37,14 @@ public class SelezioneDifficoltaGUI extends JFrame {
     private static final int DIMENSIONE_DIFFICILE = 3;
     private static final int AUTOMATIC_MODE = 1;
     private static final int MANUAL_MODE = 2;
-
+    
     /**
-     * Costruttore della classe SelezioneDifficoltaGUI che si aprirà dopo aver scelto la modalità.
+     * Costruttore della classe SelezioneDifficoltaGUI.
+     * Crea l'interfaccia grafica per la selezione della difficoltà del gioco.
+     * 
+     * @param modeSelect La modalità di gioco selezionata: automatica o manuale.
      */
-    public SelezioneDifficoltaGUI(int modeSelect) {
+    public SelezioneDifficoltaGUI(final int modeSelect) {
         super("Indovina Chi");
 
         // Impostazioni della finestra

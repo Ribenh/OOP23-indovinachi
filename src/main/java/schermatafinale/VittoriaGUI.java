@@ -19,6 +19,9 @@ import java.awt.FlowLayout;
 import schermatainiziale.PersistentHashMap;
 import schermatainiziale.SchermataInizialeGUI;
 
+/**
+ * Classe che rappresenta la finestra di vittoria o sconfitta dell'utente.
+ */
 public class VittoriaGUI extends JFrame {
 
     private static final long serialVersionUID = -6218820467019983016L;
@@ -28,10 +31,14 @@ public class VittoriaGUI extends JFrame {
     private static final int FONTSIZE = 24; 
     private static final int VITTORIA = 1;
     private static final int SCONFITTA = 2;
-    
+
     private final List<String> domande = ListaDomande.getDomande();
     private PersistentHashMap<String, Integer> giocatori;
 
+    /**
+     * Costruttore per inizializzare la finestra di vittoria o sconfitta.
+     * @param stato Lo stato della partita (1 per vittoria, 2 per sconfitta).
+     */
     public VittoriaGUI(final int stato) {
 
         setTitle("Schermata Finale");
@@ -49,7 +56,7 @@ public class VittoriaGUI extends JFrame {
             giocatori.loadHashMap();
             giocatori.remove(giocatori.getLastEntry().getKey());
         }
-        
+
         label.setHorizontalAlignment(SwingConstants.CENTER);
         label.setFont(new Font("Arial", Font.BOLD, FONTSIZE));
         panel.add(label, BorderLayout.CENTER);

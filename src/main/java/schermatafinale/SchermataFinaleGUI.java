@@ -26,12 +26,20 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Classe GUI per visualizzare la schermata finale con un riepilogo delle domande e della classifica.
+ * Consente agli utenti di giocare nuovamente o di uscire dall'applicazione.
+ */
 public class SchermataFinaleGUI {
 
     private static final int WIDTH = 800;
     private static final int HEIGHT = 400;
     private static final int BORDER = 5;
 
+    /**
+     * Costruttore per inizializzare la schermata finale.
+     * @param domande La lista delle domande da visualizzare.
+     */
     public SchermataFinaleGUI(final List<String> domande) {
         final PersistentHashMap<String, Integer> giocatori;
 
