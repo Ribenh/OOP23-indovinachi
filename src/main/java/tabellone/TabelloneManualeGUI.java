@@ -1,6 +1,5 @@
 package tabellone;
 
-import personaggi.PersonaggiCreati;
 import personaggi.Personaggio;
 import schermatafinale.VittoriaGUI;
 import serchbar.BarraRicercaGUI;
@@ -17,7 +16,6 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -54,7 +52,7 @@ public class TabelloneManualeGUI extends JFrame {
     * @return Il numero massimo di tentativi consentiti.
     *         Se la difficoltà non è valida, viene stampato un messaggio di errore e viene restituito -1.
     */
-    private static int calcolaMaxTentativi(int difficolta) {
+    private static int calcolaMaxTentativi(final int difficolta) {
         switch (difficolta) {
             case 1:
                 return MAX_TENTATIVI_FACILE; // Livello facile
@@ -101,6 +99,7 @@ public class TabelloneManualeGUI extends JFrame {
         // Impostazioni della finestra
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setSize(BUTTON_WIDTH * sizeX, BUTTON_HEIGHT * sizeY);
+        setLocationRelativeTo(null);
 
         // Creazione del tabellone e del pannello
         this.tabellone = new TabelloneImpl(sizeX, sizeY);
@@ -116,6 +115,7 @@ public class TabelloneManualeGUI extends JFrame {
         tabellone.inizializzaTabellone(sizeX, sizeY);
         // Ottiene il personaggio da indovinare
         personaggioDaIndovinare = tabellone.getPersonaggioDaIndovinare();
+        System.out.println(personaggioDaIndovinare);
 
         // ActionListener personalizzato per i pulsanti
         ActionListener al = new ActionListener() {
@@ -143,15 +143,11 @@ public class TabelloneManualeGUI extends JFrame {
         };
 
         // Inizializzazione dei pulsanti e associazione dell'ActionListener
-        List<Personaggio> personaggi = PersonaggiCreati.creaPersonaggi();
-        int index = 0;
-
         for (int i = 0; i < sizeX; i++) {
             for (int j = 0; j < sizeY; j++) {
                 Position pos = new Position(j, i);
-                Personaggio personaggio = personaggi.get(index++);
+                Personaggio personaggio = tabellone.getPersonaggioAtPosition(pos);
                 JButton jb = new JButton();
-
                 // Ottieni l'immagine del personaggio
                 ImageIcon icon = personaggio.getImmagine();
                 // Ridimensiona l'immagine per adattarla alla dimensione del pulsante
@@ -159,24 +155,23 @@ public class TabelloneManualeGUI extends JFrame {
                 ImageIcon scaledIcon = new ImageIcon(scaledImage);
                 // Imposta l'immagine ridimensionata come icona del pulsante
                 jb.setIcon(scaledIcon);
-
                 cells.put(pos, jb);
                 jb.addActionListener(al);
                 imagePanel.add(jb);
             }
         }
-        
+
         // Calcola MAX_TENTATIVI in base al livello di difficoltà
-        int MAX_TENTATIVI = calcolaMaxTentativi(difficolta);
+        int maxTentativi = calcolaMaxTentativi(difficolta);
         // ActionListener per il pulsante "Fai una domanda"
         JButton askQuestionButton = new JButton("Fai una domanda");
         askQuestionButton.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(final ActionEvent e) {
                 // Incrementa il contatore dei tentativi quando viene fatta una domanda
                 tentativi++;
                 // Verifica se il numero massimo di tentativi è stato superato
-                if (tentativi >= MAX_TENTATIVI) {
+                if (tentativi >= maxTentativi) {
                     new VittoriaGUI(0); // Apre la SchermataFinale con indicazione di sconfitta
                     dispose(); // Chiude la finestra corrente
                 } else {
