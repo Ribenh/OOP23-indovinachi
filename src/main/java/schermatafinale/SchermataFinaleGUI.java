@@ -1,37 +1,47 @@
 package schermatafinale;
 
-import javax.swing.Box;
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
+import javax.swing.JButton;
+import javax.swing.JTextArea;
 import javax.swing.JPanel;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JTextArea;
-import javax.swing.SwingConstants;
+import javax.swing.JOptionPane;
 import javax.swing.border.EmptyBorder;
+import javax.swing.BoxLayout;
+import javax.swing.Box;
 
+import schermatainiziale.PersistentHashMap;
 import schermatainiziale.SchermataInizialeGUI;
+import serchbar.ListaDomande;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Classe GUI per visualizzare la schermata finale con un riepilogo delle domande e della classifica.
+ * Consente agli utenti di giocare nuovamente o di uscire dall'applicazione.
+ */
 public class SchermataFinaleGUI {
 
     private static final int WIDTH = 800;
     private static final int HEIGHT = 400;
     private static final int BORDER = 5;
 
-    public SchermataFinaleGUI(List<String> domande) {
+    /**
+     * Costruttore per inizializzare la schermata finale.
+     * @param domande La lista delle domande da visualizzare.
+     */
+    public SchermataFinaleGUI(final List<String> domande) {
+        final PersistentHashMap<String, Integer> giocatori;
 
         final JFrame frame = new JFrame("Schermata Finale");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -46,7 +56,7 @@ public class SchermataFinaleGUI {
         final JTextArea domandeTextArea = new JTextArea();
 
         // Inserimento delle domande nella TextArea
-        for (String domanda : domande) {
+        for (final String domanda : domande) {
             domandeTextArea.append(domanda + "\n\n");
         }
 
@@ -61,44 +71,34 @@ public class SchermataFinaleGUI {
         classificaPanel.add(classificaLabel, BorderLayout.NORTH);
 
         // Carica i punteggi dei nomi
-        Map<String, Integer> nameScores = NomeScoresUtility.loadNameScores();
-        
-        // Aggiorna il punteggio solo per l'ultimo nome inserito
-        String lastInsertedName = null;
-        for (String name : nameScores.keySet()) {
-            lastInsertedName = name;
-        }
-        if (lastInsertedName != null) {
-            nameScores.put(lastInsertedName, domande.size());
-        }
-        NomeScoresUtility.saveNameScores(nameScores);
+        giocatori = new PersistentHashMap<>("src/main/java/schermatainiziale/giocatori.ser");
+        giocatori.loadHashMap();
+        giocatori.setScoreForLastEntry(domande.size());
 
-        // Crea una lista temporanea per filtrare i giocatori con punteggio diverso da 0
-        List<Map.Entry<String, Integer>> filteredEntries = new ArrayList<>();
-        for (Map.Entry<String, Integer> entry : nameScores.entrySet()) {
+        // Filtra e ordina i giocatori per punteggio crescente
+        final List<Map.Entry<String, Integer>> filteredAndSortedPlayers = new ArrayList<>();
+        for (final Map.Entry<String, Integer> entry : giocatori.entrySet()) {
             if (entry.getValue() != 0) {
-                filteredEntries.add(entry);
+                filteredAndSortedPlayers.add(entry);
             }
         }
+        filteredAndSortedPlayers.sort(Comparator.comparingInt(Map.Entry::getValue));
 
-        // Converti la lista filtrata in un array bidimensionale per la JTable
-        final Object[][] data = new Object[filteredEntries.size()][2];
-        for (int i = 0; i < filteredEntries.size(); i++) {
-            Map.Entry<String, Integer> entry = filteredEntries.get(i);
-            data[i][0] = entry.getKey(); // Nome giocatore
-            data[i][1] = entry.getValue(); // Punteggio
+        // Creazione dei dati per la JTable
+        Object[][] data = new Object[filteredAndSortedPlayers.size()][2];
+        for (int i = 0; i < filteredAndSortedPlayers.size(); i++) {
+            final Map.Entry<String, Integer> entry = filteredAndSortedPlayers.get(i);
+            data[i][0] = entry.getKey(); // Giocatore
+            data[i][1] = entry.getValue(); // Numero domande
         }
 
-        // Ordina i dati in base al punteggio (dal più basso al più alto)
-        Arrays.sort(data, Comparator.comparingInt(o -> (int) o[1]));
+        // Nomi delle colonne
+        final String[] columnNames = {"Giocatore", "Numero domande"};
 
-        // Definisci i nomi delle colonne
-        String[] columnNames = {"Nome giocatore", "Numero domande"};
-
-        // Crea la JTable con i dati ordinati e i nomi delle colonne
-        JTable classificaTable = new JTable(data, columnNames);
-        final JScrollPane classificaScrollpane = new JScrollPane(classificaTable);
-        classificaPanel.add(classificaScrollpane, BorderLayout.CENTER);
+        // Creazione della JTable con i dati e i nomi delle colonne
+        final JTable classificaTable = new JTable(data, columnNames);
+        final JScrollPane classificaScrollPane = new JScrollPane(classificaTable);
+        classificaPanel.add(classificaScrollPane, BorderLayout.CENTER);
 
         // creazione pulsanti
         final JButton giocaAncora = new JButton("Gioca ancora");
@@ -132,7 +132,7 @@ public class SchermataFinaleGUI {
                 if (result == JOptionPane.YES_OPTION) {
                     // Pulisci la TextArea prima di chiudere l'applicazione
                     domandeTextArea.setText("");
-                    System.exit(0);
+                    frame.dispose();
                 }
             }
         });
@@ -140,7 +140,8 @@ public class SchermataFinaleGUI {
         // Aggiunta dell'ActionListener per il pulsante "Gioca ancora"
         giocaAncora.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(final ActionEvent e) {
+                ListaDomande.clearListaDomande();
                 frame.dispose();
                 new SchermataInizialeGUI();
             }
