@@ -87,7 +87,6 @@ public class TabelloneImpl implements Tabellone {
     public Personaggio getPersonaggioDaIndovinare() {
         return personaggioDaIndovinare;
     }
-    
 
     /**
      * Restituisce il personaggio nella posizione specificata.

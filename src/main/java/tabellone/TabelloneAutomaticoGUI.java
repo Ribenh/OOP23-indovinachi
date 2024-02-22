@@ -195,15 +195,19 @@ public class TabelloneAutomaticoGUI extends JFrame {
         this.setContentPane(mainPanel);
     }
 
-    // Metodo per disabilitare i pulsanti dopo la chiusura del MenuPopup
+    /**
+    * Metodo per disabilitare i pulsanti, "girando" i personaggi sulla base della risposta alla domanda del giocatore.
+    * Ottiene la caratteristica scelta nel menu pop-up e verifica se i personaggi sul tabellone hanno tale caratteristica.
+    */
     public void giraPersonaggi() {
         // Ottiene la caratteristica scelta nel menu pop-up
         String caratteristicaScelta = DomandaPulsante.getTipoCaratteristica();
         System.out.println(caratteristicaScelta);
         String dettaglioScelto = DomandaPulsante.getDettaglioCaratteristica();
         System.out.println(dettaglioScelto);
-        Boolean personaggioDaIndovinareHaCaratteristica = personaggioDaIndovinare.hasCaratteristica(personaggioDaIndovinare, caratteristicaScelta, dettaglioScelto);
-        
+        Boolean personaggioDaIndovinareHaCaratteristica = 
+        personaggioDaIndovinare.hasCaratteristica(personaggioDaIndovinare, caratteristicaScelta, dettaglioScelto);
+
         // Girare le caselle in base alla risposta del giocatore
         for (Map.Entry<Position, JButton> entry : cells.entrySet()) {
             Position posizione = entry.getKey();
@@ -211,10 +215,13 @@ public class TabelloneAutomaticoGUI extends JFrame {
             JButton pulsante = entry.getValue();
 
             // Calcola se il personaggio ha la caratteristica
-            Boolean personaggioHaCaratteristica = personaggio.hasCaratteristica(personaggio, caratteristicaScelta, dettaglioScelto);
+            Boolean personaggioHaCaratteristica = 
+            personaggio.hasCaratteristica(personaggio, caratteristicaScelta, dettaglioScelto);
 
-            // Controlla se il personaggio ha la caratteristica e la risposta è "NO", o se non ha la caratteristica e la risposta è "SI"
-            if ((!personaggioHaCaratteristica && personaggioDaIndovinareHaCaratteristica) || (personaggioHaCaratteristica && !personaggioDaIndovinareHaCaratteristica)) {
+            // Gira il personaggio che non ha la caratteristica se il personaggio da indovinare la ha
+            // Gira il personaggio che ha la caratteristica se il personaggio da indovinare non la ha
+            if ((!personaggioHaCaratteristica && personaggioDaIndovinareHaCaratteristica) 
+            || (personaggioHaCaratteristica && !personaggioDaIndovinareHaCaratteristica)) {
                 pulsante.setEnabled(false);
             }
         }
