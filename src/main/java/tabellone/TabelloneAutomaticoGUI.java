@@ -28,8 +28,8 @@ public class TabelloneAutomaticoGUI extends JFrame {
 
     private transient Map<Position, JButton> cells = new HashMap<>();
     private transient Tabellone tabellone;
-    private Personaggio personaggioDaIndovinare;
-    private int tentativi = 0; // Contatore dei tentativi
+    private transient Personaggio personaggioDaIndovinare;
+    private int tentativi; // Contatore dei tentativi
 
     private static final int BUTTON_WIDTH = 160; // Larghezza del pulsante
     private static final int BUTTON_HEIGHT = 130; // Altezza del pulsante
@@ -45,6 +45,8 @@ public class TabelloneAutomaticoGUI extends JFrame {
     private static final int MAX_TENTATIVI_FACILE = 8;
     private static final int MAX_TENTATIVI_INTERMEDIO = 10;
     private static final int MAX_TENTATIVI_DIFFICILE = 12;
+
+    private static final long serialVersionUID = -6218820467019983016L;
 
     private void readObject(final ObjectInputStream in) throws IOException, ClassNotFoundException {
         in.defaultReadObject();
@@ -69,7 +71,6 @@ public class TabelloneAutomaticoGUI extends JFrame {
             case 3:
                 return MAX_TENTATIVI_DIFFICILE; // Livello difficile
             default:
-                System.err.println("Difficoltà non valida: " + difficolta);
                 return -1;
         }
     }
@@ -112,36 +113,35 @@ public class TabelloneAutomaticoGUI extends JFrame {
         // Creazione del tabellone e del pannello
         this.tabellone = new TabelloneImpl(sizeX, sizeY);
 
-        JPanel mainPanel = new JPanel(new BorderLayout());
+        final JPanel mainPanel = new JPanel(new BorderLayout());
         initializeContentPane(mainPanel);
 
-        JPanel imagePanel = new JPanel(new GridLayout(sizeX, sizeY));
-        JScrollPane scrollPane = new JScrollPane(imagePanel);
+        final JPanel imagePanel = new JPanel(new GridLayout(sizeX, sizeY));
+        final JScrollPane scrollPane = new JScrollPane(imagePanel);
         mainPanel.add(scrollPane, BorderLayout.CENTER);
 
         // Inizializzazione del tabellone con i personaggi iniziali
         tabellone.inizializzaTabellone(sizeX, sizeY);
         // Ottiene il personaggio da indovinare
         personaggioDaIndovinare = tabellone.getPersonaggioDaIndovinare();
-        System.out.println(personaggioDaIndovinare.getNome());
 
         // ActionListener personalizzato per i pulsanti
-        ActionListener al = new ActionListener() {
+        final ActionListener al = new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
-                JButton jb = (JButton) e.getSource();
+                final JButton jb = (JButton) e.getSource();
                 // Disabilita il pulsante cliccato
                 jb.setEnabled(false);
                 // Ottieni la posizione del pulsante cliccato
                 Position pos = null;
-                for (Map.Entry<Position, JButton> entry : cells.entrySet()) {
-                    if (entry.getValue() == jb) {
+                for (final Map.Entry<Position, JButton> entry : cells.entrySet()) {
+                    if (entry.getValue().equals(jb)) {
                         pos = entry.getKey();
                         break;
                     }
                 }
                 // Ottieni il personaggio corrispondente alla posizione
-                Personaggio personaggioCliccato = tabellone.getTabellone().get(pos);
+                final Personaggio personaggioCliccato = tabellone.getTabellone().get(pos);
                 // Controlla se il personaggio cliccato corrisponde al personaggio da indovinare
                 if (personaggioCliccato.getNome().equals(personaggioDaIndovinare.getNome())) {
                     new VittoriaGUI(1); // Apre la SchermataFinale
@@ -153,14 +153,14 @@ public class TabelloneAutomaticoGUI extends JFrame {
         // Inizializzazione dei pulsanti e associazione dell'ActionListener
         for (int i = 0; i < sizeX; i++) {
             for (int j = 0; j < sizeY; j++) {
-                Position pos = new Position(j, i);
-                Personaggio personaggio = tabellone.getPersonaggioAtPosition(pos);
-                JButton jb = new JButton();
+                final Position pos = new Position(j, i);
+                final Personaggio personaggio = tabellone.getPersonaggioAtPosition(pos);
+                final JButton jb = new JButton();
                 // Ottieni l'immagine del personaggio
-                ImageIcon icon = personaggio.getImmagine();
+                final ImageIcon icon = personaggio.getImmagine();
                 // Ridimensiona l'immagine per adattarla alla dimensione del pulsante
-                Image scaledImage = icon.getImage().getScaledInstance(BUTTON_SIZE, BUTTON_SIZE, Image.SCALE_SMOOTH);
-                ImageIcon scaledIcon = new ImageIcon(scaledImage);
+                final Image scaledImage = icon.getImage().getScaledInstance(BUTTON_SIZE, BUTTON_SIZE, Image.SCALE_SMOOTH);
+                final ImageIcon scaledIcon = new ImageIcon(scaledImage);
                 // Imposta l'immagine ridimensionata come icona del pulsante
                 jb.setIcon(scaledIcon);
                 cells.put(pos, jb);
@@ -170,9 +170,9 @@ public class TabelloneAutomaticoGUI extends JFrame {
         }
 
         // Calcola MAX_TENTATIVI in base al livello di difficoltà
-        int maxTentativi = calcolaMaxTentativi(difficolta);
+        final int maxTentativi = calcolaMaxTentativi(difficolta);
         // ActionListener per il pulsante "Fai una domanda"
-        JButton askQuestionButton = new JButton("Fai una domanda");
+        final JButton askQuestionButton = new JButton("Fai una domanda");
         askQuestionButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
@@ -201,27 +201,25 @@ public class TabelloneAutomaticoGUI extends JFrame {
     */
     public void giraPersonaggi() {
         // Ottiene la caratteristica scelta nel menu pop-up
-        String caratteristicaScelta = DomandaPulsante.getTipoCaratteristica();
-        System.out.println(caratteristicaScelta);
-        String dettaglioScelto = DomandaPulsante.getDettaglioCaratteristica();
-        System.out.println(dettaglioScelto);
-        Boolean personaggioDaIndovinareHaCaratteristica = 
+        final String caratteristicaScelta = DomandaPulsante.getTipoCaratteristica();
+        final String dettaglioScelto = DomandaPulsante.getDettaglioCaratteristica();
+        final Boolean personaggioDaIndovinareHaCaratteristica = 
         personaggioDaIndovinare.hasCaratteristica(personaggioDaIndovinare, caratteristicaScelta, dettaglioScelto);
 
         // Girare le caselle in base alla risposta del giocatore
-        for (Map.Entry<Position, JButton> entry : cells.entrySet()) {
-            Position posizione = entry.getKey();
-            Personaggio personaggio = tabellone.getTabellone().get(posizione);
-            JButton pulsante = entry.getValue();
+        for (final Map.Entry<Position, JButton> entry : cells.entrySet()) {
+            final Position posizione = entry.getKey();
+            final Personaggio personaggio = tabellone.getTabellone().get(posizione);
+            final JButton pulsante = entry.getValue();
 
             // Calcola se il personaggio ha la caratteristica
-            Boolean personaggioHaCaratteristica = 
+            final Boolean personaggioHaCaratteristica = 
             personaggio.hasCaratteristica(personaggio, caratteristicaScelta, dettaglioScelto);
 
             // Gira il personaggio che non ha la caratteristica se il personaggio da indovinare la ha
             // Gira il personaggio che ha la caratteristica se il personaggio da indovinare non la ha
-            if ((!personaggioHaCaratteristica && personaggioDaIndovinareHaCaratteristica) 
-            || (personaggioHaCaratteristica && !personaggioDaIndovinareHaCaratteristica)) {
+            if (!personaggioHaCaratteristica && personaggioDaIndovinareHaCaratteristica
+            || personaggioHaCaratteristica && !personaggioDaIndovinareHaCaratteristica) {
                 pulsante.setEnabled(false);
             }
         }

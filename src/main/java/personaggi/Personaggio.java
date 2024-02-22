@@ -152,4 +152,10 @@ public interface Personaggio {
     void setUomo(Boolean uomo);
 
     Boolean hasCaratteristica(Personaggio personaggio, String caratteristicaScelta, String dettaglioScelto);
+
+    /**
+     * Crea una copia dell'oggetto Personaggio corrente.
+     * @return Una nuova istanza di Personaggio.
+     */
+    public Personaggio creaCopia();
 }

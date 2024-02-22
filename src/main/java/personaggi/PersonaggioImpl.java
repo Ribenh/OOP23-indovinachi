@@ -375,4 +375,13 @@ public class PersonaggioImpl implements Personaggio {
         }
         return risultato;
     }
+
+    /**
+     * Crea una copia dell'oggetto Personaggio corrente.
+     * @return Una nuova istanza di Personaggio.
+     */
+    public Personaggio creaCopia() {
+        return new PersonaggioImpl(nome, immagine, hasCapelli, coloreCapelli, tipologiaCapelli, lunghezzaCapelli,
+                coloreOcchi, barba, occhiali, accessorio, baffi, uomo);
+    }
 }   

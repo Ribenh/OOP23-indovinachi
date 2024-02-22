@@ -34,15 +34,16 @@ public class TabelloneImpl implements Tabellone {
      * @param sizeX La dimensione X del tabellone. 
      * @param sizeY La dimensione Y del tabellone.
      */
+    @Override
     public void inizializzaTabellone(final int sizeX, final int sizeY) {
-        List<Personaggio> personaggi = PersonaggiCreati.creaPersonaggi();
+        final List<Personaggio> personaggi = PersonaggiCreati.creaPersonaggi();
         int index = 0;
-        Random random = new Random();
+        final Random random = new Random();
 
         for (int i = 0; i < sizeX; i++) {
             for (int j = 0; j < sizeY; j++) {
-                Position position = new Position(i, j);
-                Personaggio personaggio = personaggi.get(index++);
+                final Position position = new Position(i, j);
+                final Personaggio personaggio = personaggi.get(index++);
                 tabellone.put(position, personaggio);
                 // Aggiornamento dell'indice solo se ci sono ancora personaggi nella lista
                 if (index >= personaggi.size()) {
@@ -51,7 +52,7 @@ public class TabelloneImpl implements Tabellone {
             }
         }
         // Scegli casualmente il personaggio da indovinare tra quelli presenti sulla tabella
-        Position randomPosition = new ArrayList<>(tabellone.keySet()).get(random.nextInt(tabellone.size()));
+        final Position randomPosition = new ArrayList<>(tabellone.keySet()).get(random.nextInt(tabellone.size()));
         personaggioDaIndovinare = tabellone.get(randomPosition);
     }
 
@@ -61,9 +62,9 @@ public class TabelloneImpl implements Tabellone {
      */
     @Override
     public void aggiornaTabellone(final List<String> personaggiRimanenti) {
-        Iterator<Entry<Position, Personaggio>> iterator = tabellone.entrySet().iterator();
+        final Iterator<Entry<Position, Personaggio>> iterator = tabellone.entrySet().iterator();
         while (iterator.hasNext()) {
-            Entry<Position, Personaggio> entry = iterator.next();
+            final Entry<Position, Personaggio> entry = iterator.next();
             if (personaggiRimanenti.contains(entry.getValue().getNome())) {
                 iterator.remove(); 
             }
@@ -85,7 +86,7 @@ public class TabelloneImpl implements Tabellone {
      */
     @Override
     public Personaggio getPersonaggioDaIndovinare() {
-        return personaggioDaIndovinare;
+        return personaggioDaIndovinare.creaCopia();
     }
 
     /**
@@ -93,6 +94,7 @@ public class TabelloneImpl implements Tabellone {
      * @param position La posizione del personaggio.
      * @return Il personaggio nella posizione specificata.
      */
+    @Override
     public Personaggio getPersonaggioAtPosition(final Position position) {
         return tabellone.get(position);
     }
