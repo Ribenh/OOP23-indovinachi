@@ -32,7 +32,7 @@ public interface Tabellone {
      * Restituisce il personaggio da indovinare.
      * @return La stringa associata al personaggio da indovinare.
      */
-    String getPersonaggioDaIndovinare();
+    Personaggio getPersonaggioDaIndovinare();
 
     /**
      * Restituisce il personaggio nella posizione specificata.

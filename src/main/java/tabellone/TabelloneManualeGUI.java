@@ -27,10 +27,8 @@ public class TabelloneManualeGUI extends JFrame {
 
     private transient Map<Position, JButton> cells = new HashMap<>();
     private transient Tabellone tabellone;
-    private String personaggioDaIndovinare;
+    private Personaggio personaggioDaIndovinare;
     private int tentativi = 0; // Contatore dei tentativi
-
-    private static final long serialVersionUID = 1L; // Aggiungi un numero di versione per la serializzazione
 
     private static final int BUTTON_WIDTH = 160; // Larghezza del pulsante
     private static final int BUTTON_HEIGHT = 130; // Altezza del pulsante
@@ -124,7 +122,8 @@ public class TabelloneManualeGUI extends JFrame {
         tabellone.inizializzaTabellone(sizeX, sizeY);
         // Ottiene il personaggio da indovinare
         personaggioDaIndovinare = tabellone.getPersonaggioDaIndovinare();
-        System.out.println(personaggioDaIndovinare);
+        String nomeDaIndovinare = personaggioDaIndovinare.getNome();
+        System.out.println(nomeDaIndovinare);
 
         // ActionListener personalizzato per i pulsanti
         ActionListener al = new ActionListener() {
@@ -144,7 +143,7 @@ public class TabelloneManualeGUI extends JFrame {
                 // Ottieni il personaggio corrispondente alla posizione
                 Personaggio personaggioCliccato = tabellone.getTabellone().get(pos);
                 // Controlla se il personaggio cliccato corrisponde al personaggio da indovinare
-                if (personaggioCliccato.getNome().equals(personaggioDaIndovinare)) {
+                if (personaggioCliccato.getNome().equals(personaggioDaIndovinare.getNome())) {
                     new VittoriaGUI(1); // Apre la SchermataFinale
                     dispose(); // Chiude la finestra corrente
                 }
@@ -184,7 +183,7 @@ public class TabelloneManualeGUI extends JFrame {
                     new VittoriaGUI(0); // Apre la SchermataFinale con indicazione di sconfitta
                     dispose(); // Chiude la finestra corrente
                 } else {
-                    new BarraRicercaGUI(personaggioDaIndovinare); // Apre la barra di ricerca
+                    new BarraRicercaGUI(nomeDaIndovinare); // Apre la barra di ricerca
                 }
             }
         });

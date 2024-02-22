@@ -17,7 +17,7 @@ import personaggi.Personaggio;
 public class TabelloneImpl implements Tabellone {
     // Mappa che associa ogni posizione nel tabellone al personaggio corrispondente
     private transient Map<Position, Personaggio> tabellone; 
-    private String personaggioDaIndovinare; 
+    private Personaggio personaggioDaIndovinare; 
 
     /**
      * Costruttore della classe TabelloneImpl.
@@ -50,10 +50,9 @@ public class TabelloneImpl implements Tabellone {
                 }
             }
         }
-
         // Scegli casualmente il personaggio da indovinare tra quelli presenti sulla tabella
         Position randomPosition = new ArrayList<>(tabellone.keySet()).get(random.nextInt(tabellone.size()));
-        personaggioDaIndovinare = tabellone.get(randomPosition).getNome();
+        personaggioDaIndovinare = tabellone.get(randomPosition);
     }
 
     /**
@@ -66,7 +65,7 @@ public class TabelloneImpl implements Tabellone {
         while (iterator.hasNext()) {
             Entry<Position, Personaggio> entry = iterator.next();
             if (personaggiRimanenti.contains(entry.getValue().getNome())) {
-                iterator.remove(); // Safe removal using iterator's remove method
+                iterator.remove(); 
             }
         }
     }
@@ -85,9 +84,10 @@ public class TabelloneImpl implements Tabellone {
      * @return Il nome del personaggio da indovinare.
      */
     @Override
-    public String getPersonaggioDaIndovinare() {
+    public Personaggio getPersonaggioDaIndovinare() {
         return personaggioDaIndovinare;
     }
+    
 
     /**
      * Restituisce il personaggio nella posizione specificata.
