@@ -151,11 +151,12 @@ public interface Personaggio {
      */
     void setUomo(Boolean uomo);
 
-    Boolean hasCaratteristica(Personaggio personaggio, String caratteristicaScelta, String dettaglioScelto);
-
     /**
-     * Crea una copia dell'oggetto Personaggio corrente.
-     * @return Una nuova istanza di Personaggio.
+     * Controlla se il personaggio ha il tratto selezionato.
+     * @param personaggio Nome del personaggio da controllare.
+     * @param caratteristicaScelta Caratteristica selezionata.
+     * @param dettaglioScelto Dettaglio della caratteristica selezionata.
+     * @return True se il personaggio presenta il dettaglio, altrimenti False.
      */
-    public Personaggio creaCopia();
+    Boolean hasCaratteristica(Personaggio personaggio, String caratteristicaScelta, String dettaglioScelto);
 }

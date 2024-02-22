@@ -1,7 +1,6 @@
 package personaggi;
 
 import javax.swing.ImageIcon;
-import java.lang.Boolean;
 
 /**
  * Implementazione dell'interfaccia {@link Personaggio} che definisce le caratteristiche di un personaggio del gioco.
@@ -50,9 +49,6 @@ public class PersonaggioImpl implements Personaggio {
         this.baffi = baffi;
         this.occhiali = occhiali;
         this.accessorio = accessorio;
-        this.occhiali = occhiali;
-        this.accessorio = accessorio;
-        this.baffi = baffi;
         this.uomo = uomo;
     }
 
@@ -81,7 +77,6 @@ public class PersonaggioImpl implements Personaggio {
         this.baffi = baffi;
         this.occhiali = occhiali;
         this.accessorio = accessorio;
-        this.baffi = baffi;
         this.uomo = uomo;
     }
 
@@ -270,10 +265,10 @@ public class PersonaggioImpl implements Personaggio {
      * @param accessorio True se il personaggio indossa un accessorio, altrimenti False.
      */
     @Override
-    public void setAccessori(Boolean accessorio) {
+    public void setAccessori(final Boolean accessorio) {
         this.accessorio = accessorio;
     }
-    
+
     /**
      * Verifica se il personaggio ha i baffi.
      * @return True se il personaggio ha i baffi, altrimenti False.
@@ -310,7 +305,16 @@ public class PersonaggioImpl implements Personaggio {
         this.uomo = uomo;
     }
 
-    public Boolean hasCaratteristica(Personaggio personaggio, String caratteristicaScelta, String dettaglioScelto) {
+    /**
+     * Controlla se il personaggio ha il tratto selezionato.
+     * @param personaggio Nome del personaggio da controllare.
+     * @param caratteristicaScelta Caratteristica selezionata.
+     * @param dettaglioScelto Dettaglio della caratteristica selezionata.
+     * @return True se il personaggio presenta il dettaglio, altrimenti False.
+     */
+    @Override
+    public Boolean hasCaratteristica(
+        final Personaggio personaggio, final String caratteristicaScelta, final String dettaglioScelto) {
         Boolean risultato = null;
         if (dettaglioScelto == null) {
             // Se dettaglioScelto è null, restituisci false 
@@ -371,17 +375,10 @@ public class PersonaggioImpl implements Personaggio {
                         risultato = !(personaggio.hasOcchiali());
                     }
                     break;
+                default:
+                    return risultato;
             }
         }
         return risultato;
     }
-
-    /**
-     * Crea una copia dell'oggetto Personaggio corrente.
-     * @return Una nuova istanza di Personaggio.
-     */
-    public Personaggio creaCopia() {
-        return new PersonaggioImpl(nome, immagine, hasCapelli, coloreCapelli, tipologiaCapelli, lunghezzaCapelli,
-                coloreOcchi, barba, occhiali, accessorio, baffi, uomo);
-    }
-}   
+}
