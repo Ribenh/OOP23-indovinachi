@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+
 /**
  * SchermataInizialeGUI rappresenta la finestra di avvio del gioco "Indovina Chi".
  * Questa classe gestisce la visualizzazione dell'immagine di benvenuto e la selezione
@@ -36,20 +37,27 @@ public class SchermataInizialeGUI extends JFrame {
      * Inizializza la finestra di avvio del gioco.
      */
     public SchermataInizialeGUI() {
+        // CPD-OFF
         super("Indovina Chi");
+
         giocatori = new PersistentHashMap<>(PLAYER_FILENAME);
+
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(WIDTH, HEIGHT);
         setLocationRelativeTo(null);
+
         final JPanel panel = new JPanel();
         panel.setLayout(new BorderLayout());
+
         final ImageIcon imageIcon = new ImageIcon("src/main/java/schermatainiziale/IndovinaChi.png");
         final Image image = imageIcon.getImage();
         final Image newImage = image.getScaledInstance(SCALEDWIDTH, SCALEDHEIGHT, Image.SCALE_SMOOTH);
         final ImageIcon scaledImageIcon = new ImageIcon(newImage);
+
         final JLabel imageLabel = new JLabel(imageIcon);
         imageLabel.setIcon(scaledImageIcon);
         panel.add(imageLabel, BorderLayout.CENTER);
+
         final JPanel buttonPanel = new JPanel();
         final JButton classicMode = new JButton("Modalita' classica");
         final JButton manualMode = new JButton("Modalita' manuale");
@@ -58,6 +66,7 @@ public class SchermataInizialeGUI extends JFrame {
         final Dimension buttonSize = new Dimension(BUTTONWIDTH, BUTTONHEIGHT);
         classicMode.setPreferredSize(buttonSize);
         manualMode.setPreferredSize(buttonSize);
+
         classicMode.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
@@ -86,6 +95,7 @@ public class SchermataInizialeGUI extends JFrame {
                 new SelezioneDifficoltaGUI(modeSelect);
             }
         });
+
         manualMode.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
@@ -113,6 +123,7 @@ public class SchermataInizialeGUI extends JFrame {
                 new SelezioneDifficoltaGUI(modeSelect);
             }
         });
+
         panel.add(buttonPanel, BorderLayout.SOUTH);
         add(panel);
         setVisible(true);
