@@ -114,7 +114,7 @@ public class BarraRicercaGUI {
                     break;
 
                     case "Barbuto":
-                    barraRicerca.messaggioRicerca(frame, personaggioDaIndovinare.hasBarba());
+                    barraRicerca.messaggioRicerca(frame, personaggioDaIndovinare.getBarba());
                     break;
 
                     case "Baffuto":

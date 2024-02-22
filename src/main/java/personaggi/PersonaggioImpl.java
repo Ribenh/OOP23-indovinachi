@@ -1,7 +1,6 @@
 package personaggi;
 
 import javax.swing.ImageIcon;
-import java.lang.Boolean;
 
 /**
  * Implementazione dell'interfaccia {@link Personaggio} che definisce le caratteristiche di un personaggio del gioco.
@@ -225,7 +224,7 @@ public class PersonaggioImpl implements Personaggio {
      * @return True se il personaggio ha la barba, altrimenti False.
      */
     @Override
-    public Boolean hasBarba() {
+    public Boolean getBarba() {
         return barba;
     }
 
@@ -309,70 +308,6 @@ public class PersonaggioImpl implements Personaggio {
     public void setUomo(final Boolean uomo) {
         this.uomo = uomo;
     }
+}
 
-    public Boolean hasCaratteristica(Personaggio personaggio, String caratteristicaScelta, String dettaglioScelto) {
-        Boolean risultato = null;
-        if (dettaglioScelto == null) {
-            // Se dettaglioScelto è null, restituisci false 
-            risultato = false; 
-        } else {
-            switch (caratteristicaScelta) {
-                case "GENERE":
-                    if ("Maschio".equals(dettaglioScelto)) {
-                        risultato = personaggio.isUomo();
-                    } else {
-                        risultato = !(personaggio.isUomo());
-                    }
-                    break;
-                case "HA I CAPELLI?":
-                    if ("SI".equals(dettaglioScelto)) {
-                        risultato = personaggio.hasCapelli();
-                    } else {
-                        risultato = !(personaggio.hasCapelli());
-                    }
-                    break; 
-                case "COLORE CAPELLI":
-                    risultato = dettaglioScelto.equals(personaggio.getColoreCapelli());
-                    break;
-                case "TIPO DI CAPELLI":
-                    risultato = dettaglioScelto.equals(personaggio.getTipologiaCapelli());
-                    break;
-                case "LUNGHEZZA CAPELLI":
-                    risultato = dettaglioScelto.equals(personaggio.getLunghezzaCapelli());
-                    break;
-                case "COLORE OCCHI":
-                    risultato = dettaglioScelto.equals(personaggio.getColoreOcchi());
-                    break;
-                case "HA LA BARBA?":
-                    if ("SI".equals(dettaglioScelto)) {
-                        risultato = personaggio.hasBarba();
-                    } else {
-                        risultato = !(personaggio.hasBarba());
-                    }
-                    break;
-                case "HA I BAFFI?":
-                    if ("SI".equals(dettaglioScelto)) {
-                        risultato = personaggio.hasBaffi();
-                    } else {
-                        risultato = !(personaggio.hasBaffi());
-                    }
-                    break;
-                case "HA ACCESSORI?":
-                    if ("SI".equals(dettaglioScelto)) {
-                        risultato = personaggio.hasAccessori();
-                    } else {
-                        risultato = !(personaggio.hasAccessori());
-                    }
-                    break;
-                case "HA OCCHIALI?":
-                    if ("SI".equals(dettaglioScelto)) {
-                        risultato = personaggio.hasOcchiali();
-                    } else {
-                        risultato = !(personaggio.hasOcchiali());
-                    }
-                    break;
-            }
-        }
-        return risultato;
-    }
-}   
+    

@@ -48,7 +48,7 @@ public final class PersonaggiCreati {
 
         // Creazione dei personaggi
         PERSONAGGI.add(new PersonaggioImpl("Basil", basilIcon, true, "Neri", LISCI, CORTI, MARRONI, false, 
-        false, false, true, true));
+        false, false, true, null));
         PERSONAGGI.add(new PersonaggioImpl("Melvin", melvinIcon, true, CASTANI, LISCI, CORTI, MARRONI, false, 
         true, false, false, true));
         PERSONAGGI.add(new PersonaggioImpl("Hannah", hannahIcon, true, CASTANI, LISCI, LUNGHI, MARRONI, false, 
