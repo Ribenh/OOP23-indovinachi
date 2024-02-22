@@ -5,15 +5,17 @@ import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
- * Interfaccia grafica della schermata di selezione della modalita'.
+ * SchermataInizialeGUI rappresenta la finestra di avvio del gioco "Indovina Chi".
+ * Questa classe gestisce la visualizzazione dell'immagine di benvenuto e la selezione
+ * della modalità di gioco (classica o manuale).
  */
 public class SchermataInizialeGUI extends JFrame {
 
@@ -26,28 +28,29 @@ public class SchermataInizialeGUI extends JFrame {
     private static final int BUTTONHEIGHT = 50;
     private static final int AUTOMATIC_MODE = 1;
     private static final int MANUAL_MODE = 2;
+    private static final String PLAYER_FILENAME = "src/main/java/schermatainiziale/giocatori.ser";
 
-    private int modeSelect = 0;
-    private NomeController nomeController;
+    private int modeSelect;
+
+    // Utilizza la classe di utilità PersistentHashMap per salvare/scaricare lo stato della modalità
+    private final transient PersistentHashMap<String, Integer> giocatori;
 
     /**
      * Costruttore della classe SchermataInizialeGUI.
+     * Inizializza la finestra di avvio del gioco.
      */
     public SchermataInizialeGUI() {
         super("Indovina Chi");
 
-        // Impostazioni della finestra
+        giocatori = new PersistentHashMap<>(PLAYER_FILENAME);
+
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(WIDTH, HEIGHT);
         setLocationRelativeTo(null);
 
-        nomeController = new NomeController(this);
-
-        // Pannello principale
         final JPanel panel = new JPanel();
         panel.setLayout(new BorderLayout());
 
-        // Carica l'immagine e la ridimensiona
         final ImageIcon imageIcon = new ImageIcon("src/main/java/schermatainiziale/IndovinaChi.png");
         final Image image = imageIcon.getImage();
         final Image newImage = image.getScaledInstance(SCALEDWIDTH, SCALEDHEIGHT, Image.SCALE_SMOOTH);
@@ -56,23 +59,39 @@ public class SchermataInizialeGUI extends JFrame {
         imageLabel.setIcon(scaledImageIcon);
         panel.add(imageLabel, BorderLayout.CENTER);
 
-        // Pulsanti per selezionare la modalità di gioco
         final JPanel buttonPanel = new JPanel();
         final JButton classicMode = new JButton("Modalita' classica");
         final JButton manualMode = new JButton("Modalita' manuale");
         buttonPanel.add(classicMode);
         buttonPanel.add(manualMode);
 
-        // Imposta le dimensioni prefissate per i pulsanti
         final Dimension buttonSize = new Dimension(BUTTONWIDTH, BUTTONHEIGHT);
         classicMode.setPreferredSize(buttonSize);
         manualMode.setPreferredSize(buttonSize);
 
-        // Aggiunta ascoltatori di azioni ai pulsanti
         classicMode.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
-                nomeController.aggiungiNome();
+                final String nomeGiocatore = JOptionPane.showInputDialog(null,
+                "Inserisci il tuo nome:",
+                "Inserisci nome",
+                JOptionPane.QUESTION_MESSAGE);
+                if (nomeGiocatore != null && !nomeGiocatore.isEmpty()) {
+                    if (!giocatori.containsKey(nomeGiocatore)) {
+                        giocatori.put(nomeGiocatore, 0);
+                    } else {
+                        final int choice = JOptionPane.showConfirmDialog(null,
+                        "Il giocatore esiste gia'. Vuoi sovrascrivere il punteggio?",
+                        "Sovrascrivi punteggio",
+                        JOptionPane.YES_NO_OPTION);
+                        if (choice == JOptionPane.YES_OPTION) {
+                            giocatori.remove(nomeGiocatore);
+                            giocatori.put(nomeGiocatore, 0);
+                        } else {
+                            new SchermataInizialeGUI();
+                        }
+                    }
+                }
                 modeSelect = AUTOMATIC_MODE;
                 dispose();
                 new SelezioneDifficoltaGUI(modeSelect);
@@ -82,17 +101,33 @@ public class SchermataInizialeGUI extends JFrame {
         manualMode.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
-                nomeController.aggiungiNome();
+                final String nomeGiocatore = JOptionPane.showInputDialog(null,
+                "Inserisci il tuo nome:",
+                "Inserisci nome",
+                JOptionPane.QUESTION_MESSAGE);
+                if (nomeGiocatore != null && !nomeGiocatore.isEmpty()) {
+                    if (!giocatori.containsKey(nomeGiocatore)) {
+                        giocatori.put(nomeGiocatore, 0);
+                    } else {
+                        final int choice = JOptionPane.showConfirmDialog(null,
+                        "Il giocatore esiste gia'. Vuoi sovrascrivere il punteggio?",
+                        "Sovrascrivi punteggio",
+                        JOptionPane.YES_NO_OPTION);
+                        if (choice == JOptionPane.YES_OPTION) {
+                            giocatori.put(nomeGiocatore, 0);
+                        } else {
+                            new SchermataInizialeGUI();
+                        }
+                    }
+                }
                 modeSelect = MANUAL_MODE;
                 dispose();
                 new SelezioneDifficoltaGUI(modeSelect);
             }
         });
 
-        // Aggiunta pannello dei pulsanti in basso
         panel.add(buttonPanel, BorderLayout.SOUTH);
 
-        // Aggiunta pannello alla finestra
         add(panel);
         setVisible(true);
     }

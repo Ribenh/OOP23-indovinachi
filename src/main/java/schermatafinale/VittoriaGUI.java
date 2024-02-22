@@ -14,11 +14,14 @@ import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
-import java.util.Map;
 import java.awt.FlowLayout;
 
+import schermatainiziale.PersistentHashMap;
 import schermatainiziale.SchermataInizialeGUI;
 
+/**
+ * Classe che rappresenta la finestra di vittoria o sconfitta dell'utente.
+ */
 public class VittoriaGUI extends JFrame {
 
     private static final long serialVersionUID = -6218820467019983016L;
@@ -28,10 +31,15 @@ public class VittoriaGUI extends JFrame {
     private static final int FONTSIZE = 24; 
     private static final int VITTORIA = 1;
     private static final int SCONFITTA = 2;
-    
-    List<String> domande = ListaDomande.getDomande();
 
-    public VittoriaGUI(int stato) {
+    private final List<String> domande = ListaDomande.getDomande();
+    private transient PersistentHashMap<String, Integer> giocatori;
+
+    /**
+     * Costruttore per inizializzare la finestra di vittoria o sconfitta.
+     * @param stato Lo stato della partita (1 per vittoria, 2 per sconfitta).
+     */
+    public VittoriaGUI(final int stato) {
 
         setTitle("Schermata Finale");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -45,12 +53,10 @@ public class VittoriaGUI extends JFrame {
             label.setText("Hai Vinto!");
         } else if (stato == SCONFITTA) {
             label.setText("Hai Perso!");
-            // Rimuove l'ultimo nome aggiunto
-            Map<String, Integer> nameScores = NomeScoresUtility.loadNameScores();
-            NomeScoresUtility.removeLastName(nameScores);
-            NomeScoresUtility.saveNameScores(nameScores);
+            giocatori.loadHashMap();
+            giocatori.remove(giocatori.getLastEntry().getKey());
         }
-        
+
         label.setHorizontalAlignment(SwingConstants.CENTER);
         label.setFont(new Font("Arial", Font.BOLD, FONTSIZE));
         panel.add(label, BorderLayout.CENTER);
@@ -85,13 +91,13 @@ public class VittoriaGUI extends JFrame {
         btnEsci.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
-                int choice = JOptionPane.showConfirmDialog(
+                final int choice = JOptionPane.showConfirmDialog(
                     null, "Sei sicuro di voler uscire?",
                     "Conferma",
                     JOptionPane.YES_NO_OPTION);
 
                 if (choice == JOptionPane.YES_OPTION) {
-                    System.exit(0);
+                    dispose();
                 }
             }
         });
