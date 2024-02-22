@@ -95,7 +95,7 @@ public interface Personaggio {
      * Verifica se il personaggio ha la barba.
      * @return True se il personaggio ha la barba, altrimenti False.
      */
-    Boolean hasBarba();
+    Boolean getBarba();
 
     /**
      * Imposta la presenza o l'assenza della barba per il personaggio.
@@ -150,6 +150,4 @@ public interface Personaggio {
      * @param uomo True se il personaggio è di sesso maschile, altrimenti False.
      */
     void setUomo(Boolean uomo);
-
-    Boolean hasCaratteristica(Personaggio personaggio, String caratteristicaScelta, String dettaglioScelto);
 }
