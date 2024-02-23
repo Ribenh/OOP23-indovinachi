@@ -34,10 +34,5 @@ public interface Tabellone {
      */
     Personaggio getPersonaggioDaIndovinare();
 
-    /**
-     * Restituisce il personaggio nella posizione specificata.
-     * @param position La posizione del personaggio.
-     * @return Il personaggio nella posizione specificata.
-     */
-    Personaggio getPersonaggioAtPosition(Position position);
+    Personaggio get(Position pos);
 }

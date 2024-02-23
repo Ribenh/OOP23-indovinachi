@@ -16,7 +16,7 @@ import personaggi.Personaggio;
  */
 public class TabelloneImpl implements Tabellone {
     // Mappa che associa ogni posizione nel tabellone al personaggio corrispondente
-    private transient Map<Position, Personaggio> tabellone; 
+    private transient final Map<Position, Personaggio> tabellone; 
     private Personaggio personaggioDaIndovinare; 
 
     /**
@@ -35,7 +35,7 @@ public class TabelloneImpl implements Tabellone {
      * @param sizeY La dimensione Y del tabellone.
      */
     @Override
-    public void inizializzaTabellone(final int sizeX, final int sizeY) {
+    public final void inizializzaTabellone(final int sizeX, final int sizeY) {
         final List<Personaggio> personaggi = PersonaggiCreati.creaPersonaggi();
         int index = 0;
         final Random random = new Random();
@@ -89,13 +89,8 @@ public class TabelloneImpl implements Tabellone {
         return personaggioDaIndovinare.creaCopia();
     }
 
-    /**
-     * Restituisce il personaggio nella posizione specificata.
-     * @param position La posizione del personaggio.
-     * @return Il personaggio nella posizione specificata.
-     */
     @Override
-    public Personaggio getPersonaggioAtPosition(final Position position) {
+    public Personaggio get(final Position position) {
         return tabellone.get(position);
     }
 }
