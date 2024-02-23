@@ -159,4 +159,10 @@ public interface Personaggio {
      * @return True se il personaggio presenta il dettaglio, altrimenti False.
      */
     Boolean hasCaratteristica(Personaggio personaggio, String caratteristicaScelta, String dettaglioScelto);
+
+     /**
+     * Crea una copia dell'oggetto Personaggio corrente.
+     * @return Una nuova istanza di Personaggio.
+     */
+    Personaggio creaCopia();
 }
