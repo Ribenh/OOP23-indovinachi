@@ -64,7 +64,7 @@ public class TabelloneAutomaticoGUI extends TabelloneGUI {
         buttonPanel.add(askQuestionButton); // Aggiungi il pulsante "Fai una domanda"
         buttonPanel.add(rotateCharactersButton); // Aggiungi il pulsante "Gira personaggi"
 
-        getContentPane().add(buttonPanel, BorderLayout.SOUTH); // Aggiungi il pannello contenitore al content pane della finestra
+        add(buttonPanel, BorderLayout.SOUTH); // Aggiungi il pannello contenitore al content pane della finestra
 
         setVisible(true); // Rendi la finestra visibile dopo averla completamente inizializzata
     }
