@@ -1,4 +1,5 @@
 package schermatainiziale;
+
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Image;
@@ -32,11 +33,12 @@ public class SchermataInizialeGUI extends JFrame {
      // Utilizza la classe di utilità PersistentHashMap per salvare/scaricare lo stato della modalità
      private final transient PersistentHashMap<String, Integer> giocatori;
 
-     /**
-      * Costruttore della classe SchermataInizialeGUI.
+    /**
+     * Costruttore della classe SchermataInizialeGUI.
      * Inizializza la finestra di avvio del gioco.
      */
     public SchermataInizialeGUI() {
+
         // CPD-OFF
         super("Indovina Chi");
 
