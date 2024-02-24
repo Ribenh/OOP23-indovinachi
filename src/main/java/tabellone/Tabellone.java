@@ -34,5 +34,10 @@ public interface Tabellone {
      */
     Personaggio getPersonaggioDaIndovinare();
 
+    /**
+     * Restituiace il personaggio in una determinata posizione.
+     * @param pos La posizione del tabellone di cui ritornare il personagio.
+     * @return Il personaggio associato a una determinata posizione del tabellone.
+     */
     Personaggio get(Position pos);
 }

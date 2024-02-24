@@ -10,7 +10,7 @@ public final class TabelloneAutomaticoTest {
      */
     public static void main(final String[] args) {
         // Crea un'istanza di TabelloneGUI con un tabellone di dimensione passata
-        new TabelloneAutomaticoGUI(2); 
+        new TabelloneAutomaticoGUI(3); 
     }
 
     /**

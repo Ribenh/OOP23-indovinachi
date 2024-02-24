@@ -16,7 +16,7 @@ import personaggi.Personaggio;
  */
 public class TabelloneImpl implements Tabellone {
     // Mappa che associa ogni posizione nel tabellone al personaggio corrispondente
-    private transient final Map<Position, Personaggio> tabellone; 
+    private final transient Map<Position, Personaggio> tabellone; 
     private Personaggio personaggioDaIndovinare; 
 
     /**
@@ -89,6 +89,11 @@ public class TabelloneImpl implements Tabellone {
         return personaggioDaIndovinare.creaCopia();
     }
 
+    /**
+     * Restituiace il personaggio in una determinata posizione.
+     * @param position La posizione del tabellone di cui ritornare il personagio.
+     * @return Il personaggio associato a una determinata posizione del tabellone.
+     */
     @Override
     public Personaggio get(final Position position) {
         return tabellone.get(position);

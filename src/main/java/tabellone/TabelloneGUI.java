@@ -17,31 +17,113 @@ import java.util.Map;
 import personaggi.Personaggio;
 import schermatafinale.VittoriaGUI;
 
+/**
+ * Classe astratta che rappresenta l'interfaccia grafica di un tabellone di gioco.
+ * Estende la classe JFrame e fornisce funzionalità di base per la gestione del tabellone di gioco.
+ */
 public abstract class TabelloneGUI extends JFrame {
 
+    /** serialVersionUID per la serializzazione. */
     protected static final long serialVersionUID = -6218820467019983016L;
 
-    protected transient Map<Position, JButton> cells = new HashMap<>();
-    protected transient Tabellone tabellone;
-    protected transient Personaggio personaggioDaIndovinare;
-    protected int tentativi; // Contatore dei tentativi
+    /** Mappa delle celle del tabellone. */
+    private Map<Position, JButton> cells = new HashMap<>();
 
-    protected static final int BUTTON_WIDTH = 160; // Larghezza del pulsante
-    protected static final int BUTTON_HEIGHT = 130; // Altezza del pulsante
-    protected static final int BUTTON_SIZE = 100; // Dimensione del pulsante
+    /** Oggetto tabellone. */
+    private Tabellone tabellone;
 
-    // Definizione delle costanti per le dimensioni del tabellone
+    /** Personaggio da indovinare. */
+    private transient Personaggio personaggioDaIndovinare;
+
+    /** Contatore dei tentativi. */
+    private int tentativi; // Contatore dei tentativi
+
+    /** Larghezza del pulsante. */ 
+    protected static final int BUTTON_WIDTH = 160;
+    /** Altezza del pulsante. */
+    protected static final int BUTTON_HEIGHT = 130; 
+    /** Dimensione del pulsante. */
+    protected static final int BUTTON_SIZE = 100;
+
+    /** Definizione della costante per le dimensioni del tabellone: livello facile. */
     protected static final int DIMENSIONE_FACILE = 3;
+    /** Definizione della costante per le dimensioni del tabellone: livello intermedio. */
     protected static final int DIMENSIONE_INTERMEDIO = 4;
-    protected static final int DIMENSIONE_DIFFICILE_X = 4;
-    protected static final int DIMENSIONE_DIFFICILE_Y = 6;
+    /** Definizione della costante X per le dimensioni del tabellone: livello difficile. */
+    protected static final int DIMENSIONE_DIFFICILE_X = 6;
+    /** Definizione della costante Y per le dimensioni del tabellone: livello difficile. */
+    protected static final int DIMENSIONE_DIFFICILE_Y = 4;
 
-    // Definizione delle costanti per il numero dei tentativi concessi
+    /** Definizione delle costanti per il numero dei tentativi concessi. */
     private static final int MAX_TENTATIVI_FACILE = 8;
     private static final int MAX_TENTATIVI_INTERMEDIO = 10;
     private static final int MAX_TENTATIVI_DIFFICILE = 12;
 
+    /**
+     * Costruttore della classe TabelloneGUI.
+     * @param sizeX Dimensione X del tabellone.
+     * @param sizeY Dimensione Y del tabellone.
+     */
+    public TabelloneGUI(final int sizeX, final int sizeY) {
+        // Inizializza l'attributo tabellone
+        this.tabellone = new TabelloneImpl(sizeX, sizeY);
+        // Inizializza personaggioDaIndovinare al momento della creazione dell'istanza della classe
+        this.personaggioDaIndovinare = tabellone.getPersonaggioDaIndovinare();
+    }
 
+    /**
+     * Restituisce il numero di tentativi.
+     * @return Il numero di tentativi.
+     */
+    protected int getTentativi() {
+        return tentativi;
+    }
+
+    /**
+     * Imposta il numero di tentativi.
+     * @param tentativi Il numero di tentativi da impostare.
+     */
+    protected void setTentativi(final int tentativi) {
+        this.tentativi = tentativi;
+    }
+
+    /**
+     * Restituisce il personaggio da indovinare.
+     * @return Il personaggio da indovinare.
+     */
+    protected Personaggio getPersonaggioDaIndovinare() {
+        return personaggioDaIndovinare;
+    }
+
+    /**
+     * Imposta il personaggio da indovinare.
+     * @param personaggioDaIndovinare Il personaggio da indovinare da impostare.
+     */
+    protected void setPersonaggioDaIndovinare(final Personaggio personaggioDaIndovinare) {
+        this.personaggioDaIndovinare = personaggioDaIndovinare;
+    }
+
+    /**
+     * Restituisce la mappa delle celle del tabellone.
+     * @return La mappa delle celle del tabellone.
+     */
+    protected Map<Position, JButton> getCells() {
+        return cells;
+    }
+
+    /**
+     * Imposta la mappa delle celle del tabellone.
+     * @param cells La mappa delle celle del tabellone da impostare.
+     */
+    protected void setCells(final Map<Position, JButton> cells) {
+        this.cells = cells;
+    }
+
+    /**
+     * Calcola il numero massimo di tentativi consentiti in base al livello di difficoltà.
+     * @param difficolta Il livello di difficoltà del gioco.
+     * @return Il numero massimo di tentativi consentiti.
+     */
     protected static int calcolaMaxTentativi(final int difficolta) {
         switch (difficolta) {
             case 1:
@@ -55,6 +137,10 @@ public abstract class TabelloneGUI extends JFrame {
         }
     }
 
+    /**
+     * Inizializza l'interfaccia grafica del tabellone di gioco in base alla difficoltà specificata.
+     * @param difficolta Il livello di difficoltà del gioco.
+     */
     protected void inizializzaTabelloneGUI(final int difficolta) {
         int sizeX = 0;
         int sizeY = 0;
@@ -125,8 +211,9 @@ public abstract class TabelloneGUI extends JFrame {
         // Inizializzazione dei pulsanti e associazione dell'ActionListener
         for (int i = 0; i < sizeX; i++) {
             for (int j = 0; j < sizeY; j++) {
-                final Position pos = new Position(j, i);
+                final Position pos = new Position(i, j);
                 final Personaggio personaggio = getPersonaggioAtPosition(pos);
+                if (personaggio != null) {
                 final JButton jb = new JButton();
                 // Ottieni l'immagine del personaggio
                 final ImageIcon icon = personaggio.getImmagine();
@@ -138,6 +225,7 @@ public abstract class TabelloneGUI extends JFrame {
                 cells.put(pos, jb);
                 jb.addActionListener(al);
                 imagePanel.add(jb);
+                }
             }
         }
     }
@@ -154,5 +242,41 @@ public abstract class TabelloneGUI extends JFrame {
      */
     public Personaggio getPersonaggioAtPosition(final Position position) {
         return tabellone.get(position);
+    }
+
+    /**
+     * Restituisce la dimensione X del tabellone in base al livello di difficoltà.
+     * @param difficolta Il livello di difficoltà del gioco.
+     * @return La dimensione X del tabellone.
+     */
+    protected static int getDimensioneX(final int difficolta) {
+        switch (difficolta) {
+            case 1:
+                return DIMENSIONE_FACILE;
+            case 2:
+                return DIMENSIONE_INTERMEDIO;
+            case 3:
+                return DIMENSIONE_DIFFICILE_X;
+            default:
+                return -1; // Valore di default in caso di difficoltà non valida
+        }
+    }
+
+    /**
+     * Restituisce la dimensione Y del tabellone in base al livello di difficoltà.
+     * @param difficolta Il livello di difficoltà del gioco.
+     * @return La dimensione Y del tabellone.
+     */
+    protected static int getDimensioneY(final int difficolta) {
+        switch (difficolta) {
+            case 1:
+                return DIMENSIONE_FACILE;
+            case 2:
+                return DIMENSIONE_INTERMEDIO;
+            case 3:
+                return DIMENSIONE_DIFFICILE_Y;
+            default:
+                return -1; // Valore di default in caso di difficoltà non valida
+        }
     }
 }
