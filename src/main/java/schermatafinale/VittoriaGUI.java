@@ -35,8 +35,8 @@ public class VittoriaGUI extends JFrame {
     private final List<String> domande = ListaDomande.getDomande();
     private final transient PersistentHashMap<String, Integer> giocatori = new PersistentHashMap<>(FILENAME);
 
-     /**
-      * Costruttore per inizializzare la finestra di vittoria o sconfitta.
+    /**
+     * Costruttore per inizializzare la finestra di vittoria o sconfitta.
      * @param stato Lo stato della partita (1 per vittoria, 2 per sconfitta).
      */
     public VittoriaGUI(final int stato) {
@@ -53,6 +53,7 @@ public class VittoriaGUI extends JFrame {
         panel.setLayout(new BorderLayout());
         final JLabel label = new JLabel();
 
+        // Impostazione del testo della label in base allo stato della partita
         if (stato == VITTORIA) {
             label.setText("Hai Vinto!");
         } else if (stato == SCONFITTA) {
@@ -67,44 +68,50 @@ public class VittoriaGUI extends JFrame {
         final JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new FlowLayout());
 
+        // Gestione dell'azione associata al pulsante "Gioca ancora"
         final JButton btnGiocaAncora = new JButton("Gioca ancora");
         btnGiocaAncora.setBorder(new EmptyBorder(BORDER, BORDER, BORDER, BORDER));
         btnGiocaAncora.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
-                dispose();
-                new SchermataInizialeGUI();
+                dispose(); // Chiude la finestra corrente
+                new SchermataInizialeGUI(); // Apre una nuova schermata iniziale
             }
         });
-
         buttonPanel.add(btnGiocaAncora);
+
+        // Gestione dell'azione associata al pulsante "Dettagli"
         final JButton btnDettagli = new JButton("Dettagli");
         btnDettagli.setBorder(new EmptyBorder(BORDER, BORDER, BORDER, BORDER));
         btnDettagli.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
-                dispose();
-                new SchermataFinaleGUI(domande);
+                dispose(); // Chiude la finestra corrente
+                new SchermataFinaleGUI(domande); // Apre una nuova schermata finale con le domande
             }
         });
         buttonPanel.add(btnDettagli);
+
+        // Gestione dell'azione associata al pulsante "Esci"
         final JButton btnEsci = new JButton("Esci");
         btnEsci.setBorder(new EmptyBorder(BORDER, BORDER, BORDER, BORDER));
         btnEsci.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
+                // Mostra una finestra di dialogo di conferma
                 final int choice = JOptionPane.showConfirmDialog(
                     null, "Sei sicuro di voler uscire?",
                     "Conferma",
                      JOptionPane.YES_NO_OPTION);
 
+                 // Se l'utente conferma di voler uscire, chiude la finestra corrente
                  if (choice == JOptionPane.YES_OPTION) {
                      dispose();
                 }
             }
         });
-
         buttonPanel.add(btnEsci);
+
         panel.add(buttonPanel, BorderLayout.SOUTH);
         add(panel);
         setVisible(true);
