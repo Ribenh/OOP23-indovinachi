@@ -1,4 +1,4 @@
-package tabellone;
+import tabellone.TabelloneManualeGUI;
 
 /**
  * Classe di test per l'interfaccia grafica del tabellone di gioco.

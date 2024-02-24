@@ -1,17 +1,19 @@
-package menu;
+import serchbar.BarraRicercaGUI;
+
 /**
- * Classe test per MunuPopup.
+ * Classe test per BarraRicercaGUI.
  */
-public final class TestMenuPopUp {
+public final class TestBarraRicercaGUI {
     /**
      * Main del test.
      * @param args argomento
      * @throws IOException ignora errore I/O
      */
     public static void main(final String[] args) throws java.io.IOException {
-        new MenuPopup(0);
+        new BarraRicercaGUI("Natalie");
     }
-    private TestMenuPopUp() { 
+
+    private TestBarraRicercaGUI() { 
         throw new UnsupportedOperationException("This is a test class and cannot be instantiated"); 
     }
 }
