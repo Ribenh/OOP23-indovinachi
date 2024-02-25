@@ -56,3 +56,9 @@ tasks.test {
         showStandardStreams = true
     }
 }
+
+tasks.shadowJar {
+    from("src/main/resources/images") {
+        into("images")
+    }
+}
