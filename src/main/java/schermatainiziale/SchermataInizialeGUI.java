@@ -52,7 +52,7 @@ public class SchermataInizialeGUI extends JFrame {
         final JPanel panel = new JPanel();
         panel.setLayout(new BorderLayout());
 
-        final ImageIcon imageIcon = new ImageIcon("src/main/resources/images/IndovinaChi.png");
+        final ImageIcon imageIcon = new ImageIcon("src/main/resources/immagini/IndovinaChi.png");
         final Image image = imageIcon.getImage();
         final Image newImage = image.getScaledInstance(SCALEDWIDTH, SCALEDHEIGHT, Image.SCALE_SMOOTH);
         final ImageIcon scaledImageIcon = new ImageIcon(newImage);
