@@ -28,7 +28,7 @@ public class SchermataInizialeGUI extends JFrame {
     private static final int AUTOMATIC_MODE = 1;
     private static final int MANUAL_MODE = 2;
     private static final String PLAYER_FILENAME = "src/main/java/schermatainiziale/giocatori.ser";
-     
+
     private int modeSelect;
 
      // Utilizza la classe di utilità PersistentHashMap per salvare/scaricare lo stato della modalità
@@ -132,7 +132,12 @@ public class SchermataInizialeGUI extends JFrame {
         setVisible(true);
     }
 
-    public static void main(String[] args) {
+    /**
+     * Metodo principale per avviare il gioco.
+     * 
+     * @param args
+     */
+    public static void main(final String[] args) {
         new SchermataInizialeGUI();
     }
 }
