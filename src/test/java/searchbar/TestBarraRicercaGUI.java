@@ -1,4 +1,4 @@
-import serchbar.BarraRicercaGUI;
+package searchbar;
 
 /**
  * Classe test per BarraRicercaGUI.

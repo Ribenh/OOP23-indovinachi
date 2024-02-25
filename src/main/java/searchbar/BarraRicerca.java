@@ -1,4 +1,4 @@
-package serchbar;
+package searchbar;
 
 import personaggi.PersonaggiCreati;
 import personaggi.Personaggio;

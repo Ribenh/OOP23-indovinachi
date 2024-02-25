@@ -1,4 +1,4 @@
-package serchbar;
+package searchbar;
 import personaggi.Personaggio;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import javax.swing.JFrame;

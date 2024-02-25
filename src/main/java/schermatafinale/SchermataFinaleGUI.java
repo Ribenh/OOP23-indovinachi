@@ -14,7 +14,8 @@ import javax.swing.BoxLayout;
 import javax.swing.Box;
 import schermatainiziale.PersistentHashMap;
 import schermatainiziale.SchermataInizialeGUI;
-import serchbar.ListaDomande;
+import searchbar.ListaDomande;
+
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;

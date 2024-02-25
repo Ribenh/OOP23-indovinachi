@@ -1,22 +1,21 @@
-
+package schermatafinale;
 
 /**
- * Classe di test per l'interfaccia grafica della schermata iniziale.
+ * Classe per l'interfaccia grafica della schermata finale.
  */
-public final class SchermataInizialeTest {
-
+public final class VittoriaTest {
     /**
-     * Metodo principale per avviare l'interfaccia della schermata iniziale.
+     * Metodo per avviare la classe VittoriaGUI.
      * @param args
      */
     public static void main(final String[] args) {
-        new SchermataInizialeGUI();
+        new VittoriaGUI(1);
     }
 
     /**
      * Costruttore privato per prevenire l'istanziazione esterna.
      */
-    private SchermataInizialeTest() {
+    private VittoriaTest() {
         throw new AssertionError("Classe di utilità non deve essere istanziata");
     }
 }

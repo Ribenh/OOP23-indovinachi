@@ -6,7 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import schermatafinale.VittoriaGUI;
-import serchbar.BarraRicercaGUI;
+import searchbar.BarraRicercaGUI;
 
 /**
  * Classe che rappresenta l'interfaccia grafica del tabellone di gioco.

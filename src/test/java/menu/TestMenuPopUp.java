@@ -1,4 +1,4 @@
-import menu.MenuPopup;
+package menu;
 
 /**
  * Classe test per MunuPopup.

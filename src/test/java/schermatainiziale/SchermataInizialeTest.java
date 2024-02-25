@@ -1,4 +1,5 @@
-import schermatainiziale.SchermataInizialeGUI;
+package schermatainiziale;
+
 
 /**
  * Classe di test per l'interfaccia grafica della schermata iniziale.

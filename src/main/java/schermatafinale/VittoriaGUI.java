@@ -17,7 +17,7 @@ import javax.swing.border.EmptyBorder;
 
 import schermatainiziale.PersistentHashMap;
 import schermatainiziale.SchermataInizialeGUI;
-import serchbar.ListaDomande;
+import searchbar.ListaDomande;
 
 /**
  * Classe che rappresenta la finestra di vittoria o sconfitta dell'utente.

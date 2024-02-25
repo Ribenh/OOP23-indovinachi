@@ -1,4 +1,4 @@
-package serchbar;
+package searchbar;
 import java.util.ArrayList;
 import java.util.List;
 /**

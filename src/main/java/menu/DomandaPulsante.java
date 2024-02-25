@@ -1,6 +1,6 @@
 package menu;
 
-import serchbar.ListaDomande;
+import searchbar.ListaDomande;
 
 /**
  * Classe statica Domanda Pulsante.
