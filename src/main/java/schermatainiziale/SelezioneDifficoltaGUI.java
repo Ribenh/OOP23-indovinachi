@@ -57,7 +57,7 @@ public class SelezioneDifficoltaGUI extends JFrame {
         panel.setLayout(new BorderLayout());
 
          // Carica l'immagine e la ridimensiona
-        final ImageIcon imageIcon = new ImageIcon("src/main/java/schermatainiziale/IndovinaChi.png");
+        final ImageIcon imageIcon = new ImageIcon("src/main/resources/immagini/IndovinaChi.png");
         final Image image = imageIcon.getImage();
         final Image newImage = image.getScaledInstance(SCALEDWIDTH, SCALEDHEIGHT, Image.SCALE_SMOOTH);
         final ImageIcon scaledImageIcon = new ImageIcon(newImage);
