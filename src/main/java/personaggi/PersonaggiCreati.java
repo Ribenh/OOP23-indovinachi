@@ -21,30 +21,30 @@ public final class PersonaggiCreati {
     private static final String VERDI = "Verdi";
     static {
         // Salvataggio immagini
-        final ImageIcon basilIcon = new ImageIcon("immagini/basil.jpg");
-        final ImageIcon melvinIcon = new ImageIcon("immagini/melvin.jpg");
-        final ImageIcon hannahIcon = new ImageIcon("immagini/hannah.jpg");
-        final ImageIcon simoneIcon = new ImageIcon("immagini/simone.jpg");
-        final ImageIcon ianIcon = new ImageIcon("immagini/ian.jpg");
-        final ImageIcon islaIcon = new ImageIcon("immagini/isla.jpg");
-        final ImageIcon rupertIcon = new ImageIcon("immagini/rupert.jpg");
-        final ImageIcon maggieIcon = new ImageIcon("immagini/maggie.jpg");
-        final ImageIcon susanIcon = new ImageIcon("immagini/susan.jpg");
-        final ImageIcon natalieIcon = new ImageIcon("immagini/natalie.jpg");
-        final ImageIcon kimIcon = new ImageIcon("immagini/kim.jpg");
-        final ImageIcon stephenIcon = new ImageIcon("immagini/stephen.jpg");
-        final ImageIcon joshuaIcon = new ImageIcon("immagini/joshua.jpg");
-        final ImageIcon xiaoMeiIcon = new ImageIcon("immagini/xiao mei.jpg");
-        final ImageIcon jenniferIcon = new ImageIcon("immagini/jennifer.jpg");
-        final ImageIcon brianIcon = new ImageIcon("immagini/brian.jpg");
-        final ImageIcon garyIcon = new ImageIcon("immagini/gary.jpg");
-        final ImageIcon martineIcon = new ImageIcon("immagini/martine.jpg");
-        final ImageIcon billIcon = new ImageIcon("immagini/bill.jpg");
-        final ImageIcon royIcon = new ImageIcon("immagini/roy.jpg");
-        final ImageIcon ednaIcon = new ImageIcon("immagini/edna.jpg");
-        final ImageIcon moIcon = new ImageIcon("immagini/mo.jpg");
-        final ImageIcon kellyIcon = new ImageIcon("immagini/kelly.jpg");
-        final ImageIcon peteIcon = new ImageIcon("immagini/pete.jpg");
+        final ImageIcon basilIcon = new ImageIcon("src/main/resources/immagini/basil.jpg");
+        final ImageIcon melvinIcon = new ImageIcon("src/main/resources/immagini/melvin.jpg");
+        final ImageIcon hannahIcon = new ImageIcon("src/main/resources/immagini/hannah.jpg");
+        final ImageIcon simoneIcon = new ImageIcon("src/main/resources/immagini/simone.jpg");
+        final ImageIcon ianIcon = new ImageIcon("src/main/resources/immagini/ian.jpg");
+        final ImageIcon islaIcon = new ImageIcon("src/main/resources/immagini/isla.jpg");
+        final ImageIcon rupertIcon = new ImageIcon("src/main/resources/immagini/rupert.jpg");
+        final ImageIcon maggieIcon = new ImageIcon("src/main/resources/immagini/maggie.jpg");
+        final ImageIcon susanIcon = new ImageIcon("src/main/resources/immagini/susan.jpg");
+        final ImageIcon natalieIcon = new ImageIcon("src/main/resources/immagini/natalie.jpg");
+        final ImageIcon kimIcon = new ImageIcon("src/main/resources/immagini/kim.jpg");
+        final ImageIcon stephenIcon = new ImageIcon("src/main/resources/immagini/stephen.jpg");
+        final ImageIcon joshuaIcon = new ImageIcon("src/main/resources/immagini/joshua.jpg");
+        final ImageIcon xiaoMeiIcon = new ImageIcon("src/main/resources/immagini/xiao mei.jpg");
+        final ImageIcon jenniferIcon = new ImageIcon("src/main/resources/immagini/jennifer.jpg");
+        final ImageIcon brianIcon = new ImageIcon("src/main/resources/immagini/brian.jpg");
+        final ImageIcon garyIcon = new ImageIcon("src/main/resources/immagini/gary.jpg");
+        final ImageIcon martineIcon = new ImageIcon("src/main/resources/immagini/martine.jpg");
+        final ImageIcon billIcon = new ImageIcon("src/main/resources/immagini/bill.jpg");
+        final ImageIcon royIcon = new ImageIcon("src/main/resources/immagini/roy.jpg");
+        final ImageIcon ednaIcon = new ImageIcon("src/main/resources/immagini/edna.jpg");
+        final ImageIcon moIcon = new ImageIcon("src/main/resources/immagini/mo.jpg");
+        final ImageIcon kellyIcon = new ImageIcon("src/main/resources/immagini/kelly.jpg");
+        final ImageIcon peteIcon = new ImageIcon("src/main/resources/immagini/pete.jpg");
 
         // Creazione dei personaggi
         PERSONAGGI.add(new PersonaggioImpl("Basil", basilIcon, true, "Neri", LISCI, CORTI, MARRONI, false, 

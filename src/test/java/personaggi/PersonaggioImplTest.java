@@ -19,7 +19,7 @@ class PersonaggioImplTest {
 
     private Personaggio personaggio;
 
-    private final ImageIcon basilIcon = new ImageIcon("immagini/basil.jpg");
+    private final ImageIcon basilIcon = new ImageIcon("src/main/resources/immagini/basil.jpg");
 
     /**
      * Crea un nuovo personaggio di esempio per ogni test.
