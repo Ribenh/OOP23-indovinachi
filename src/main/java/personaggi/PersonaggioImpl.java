@@ -3,7 +3,8 @@ package personaggi;
 import javax.swing.ImageIcon;
 
 /**
- * Implementazione dell'interfaccia {@link Personaggio} che definisce le caratteristiche di un personaggio del gioco.
+ * Implementazione dell'interfaccia {@link Personaggio} che definisce le
+ * caratteristiche di un personaggio del gioco.
  */
 public class PersonaggioImpl implements Personaggio {
     private String nome;
@@ -21,23 +22,29 @@ public class PersonaggioImpl implements Personaggio {
     private static final String NOT = "not";
 
     /**
-    * Costruttore per creare un personaggio con tutte le caratteristiche definite.
-    * @param nome Il nome del personaggio.
-    * @param immagine L'immagine del personaggio.
-    * @param hasCapelli True se il personaggio ha i capelli, altrimenti False.
-    * @param coloreCapelli Il colore dei capelli del personaggio.
-    * @param tipologiaCapelli La tipologia dei capelli del personaggio.
-    * @param lunghezzaCapelli La lunghezza dei capelli del personaggio.
-    * @param coloreOcchi Il colore degli occhi del personaggio.
-    * @param barba True se il personaggio ha la barba, altrimenti False.
-    * @param occhiali True se il personaggio indossa gli occhiali, altrimenti False.
-    * @param accessorio True se il personaggio ha accessori, altrimenti False.
-    * @param baffi True se il personaggio ha i baffi, altrimenti False.
-    * @param uomo True se il personaggio è di sesso maschile, altrimenti False.
-    */
-    public PersonaggioImpl(final String nome, final ImageIcon immagine, final Boolean hasCapelli, final String coloreCapelli, 
-    final String tipologiaCapelli, final String lunghezzaCapelli, final String coloreOcchi, final Boolean barba, 
-    final Boolean occhiali, final Boolean accessorio, final Boolean baffi, final Boolean uomo) {
+     * Costruttore per creare un personaggio con tutte le caratteristiche definite.
+     * 
+     * @param nome             Il nome del personaggio.
+     * @param immagine         L'immagine del personaggio.
+     * @param hasCapelli       True se il personaggio ha i capelli, altrimenti
+     *                         False.
+     * @param coloreCapelli    Il colore dei capelli del personaggio.
+     * @param tipologiaCapelli La tipologia dei capelli del personaggio.
+     * @param lunghezzaCapelli La lunghezza dei capelli del personaggio.
+     * @param coloreOcchi      Il colore degli occhi del personaggio.
+     * @param barba            True se il personaggio ha la barba, altrimenti False.
+     * @param occhiali         True se il personaggio indossa gli occhiali,
+     *                         altrimenti False.
+     * @param accessorio       True se il personaggio ha accessori, altrimenti
+     *                         False.
+     * @param baffi            True se il personaggio ha i baffi, altrimenti False.
+     * @param uomo             True se il personaggio è di sesso maschile,
+     *                         altrimenti False.
+     */
+    public PersonaggioImpl(final String nome, final ImageIcon immagine, final Boolean hasCapelli,
+            final String coloreCapelli,
+            final String tipologiaCapelli, final String lunghezzaCapelli, final String coloreOcchi, final Boolean barba,
+            final Boolean occhiali, final Boolean accessorio, final Boolean baffi, final Boolean uomo) {
         this.nome = nome;
         this.immagine = new ImageIcon(immagine.getImage());
         this.hasCapelli = hasCapelli;
@@ -54,18 +61,23 @@ public class PersonaggioImpl implements Personaggio {
 
     /**
      * Costruttore per creare un personaggio con caratteristiche parziali.
-     * @param nome Il nome del personaggio.
-     * @param immagine L'immagine del personaggio.
-     * @param hasCapelli True se il personaggio ha i capelli, altrimenti False.
+     * 
+     * @param nome        Il nome del personaggio.
+     * @param immagine    L'immagine del personaggio.
+     * @param hasCapelli  True se il personaggio ha i capelli, altrimenti False.
      * @param coloreOcchi Il colore degli occhi del personaggio.
-     * @param barba True se il personaggio ha la barba, altrimenti False.
-     * @param occhiali True se il personaggio indossa gli occhiali, altrimenti False.
-     * @param accessorio True se il personaggio ha accessori, altrimenti False.
-     * @param baffi True se il personaggio ha i baffi, altrimenti False.
-     * @param uomo True se il personaggio è di sesso maschile, altrimenti False.
+     * @param barba       True se il personaggio ha la barba, altrimenti False.
+     * @param occhiali    True se il personaggio indossa gli occhiali, altrimenti
+     *                    False.
+     * @param accessorio  True se il personaggio ha accessori, altrimenti False.
+     * @param baffi       True se il personaggio ha i baffi, altrimenti False.
+     * @param uomo        True se il personaggio è di sesso maschile, altrimenti
+     *                    False.
      */
-    public PersonaggioImpl(final String nome, final ImageIcon immagine, final Boolean hasCapelli, final String coloreOcchi, 
-    final Boolean barba, final Boolean occhiali, final Boolean accessorio, final Boolean baffi, final Boolean uomo) {
+    public PersonaggioImpl(final String nome, final ImageIcon immagine, final Boolean hasCapelli,
+            final String coloreOcchi,
+            final Boolean barba, final Boolean occhiali, final Boolean accessorio, final Boolean baffi,
+            final Boolean uomo) {
         this.nome = nome;
         this.immagine = new ImageIcon(immagine.getImage());
         this.hasCapelli = hasCapelli;
@@ -83,6 +95,7 @@ public class PersonaggioImpl implements Personaggio {
     // Implementazione dei metodi dell'interfaccia Personaggio
     /**
      * Restituisce il nome del personaggio.
+     * 
      * @return Il nome del personaggio.
      */
     @Override
@@ -92,6 +105,7 @@ public class PersonaggioImpl implements Personaggio {
 
     /**
      * Imposta il nome del personaggio.
+     * 
      * @param nome Il nuovo nome del personaggio.
      */
     @Override
@@ -100,12 +114,16 @@ public class PersonaggioImpl implements Personaggio {
     }
 
     /**
-    * Restituisce un'istanza di ImageIcon che rappresenta l'immagine del personaggio.
-    * Nota: Questo metodo restituisce una copia dell'immagine anziché l'oggetto originale
-    * per proteggere la rappresentazione interna della classe da modifiche esterne.
-    * Modifiche all'immagine restituita non influenzeranno l'immagine interna della classe.
-    * @return Una copia dell'immagine del personaggio.
-    */
+     * Restituisce un'istanza di ImageIcon che rappresenta l'immagine del
+     * personaggio.
+     * Nota: Questo metodo restituisce una copia dell'immagine anziché l'oggetto
+     * originale
+     * per proteggere la rappresentazione interna della classe da modifiche esterne.
+     * Modifiche all'immagine restituita non influenzeranno l'immagine interna della
+     * classe.
+     * 
+     * @return Una copia dell'immagine del personaggio.
+     */
     @Override
     public ImageIcon getImmagine() {
         // Restituisce una copia dell'immagine
@@ -113,12 +131,15 @@ public class PersonaggioImpl implements Personaggio {
     }
 
     /**
-    * Imposta l'immagine del personaggio.
-    * Nota: Questo metodo accetta una copia dell'immagine anziché l'oggetto originale
-    * per proteggere la rappresentazione interna della classe da modifiche esterne.
-    * Modifiche all'immagine fornita non influenzeranno l'immagine interna della classe.
-    * @param immagine Una copia dell'immagine da impostare per il personaggio.
-    */
+     * Imposta l'immagine del personaggio.
+     * Nota: Questo metodo accetta una copia dell'immagine anziché l'oggetto
+     * originale
+     * per proteggere la rappresentazione interna della classe da modifiche esterne.
+     * Modifiche all'immagine fornita non influenzeranno l'immagine interna della
+     * classe.
+     * 
+     * @param immagine Una copia dell'immagine da impostare per il personaggio.
+     */
     @Override
     public void setImmagine(final ImageIcon immagine) {
         // Imposta una copia dell'immagine anziché l'oggetto originale
@@ -127,6 +148,7 @@ public class PersonaggioImpl implements Personaggio {
 
     /**
      * Verifica se il personaggio ha i capelli.
+     * 
      * @return True se il personaggio ha i capelli, altrimenti False.
      */
     @Override
@@ -136,6 +158,7 @@ public class PersonaggioImpl implements Personaggio {
 
     /**
      * Imposta se il personaggio ha i capelli.
+     * 
      * @param hasCapelli True se il personaggio ha i capelli, altrimenti False.
      */
     @Override
@@ -145,6 +168,7 @@ public class PersonaggioImpl implements Personaggio {
 
     /**
      * Restituisce il colore dei capelli del personaggio.
+     * 
      * @return Il colore dei capelli del personaggio.
      */
     @Override
@@ -154,6 +178,7 @@ public class PersonaggioImpl implements Personaggio {
 
     /**
      * Imposta il colore dei capelli del personaggio.
+     * 
      * @param coloreCapelli Il nuovo colore dei capelli del personaggio.
      */
     @Override
@@ -163,6 +188,7 @@ public class PersonaggioImpl implements Personaggio {
 
     /**
      * Restituisce la tipologia dei capelli del personaggio.
+     * 
      * @return La tipologia dei capelli del personaggio.
      */
     @Override
@@ -172,6 +198,7 @@ public class PersonaggioImpl implements Personaggio {
 
     /**
      * Imposta la tipologia dei capelli del personaggio.
+     * 
      * @param tipologiaCapelli La nuova tipologia dei capelli del personaggio.
      */
     @Override
@@ -181,6 +208,7 @@ public class PersonaggioImpl implements Personaggio {
 
     /**
      * Restituisce la lunghezza dei capelli del personaggio.
+     * 
      * @return La lunghezza dei capelli del personaggio.
      */
     @Override
@@ -190,6 +218,7 @@ public class PersonaggioImpl implements Personaggio {
 
     /**
      * Imposta la lunghezza dei capelli del personaggio.
+     * 
      * @param lunghezzaCapelli La nuova lunghezza dei capelli del personaggio.
      */
     @Override
@@ -199,6 +228,7 @@ public class PersonaggioImpl implements Personaggio {
 
     /**
      * Restituisce il colore degli occhi del personaggio.
+     * 
      * @return Il colore degli occhi del personaggio.
      */
     @Override
@@ -208,6 +238,7 @@ public class PersonaggioImpl implements Personaggio {
 
     /**
      * Imposta il colore degli occhi del personaggio.
+     * 
      * @param coloreOcchi Il nuovo colore degli occhi del personaggio.
      */
     @Override
@@ -217,6 +248,7 @@ public class PersonaggioImpl implements Personaggio {
 
     /**
      * Verifica se il personaggio ha la barba.
+     * 
      * @return True se il personaggio ha la barba, altrimenti False.
      */
     @Override
@@ -226,6 +258,7 @@ public class PersonaggioImpl implements Personaggio {
 
     /**
      * Imposta se il personaggio ha la barba.
+     * 
      * @param barba True se il personaggio ha la barba, altrimenti False.
      */
     @Override
@@ -235,6 +268,7 @@ public class PersonaggioImpl implements Personaggio {
 
     /**
      * Verifica se il personaggio indossa gli occhiali.
+     * 
      * @return True se il personaggio indossa gli occhiali, altrimenti False.
      */
     @Override
@@ -244,7 +278,9 @@ public class PersonaggioImpl implements Personaggio {
 
     /**
      * Imposta se il personaggio indossa gli occhiali.
-     * @param occhiali True se il personaggio indossa gli occhiali, altrimenti False.
+     * 
+     * @param occhiali True se il personaggio indossa gli occhiali, altrimenti
+     *                 False.
      */
     @Override
     public void setOcchiali(final Boolean occhiali) {
@@ -253,6 +289,7 @@ public class PersonaggioImpl implements Personaggio {
 
     /**
      * Verifica se il personaggio ha accessori.
+     * 
      * @return True se il personaggio ha accessori, altrimenti False.
      */
     @Override
@@ -262,7 +299,9 @@ public class PersonaggioImpl implements Personaggio {
 
     /**
      * Imposta se il personaggio indossa un accessorio.
-     * @param accessorio True se il personaggio indossa un accessorio, altrimenti False.
+     * 
+     * @param accessorio True se il personaggio indossa un accessorio, altrimenti
+     *                   False.
      */
     @Override
     public void setAccessori(final Boolean accessorio) {
@@ -271,6 +310,7 @@ public class PersonaggioImpl implements Personaggio {
 
     /**
      * Verifica se il personaggio ha i baffi.
+     * 
      * @return True se il personaggio ha i baffi, altrimenti False.
      */
     @Override
@@ -280,6 +320,7 @@ public class PersonaggioImpl implements Personaggio {
 
     /**
      * Imposta se il personaggio ha i baffi.
+     * 
      * @param baffi True se il personaggio ha i baffi, altrimenti False.
      */
     @Override
@@ -289,6 +330,7 @@ public class PersonaggioImpl implements Personaggio {
 
     /**
      * Verifica se il personaggio è di sesso maschile.
+     * 
      * @return True se il personaggio è di sesso maschile, altrimenti False.
      */
     @Override
@@ -298,6 +340,7 @@ public class PersonaggioImpl implements Personaggio {
 
     /**
      * Imposta se il personaggio è di sesso maschile.
+     * 
      * @param uomo True se il personaggio è di sesso maschile, altrimenti False.
      */
     @Override
@@ -307,18 +350,19 @@ public class PersonaggioImpl implements Personaggio {
 
     /**
      * Controlla se il personaggio ha il tratto selezionato.
-     * @param personaggio Nome del personaggio da controllare.
+     * 
+     * @param personaggio          Nome del personaggio da controllare.
      * @param caratteristicaScelta Caratteristica selezionata.
-     * @param dettaglioScelto Dettaglio della caratteristica selezionata.
+     * @param dettaglioScelto      Dettaglio della caratteristica selezionata.
      * @return True se il personaggio presenta il dettaglio, altrimenti False.
      */
     @Override
     public Boolean hasCaratteristica(
-        final Personaggio personaggio, final String caratteristicaScelta, final String dettaglioScelto) {
+            final Personaggio personaggio, final String caratteristicaScelta, final String dettaglioScelto) {
         Boolean risultato = null;
         if (dettaglioScelto == null) {
-            // Se dettaglioScelto è null, restituisci false 
-            risultato = false; 
+            // Se dettaglioScelto è null, restituisci false
+            risultato = false;
         } else {
             switch (caratteristicaScelta) {
                 case "GENERE":
@@ -334,7 +378,7 @@ public class PersonaggioImpl implements Personaggio {
                     } else {
                         risultato = !(personaggio.hasCapelli());
                     }
-                    break; 
+                    break;
                 case "COLORE CAPELLI":
                     risultato = dettaglioScelto.equals(personaggio.getColoreCapelli());
                     break;
@@ -384,6 +428,7 @@ public class PersonaggioImpl implements Personaggio {
 
     /**
      * Crea una copia dell'oggetto Personaggio corrente.
+     * 
      * @return Una nuova istanza di Personaggio.
      */
     @Override

@@ -1,4 +1,8 @@
-import static org.junit.jupiter.api.Assertions.*;
+package personaggi;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import java.awt.Image;
 import java.awt.image.BufferedImage;
@@ -6,17 +10,16 @@ import java.awt.image.BufferedImage;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 
-import personaggi.Personaggio;
-import personaggi.PersonaggioImpl;
-
 import javax.swing.ImageIcon;
 
+/**
+ * Classe di test per la classe PersonaggioImpl.
+ */
 public class PersonaggioImplTest {
 
     private Personaggio personaggio;
 
-    final ImageIcon basilIcon = new ImageIcon("immagini/basil.jpg");
-    final ImageIcon melvinIcon = new ImageIcon("immagini/melvin.jpg");
+    private final ImageIcon basilIcon = new ImageIcon("immagini/basil.jpg");
 
     /**
      * Crea un nuovo personaggio di esempio per ogni test.
@@ -63,8 +66,13 @@ public class PersonaggioImplTest {
         }
     }
 
-    // Metodo di utilità per convertire un'immagine in BufferedImage
-    private BufferedImage toBufferedImage(Image image) {
+    /**
+     * Metodo di utilità per convertire un'immagine in BufferedImage.
+     * 
+     * @param image Immagine da convertire.
+     * @return Immagine convertita.
+     */
+    private BufferedImage toBufferedImage(final Image image) {
         BufferedImage bufferedImage = new BufferedImage(image.getWidth(null), image.getHeight(null),
                 BufferedImage.TYPE_INT_ARGB);
         bufferedImage.getGraphics().drawImage(image, 0, 0, null);
@@ -151,7 +159,6 @@ public class PersonaggioImplTest {
     /**
      * Verifica che il flag per la presenza di accessori sia correttamente impostato
      * e recuperato.
-     * 
      */
     @Test
     public void testHasSetAccessori() {
@@ -186,7 +193,7 @@ public class PersonaggioImplTest {
 
     /**
      * Verifica che il personaggio abbia la caratteristica specificata (ad esempio,
-     * "Maschio" per il genere maschile.)
+     * "Maschio" per il genere maschile).
      */
     @Test
     public void testHasCaratteristicaPresente() {
