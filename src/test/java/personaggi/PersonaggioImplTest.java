@@ -15,7 +15,7 @@ import javax.swing.ImageIcon;
 /**
  * Classe di test per la classe PersonaggioImpl.
  */
-public class PersonaggioImplTest {
+class PersonaggioImplTest {
 
     private Personaggio personaggio;
 
@@ -25,7 +25,7 @@ public class PersonaggioImplTest {
      * Crea un nuovo personaggio di esempio per ogni test.
      */
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         personaggio = new PersonaggioImpl("Mario", basilIcon, true, "Nero", "Lisci", "Corti", "Marroni", false,
                 false, false, true, true);
     }
@@ -35,7 +35,7 @@ public class PersonaggioImplTest {
      * recuperato.
      */
     @Test
-    public void testGetSetNome() {
+    void testGetSetNome() {
         assertEquals("Mario", personaggio.getNome());
     }
 
@@ -44,20 +44,20 @@ public class PersonaggioImplTest {
      * recuperata.
      */
     @Test
-    public void testGetSetImmagine() {
+    void testGetSetImmagine() {
         // Ottieni l'immagine originale dal ImageIcon
-        Image immagineOriginale = basilIcon.getImage();
+        final Image immagineOriginale = basilIcon.getImage();
 
         // Ottieni l'immagine dal personaggio
-        Image immagineRitornata = personaggio.getImmagine().getImage();
+        final Image immagineRitornata = personaggio.getImmagine().getImage();
 
         // Confronta le dimensioni delle immagini
         assertEquals(immagineOriginale.getWidth(null), immagineRitornata.getWidth(null));
         assertEquals(immagineOriginale.getHeight(null), immagineRitornata.getHeight(null));
 
         // Confronta il contenuto delle immagini pixel per pixel
-        BufferedImage bufferedImageOriginale = toBufferedImage(immagineOriginale);
-        BufferedImage bufferedImageRitornata = toBufferedImage(immagineRitornata);
+        final BufferedImage bufferedImageOriginale = toBufferedImage(immagineOriginale);
+        final BufferedImage bufferedImageRitornata = toBufferedImage(immagineRitornata);
 
         for (int x = 0; x < bufferedImageOriginale.getWidth(); x++) {
             for (int y = 0; y < bufferedImageOriginale.getHeight(); y++) {
@@ -73,7 +73,7 @@ public class PersonaggioImplTest {
      * @return Immagine convertita.
      */
     private BufferedImage toBufferedImage(final Image image) {
-        BufferedImage bufferedImage = new BufferedImage(image.getWidth(null), image.getHeight(null),
+        final BufferedImage bufferedImage = new BufferedImage(image.getWidth(null), image.getHeight(null),
                 BufferedImage.TYPE_INT_ARGB);
         bufferedImage.getGraphics().drawImage(image, 0, 0, null);
         return bufferedImage;
@@ -84,7 +84,7 @@ public class PersonaggioImplTest {
      * e recuperato.
      */
     @Test
-    public void testHasSetCapelli() {
+    void testHasSetCapelli() {
         assertTrue(personaggio.hasCapelli());
         personaggio.setHasCapelli(false);
         assertFalse(personaggio.hasCapelli());
@@ -95,7 +95,7 @@ public class PersonaggioImplTest {
      * impostato e recuperato.
      */
     @Test
-    public void testGetSetColoreCapelli() {
+    void testGetSetColoreCapelli() {
         assertEquals("Nero", personaggio.getColoreCapelli());
         personaggio.setColoreCapelli("Biondo");
         assertEquals("Biondo", personaggio.getColoreCapelli());
@@ -106,7 +106,7 @@ public class PersonaggioImplTest {
      * impostata e recuperata.
      */
     @Test
-    public void testGetSetTipologiaCapelli() {
+    void testGetSetTipologiaCapelli() {
         assertEquals("Lisci", personaggio.getTipologiaCapelli());
         personaggio.setTipologiaCapelli("Ricci");
         assertEquals("Ricci", personaggio.getTipologiaCapelli());
@@ -117,7 +117,7 @@ public class PersonaggioImplTest {
      * impostata e recuperata.
      */
     @Test
-    public void testGetSetLunghezzaCapelli() {
+    void testGetSetLunghezzaCapelli() {
         assertEquals("Corti", personaggio.getLunghezzaCapelli());
         personaggio.setLunghezzaCapelli("Lunghi");
         assertEquals("Lunghi", personaggio.getLunghezzaCapelli());
@@ -128,7 +128,7 @@ public class PersonaggioImplTest {
      * impostato e recuperato.
      */
     @Test
-    public void testGetSetColoreOcchi() {
+    void testGetSetColoreOcchi() {
         assertEquals("Marroni", personaggio.getColoreOcchi());
         personaggio.setColoreOcchi("Verdi");
         assertEquals("Verdi", personaggio.getColoreOcchi());
@@ -139,7 +139,7 @@ public class PersonaggioImplTest {
      * e recuperato.
      */
     @Test
-    public void testHasSetBarba() {
+    void testHasSetBarba() {
         assertFalse(personaggio.hasBarba());
         personaggio.setBarba(true);
         assertTrue(personaggio.hasBarba());
@@ -150,7 +150,7 @@ public class PersonaggioImplTest {
      * impostato e recuperato.
      */
     @Test
-    public void testHasSetOcchiali() {
+    void testHasSetOcchiali() {
         assertFalse(personaggio.hasOcchiali());
         personaggio.setOcchiali(true);
         assertTrue(personaggio.hasOcchiali());
@@ -161,7 +161,7 @@ public class PersonaggioImplTest {
      * e recuperato.
      */
     @Test
-    public void testHasSetAccessori() {
+    void testHasSetAccessori() {
         assertFalse(personaggio.hasAccessori());
         personaggio.setAccessori(true);
         assertTrue(personaggio.hasAccessori());
@@ -172,7 +172,7 @@ public class PersonaggioImplTest {
      * recuperato.
      */
     @Test
-    public void testHasSetBaffi() {
+    void testHasSetBaffi() {
         assertTrue(personaggio.hasBaffi());
         personaggio.setBaffi(false);
         assertFalse(personaggio.hasBaffi());
@@ -183,7 +183,7 @@ public class PersonaggioImplTest {
      * impostato e recuperato.
      */
     @Test
-    public void testIsSetUomo() {
+    void testIsSetUomo() {
         assertEquals(true, personaggio.isUomo());
         personaggio.setUomo(false);
         assertEquals(false, personaggio.isUomo());
@@ -196,7 +196,7 @@ public class PersonaggioImplTest {
      * "Maschio" per il genere maschile).
      */
     @Test
-    public void testHasCaratteristicaPresente() {
+    void testHasCaratteristicaPresente() {
         assertTrue(personaggio.hasCaratteristica(personaggio, "GENERE", "Maschio"));
     }
 
@@ -205,7 +205,7 @@ public class PersonaggioImplTest {
      * esempio, "Femmina" per il genere maschile).
      */
     @Test
-    public void testHasCaratteristicaAssente() {
+    void testHasCaratteristicaAssente() {
         assertFalse(personaggio.hasCaratteristica(personaggio, "GENERE", "Femmina"));
     }
 }

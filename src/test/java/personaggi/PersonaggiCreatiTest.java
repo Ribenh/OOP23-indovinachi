@@ -9,15 +9,15 @@ import java.util.List;
 /**
  * Classe di test per la classe PersonaggiCrati.
  */
-public class PersonaggiCreatiTest {
+class PersonaggiCreatiTest {
     private static final int NUMERO_TOTALE_PERSONAGGI = 24;
 
     /**
      * Verifica che i personaggi vengano creati correttamente.
      */
     @Test
-    public void testCreaPersonaggiListaNonVuota() {
-        List<Personaggio> personaggi = PersonaggiCreati.creaPersonaggi();
+    void testCreaPersonaggiListaNonVuota() {
+        final List<Personaggio> personaggi = PersonaggiCreati.creaPersonaggi();
         assertNotNull(personaggi);
         assertFalse(personaggi.isEmpty());
     }
@@ -26,8 +26,8 @@ public class PersonaggiCreatiTest {
      * Verifica che il numero di personaggi creati sia corretto.
      */
     @Test
-    public void testCreaPersonaggiCorrettezzaNumeroPersonaggi() {
-        List<Personaggio> personaggi = PersonaggiCreati.creaPersonaggi();
+    void testCreaPersonaggiCorrettezzaNumeroPersonaggi() {
+        final List<Personaggio> personaggi = PersonaggiCreati.creaPersonaggi();
         assertEquals(NUMERO_TOTALE_PERSONAGGI, personaggi.size());
     }
 }
