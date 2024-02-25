@@ -46,7 +46,7 @@ dependencies {
 
 application {
     // Define the main class for the application.
-    mainClass.set("src.main.java.schermatainiziale.SchermataInizialeGUI")
+    mainClass.set("schermatainiziale.SchermataInizialeGUI")
 }
 
 tasks.test {

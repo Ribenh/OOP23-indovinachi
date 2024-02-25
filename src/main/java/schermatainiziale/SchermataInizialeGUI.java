@@ -28,7 +28,8 @@ public class SchermataInizialeGUI extends JFrame {
     private static final int AUTOMATIC_MODE = 1;
     private static final int MANUAL_MODE = 2;
     private static final String PLAYER_FILENAME = "src/main/java/schermatainiziale/giocatori.ser";
-     private int modeSelect;
+     
+    private int modeSelect;
 
      // Utilizza la classe di utilità PersistentHashMap per salvare/scaricare lo stato della modalità
      private final transient PersistentHashMap<String, Integer> giocatori;
@@ -129,5 +130,9 @@ public class SchermataInizialeGUI extends JFrame {
         panel.add(buttonPanel, BorderLayout.SOUTH);
         add(panel);
         setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        new SchermataInizialeGUI();
     }
 }
