@@ -68,7 +68,7 @@ public abstract class TabelloneGUI extends JFrame {
         // Inizializza l'attributo tabellone
         this.tabellone = new TabelloneImpl(sizeX, sizeY);
         // Inizializza personaggioDaIndovinare al momento della creazione dell'istanza della classe
-        this.personaggioDaIndovinare = tabellone.getPersonaggioDaIndovinare();
+        personaggioDaIndovinare = tabellone.getPersonaggioDaIndovinare();
     }
 
     /**
